@@ -57,4 +57,40 @@
 .navigation .logoSite{
     padding: 10px 0;
 }
+
+.navigation .inputArea input{
+    height: 50px;
+    width: 70%;
+    padding: 0 15px;
+    border-radius: 4px 0 0 4px;
+    border: 0.4px solid #666;
+    opacity: 0.5;
+}
+.navigation .inputArea button{
+    background: #FF324D;
+    padding: 17.5px 30px;
+    color: #fff;
+    transition: all linear .3s;
+    border-radius: 0 4px 4px 0;
+}
+.navigation .inputArea button:hover{
+    background: #000;
+    color: #fff;
+}
+
+.navigation .icon-right a{
+   font-size: 20px;
+   color: #292b2c;
+   transition: all linear .3s;
+   margin-right: 20px;
+}
+.navigation .icon-right{
+    text-align: end;
+}
+.navigation .icon-right a:hover{
+    color: #FF324D;
+}
+.navigation .container .row{
+    align-items: center;
+}
 /* navigation css end */

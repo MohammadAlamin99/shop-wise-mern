@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from '../assets/images/navigation-img/logo_dark.png'
-import { RiUser3Line } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
 import { PiShoppingCartLight } from "react-icons/pi";
+import { PiUserThin } from "react-icons/pi";
 const Navigation = () => {
     return (
         <div>
@@ -14,12 +14,12 @@ const Navigation = () => {
                                 <a href="#"><img src={logo} alt="" /></a>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <input type="text" />
+                        <div className="col-lg-4 inputArea">
+                            <input type="text" placeholder='Search...'/>
                             <button>search</button>
                         </div>
-                        <div className="col-lg-4">
-                            <a href="#"><RiUser3Line /></a>
+                        <div className="col-lg-4 icon-right">
+                            <a href="#"><PiUserThin /></a>
                             <a href="#"><CiHeart/></a>
                             <a href="#"><PiShoppingCartLight/></a>
                         </div>
