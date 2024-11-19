@@ -1,0 +1,48 @@
+
+
+
+
+/* header css start */
+
+.header-section{
+    background: #38CB89;
+}
+
+.header-section .top-head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 9px;
+}
+.header-section .top-head a .btn{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+.header-section .top-head .top-bar{
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px; /* 157.143% */
+}
+
+
+
+@media (min-width: 1400px) {
+}
+@media(min-width:1200px) and (max-width:1399.98px){ 
+}
+@media(min-width:992px) and (max-width:1199.98px){
+}
+@media(min-width:768px) and (max-width:991.98px){
+}
+@media (min-width: 576px) and (max-width: 767px) {
+}
+@media (max-width: 575px){
+}
+/* header css end  */
