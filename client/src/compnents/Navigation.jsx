@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/images/navigation-img/log.png";
 import MobileMenu from "./MobileMenu";
 const Navigation = () => {
@@ -8,11 +8,27 @@ const Navigation = () => {
     setActive(!active);
   };
 
+  const [fixed, setFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setFixed(true);
+      } else {
+        setFixed(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [0]);
 
   return (
     <div>
-      <MobileMenu isActive={active} isSetActive ={setActive}/>
-      <section className="navigation-section">
+      <MobileMenu isActive={active} isSetActive={setActive} />
+      <section className={`navigation-section ${fixed ? "fixed" : ""}`}>
         <div className="navigation-warapper">
           <div className="container">
             <div className="row">

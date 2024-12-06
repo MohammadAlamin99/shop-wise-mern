@@ -40,12 +40,6 @@
     border-bottom: 1px solid #000000;
 }
 
-@media (min-width: 1400px) {
-}
-@media(min-width:1200px) and (max-width:1399.98px){ 
-}
-@media(min-width:992px) and (max-width:1199.98px){
-}
 @media(min-width:768px) and (max-width:991.98px){
     .header-section .top-head a .btn{
         display: none;
@@ -64,16 +58,29 @@
 /* header css end  */
 
 /* navigation css start */
+
+.navigation-section {
+    position: relative;
+    width: 100%;
+    background: #fff; 
+  }
+  
+  .navigation-section.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
 .navigation-section{
     padding: 18px 0;
 }
-
 .navigation-section .navigation-warapper .main-nav ul li a{
     color: #141718;
     font-family: "Space Grotesk", sans-serif;
     font-size: 14px;
     font-weight: 500;
-    line-height: 24px; /* 171.429% */
+    line-height: 24px;
     text-transform: capitalize;
 }
 .navigation-section .navigation-warapper .main-nav ul{
@@ -186,21 +193,31 @@
 
 /* banner section start */
 .banner-section{
-    background-image: url('../images/banner-img/banner-image.png');
+    background-image: url('../images/banner-img/bannerBackground.png');
+    overflow: hidden;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
-.banner-section .container .row{
-    padding: 136px 0;
+
+.banner-section .banner-img-right a img{
+    width: 100%;
+    height: auto;
+    transform: rotate(10deg);
+}
+.banner-section .container .row .displayFlex{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
 }
 
 .banner-section .banner-text{
-    font-family: Poppins;
+    font-family: "Poppins", sans-serif;
     font-size: 72px;
     font-style: normal;
     font-weight: 500;
-    line-height: 80px; /* 111.111% */
+    line-height: 80px;
     letter-spacing: -2px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 16.06%, #FFF 86.9%, rgba(255, 255, 255, 0.00) 106.25%);
     background-clip: text;
@@ -232,26 +249,104 @@
     border-radius: 8px;
     background: #38CB89;
 }
+@media only screen and (max-width: 991px) {
+    .banner-section .container .row .displayFlex{
+        order: 2;
+        align-items: center;
+    }
+    .banner-section{
+        padding-bottom: 40px;
+    }
+    .banner-section .banner-text{
+        text-align: center;
+    }
+    .banner-section .banner-sub-text{
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .banner-section .banner-text{
+        font-size: 58px;
+        line-height: 68px;
+        letter-spacing: -0.2px;
+    }
+}
+@media only screen and (max-width: 575px) {
+    .banner-section .banner-text{
+        font-size: 58px;
+        line-height: 58px; /* 110% */
+        letter-spacing: -0.4px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .banner-section .banner-text{
+        font-size: 40px;
+        text-align: center;
+        line-height: 44px; /* 110% */
+        letter-spacing: -0.4px;
+        max-width: 311px;
+        margin: 0;
+    }
+    .banner-section .banner-sub-text{
+        text-align: center;
+        font-weight: 400;
+        line-height: 26px; /* 162.5% */
+        max-width: 311px;
+        margin: 0;
+        font-size: 16px;
+    }
+    .banner-section .button{
+        margin-top: 16px;
+    }
+    .banner-section .container .row .displayFlex{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+}
+@media only screen and (max-width: 280px) {
+    .banner-section .banner-text{
+        font-size: 37px;
+    }
+    .banner-section .button{
+        font-size: 16px;
+        padding: 6px 25px;
+    }
+}
 /* banner section end */
 
 
 /* mobile menu css start */
 .mobile_menu_area{
-    width: 40%;
+    width: 100%;
+    height: 100%;
     padding: 24px;
-    position: absolute;
-    left: 0%;
+    position: fixed;
+    left: -100%;
     top: 0;
     background: #FFF;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all linear .4s;
 }
-.log_top_area{
+
+.mobile_menu_area.active{
+    left: 0;
+    overflow: hidden;
+}
+.mobile_menu_area .top .log_top_area{
     display: flex;
     justify-content: space-between;
 }
-.log_top_area svg{
+.mobile_menu_area .top .log_top_area svg{
     cursor: pointer;
 }
-.mobile_menu_area .mobile-input-area{
+.mobile_menu_area .top .mobile-input-area{
     display: flex;
     align-items: center;
     gap: 8px;
@@ -260,33 +355,33 @@
     border-radius: 6px;
     margin: 16px 0;
 }
-.mobile_menu_area .mobile-input-area input{
+.mobile_menu_area .top .mobile-input-area input{
     width: 100%;
     height: 24px;
     border: none;
 }
 
-.mobile_menu_area .mobile_nav ul li{
+.mobile_menu_area .top .mobile_nav ul li{
     margin-bottom: 32px;
 }
 
-.mobile_menu_area .mobile_nav ul li a{
+.mobile_menu_area .top .mobile_nav ul li a{
     color:#141718;
     font-family: Inter;
     font-size: 14px;
     font-weight: 500;
 }
 
-.mobile_menu_area .mobile-cart-list{
+.mobile_menu_area .bottom .mobile-cart-list{
     display: flex;
     justify-content: space-between;
 }
 
-.mobile_menu_area .mobile-cart-list .icon{
+.mobile_menu_area .bottom .mobile-cart-list .icon{
     display: flex;
     margin-bottom: 16px;
 }
-.mobile_menu_area button{
+.mobile_menu_area .bottom .button{
     margin-top: 16px;
     margin-bottom: 19px;
     width: 100%;
@@ -302,12 +397,12 @@
     letter-spacing: -0.4px;
 }
 
-.mobile_menu_area .mobile-social-media{
+.mobile_menu_area .bottom .mobile-social-media{
     display: flex;
     gap: 24px;
 }
 
-.mobile_menu_area .mobile-cart-list .common-text{
+.mobile_menu_area .bottom .mobile-cart-list .common-text{
     color: #6C7275;
     font-family: "Inter", serif;
     font-size: 18px;
@@ -317,7 +412,7 @@
     letter-spacing: -0.4px;
 }
 
-.mobile_menu_area .mobile-cart-list .icon .common-text{
+.mobile_menu_area .bottom .mobile-cart-list .icon .common-text{
     font-size: 12px;
     width: 20px;
     height: 20px;
@@ -330,23 +425,17 @@
     justify-content: center;
     color: #fff;
 }
-.mobile_menu_area .mobile-cart-list .icon{
+.mobile_menu_area .bottom .mobile-cart-list .icon{
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.mobile_menu_area .mobile-input-area input::placeholder{
+.mobile_menu_area .top .mobile-input-area input::placeholder{
     color: #6C7275;
     font-family: "Inter", serif;
     font-size: 14px;
     font-weight: 400;
-}
-.mobile_menu_area{
-    display: none;
-}
-.active{
-    display: block;
 }
 
 /* mobile menu css end */
