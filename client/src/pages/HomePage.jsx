@@ -6,6 +6,7 @@ import "../assets/css/style.css";
 import Navigation from "../compnents/Navigation";
 import Banner from "../compnents/Banner";
 import FeatureCollection from "../compnents/FeatureCollection";
+import Category from "../compnents/Category";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <Navigation />
       <Banner />
       <FeatureCollection />
+      <Category/>
     </div>
   );
 };

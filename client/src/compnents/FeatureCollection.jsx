@@ -10,6 +10,7 @@ const FeatureCollection = () => {
     <div>
       <section className="feature-collection-section">
         <div className="container">
+          <h2 className="common_main_head">Featured</h2>
           <div className="row">
             <div className="feature-header">
               <Swiper
