@@ -7,6 +7,8 @@ import Navigation from "../compnents/Navigation";
 import Banner from "../compnents/Banner";
 import FeatureCollection from "../compnents/FeatureCollection";
 import Category from "../compnents/Category";
+import Discount from "../compnents/Discount";
+import ShopCollection from "../compnents/ShopCollection";
 
 const HomePage = () => {
   return (
@@ -16,6 +18,8 @@ const HomePage = () => {
       <Banner />
       <FeatureCollection />
       <Category/>
+      <Discount/>
+      <ShopCollection/>
     </div>
   );
 };

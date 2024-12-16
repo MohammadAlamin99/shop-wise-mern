@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap");
 * {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
 }
-ul li{
-    list-style: none;
+ul li {
+  list-style: none;
 }
 a {
-    text-decoration: none;
-    display: inline-block;
+  text-decoration: none;
+  display: inline-block;
 }
 h1,
 h2,
@@ -24,42 +24,90 @@ p,
 ul,
 li,
 ol {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
-body{
-    font-family: 'Poppins', sans-serif;
-    color: #687188;
-    font-size: 16px;
-}
-
-button{
-    border: none;
-    cursor: pointer;
+body {
+  font-family: "Poppins", sans-serif;
+  color: #687188;
+  font-size: 16px;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+}
 
-@font-face{
-    font-family: 'Inter';
-    font-weight: 400;
-    src: url('../fonts/Inter18pt-Regular.woff2') format('woff2'),
-         url('../fonts/Inter18pt-Regular.woff') format('woff');
-  }
-@font-face{
-    font-family: 'Inter';
-    font-weight: 600;
-    src: url('../fonts/Inter18pt-SemiBold.woff2') format('woff2'),
-         url('../fonts/Inter18pt-SemiBold.woff') format('woff');
-  }
+@font-face {
+  font-family: "Inter";
+  font-weight: 400;
+  src: url("../fonts/Inter18pt-Regular.woff2") format("woff2"),
+    url("../fonts/Inter18pt-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 600;
+  src: url("../fonts/Inter18pt-SemiBold.woff2") format("woff2"),
+    url("../fonts/Inter18pt-SemiBold.woff") format("woff");
+}
 
-  .common_main_head{
-    color: #000;
+.common_main_head {
+  color: #000;
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+}
+.common-shop-now-btn {
+  color: #141718;
+  text-align: center;
+  font-family: "Inter", serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+  border-radius: 8px;
+  background: #38cb89;
+  padding: 6px 40px;
+}
+
+@media only screen and (max-width: 768px) {
+  .common_main_head {
     font-size: 40px;
-    font-weight: 500;
-    letter-spacing: -0.4px;
   }
+}
 
-  img{
-    width: 100%;
-    height: auto;
+@media only screen and (max-width: 575px) {
+  .common_main_head {
+    font-size: 34px;
   }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid #121212;
+  margin-top: 12px;
+}
+
+.btns .btn-text {
+  color: #121212;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+  font-family: "Inter", serif;
+}
+
+@media only screen and (max-width: 575px) {
+  .btns .btn-text{
+    font-size: 14px;
+  }
+}
