@@ -96,7 +96,7 @@ img {
   margin-top: 12px;
 }
 
-.categroy-text {
+.categroy-text{
   color: #23262f;
   text-align: center;
   font-size: 20px;
@@ -118,4 +118,15 @@ img {
   .btns .btn-text{
     font-size: 14px;
   }
+}
+
+.newsfeed{
+  color:#6C7275;
+  font-family: "Inter", serif;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px; 
+  text-transform: uppercase;
 }

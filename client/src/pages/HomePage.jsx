@@ -11,6 +11,7 @@ import Discount from "../compnents/Discount";
 import ShopCollection from "../compnents/ShopCollection";
 import Article from "../compnents/Article";
 import Newslatter from "../compnents/Newslatter";
+import Instagram from "../compnents/Instagram";
 
 const HomePage = () => {
   return (
@@ -24,6 +25,7 @@ const HomePage = () => {
       <ShopCollection/>
       <Article/>
       <Newslatter/>
+      <Instagram/>
     </div>
   );
 };
