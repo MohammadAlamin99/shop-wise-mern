@@ -96,6 +96,14 @@ img {
   margin-top: 12px;
 }
 
+.categroy-text {
+  color: #23262f;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
 .btns .btn-text {
   color: #121212;
   font-size: 16px;

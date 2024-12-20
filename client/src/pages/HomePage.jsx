@@ -9,6 +9,8 @@ import FeatureCollection from "../compnents/FeatureCollection";
 import Category from "../compnents/Category";
 import Discount from "../compnents/Discount";
 import ShopCollection from "../compnents/ShopCollection";
+import Article from "../compnents/Article";
+import Newslatter from "../compnents/Newslatter";
 
 const HomePage = () => {
   return (
@@ -20,6 +22,8 @@ const HomePage = () => {
       <Category/>
       <Discount/>
       <ShopCollection/>
+      <Article/>
+      <Newslatter/>
     </div>
   );
 };
