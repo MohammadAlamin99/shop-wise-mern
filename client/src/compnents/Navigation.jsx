@@ -12,18 +12,14 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 200) {
         setFixed(true);
       } else {
         setFixed(false);
       }
     };
     window.addEventListener("scroll", handleScroll);
-    // Cleanup on unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [0]);
+  },[0]);
 
   return (
     <div>

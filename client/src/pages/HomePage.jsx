@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../compnents/header";
+
 import "../assets/css/bootstrap-grid.css";
 import "../assets/css/common.css";
 import "../assets/css/style.css";
@@ -13,11 +13,12 @@ import Article from "../compnents/Article";
 import Newslatter from "../compnents/Newslatter";
 import Instagram from "../compnents/Instagram";
 import Footer from "../compnents/Footer";
+import Header from "../compnents/Header";
 
 const HomePage = () => {
   return (
     <div>
-      <Header />
+      <Header/>
       <Navigation />
       <Banner />
       <FeatureCollection />
