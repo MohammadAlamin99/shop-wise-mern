@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import img from "../assets/images/feature-collection-img/img-01.png";
 
 const FeatureCollection = () => {
   
@@ -18,7 +17,6 @@ const FeatureCollection = () => {
       console.error('Error:', error);
   });
 
-  console.log(data)
 
   return (
     <div>
@@ -63,10 +61,10 @@ const FeatureCollection = () => {
               >
               {
                 data.length>0?(
-                  data.map((item, i)=>{
+                  data.slice(0, 8).map((item, i)=>{
                     return(
-                      <SwiperSlide>
-                      <div key={i} className="collection_card">
+                      <SwiperSlide key={i} >
+                      <div className="collection_card">
                         <div className="card">
                           <span className="hot-label">HOT</span>
                           <span className="dis-label">-50%</span>
