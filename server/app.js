@@ -17,7 +17,7 @@ const cors =require('cors');
 const mongoose =require('mongoose');
 
 //  database connecting (mongodb)
-let URL = "mongodb+srv://<username>:<password>@cluster0.lduuwua.mongodb.net/Chat-App?retryWrites=true&w=majority";
+let URL = "mongodb+srv://<username>:<password>@cluster0.lduuwua.mongodb.net/Ecom-2025?retryWrites=true&w=majority";
 let option = {user:'alamin1234', pass:'alamin1234', autoIndex:true}
 mongoose.connect(URL, option).then(()=>{
     console.log('Database connected...');
