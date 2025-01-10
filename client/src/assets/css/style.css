@@ -518,6 +518,10 @@
   z-index: 1;
 }
 
+.feature-collection-section .feature-header .collection_card .card .dis-label:empty {
+  display: none;
+}
+
 .feature-collection-section .feature-header .collection_card .card a {
   transform: translateY(19px);
 }

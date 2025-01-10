@@ -10,4 +10,6 @@ exports.allProducts = async()=>{
     }
 }
 
+// all category get
+
 
