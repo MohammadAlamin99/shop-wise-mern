@@ -3,20 +3,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import { allProductRequiest } from "../apiRequest/apiRequiest";
 
 const FeatureCollection = () => {
   
   const [data, setData]= useState([]);
 
-  fetch("https://dummyjson.com/products")
-  .then((res) => res.json())
-  .then((data) => {
-      setData(data.products)
-  })
-  .catch((error) => {
-      console.error('Error:', error);
-  });
-
+  useEffect(()=>{
+    (async()=>{
+      let result = await allProductRequiest();
+      console.log(result);
+      setData(result)
+    })()
+  },[])
 
   return (
     <div>
@@ -69,7 +68,7 @@ const FeatureCollection = () => {
                           <span className="hot-label">HOT</span>
                           <span className="dis-label">-50%</span>
                           <a href="#">
-                            <img className="product-image " src={item.images[0]} alt="" />
+                            <img className="product-image " src={item.image} alt="" />
                           </a>
                           <button className="add-cart">Add to cart</button>
                         </div>
