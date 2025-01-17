@@ -30,7 +30,7 @@ const Article = () => {
                     <path
                       d="M10.8335 15L15.8335 10"
                       stroke="#121212"
-                      stroke-width="1.25"
+                      strokeWidth="1.25"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     ></path>
@@ -71,7 +71,7 @@ const Article = () => {
                     <path
                       d="M10.8335 15L15.8335 10"
                       stroke="#121212"
-                      stroke-width="1.25"
+                      strokeWidth="1.25"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     ></path>
@@ -104,7 +104,7 @@ const Article = () => {
                     <path
                       d="M4.1665 10H15.8332"
                       stroke="#121212"
-                      stroke-width="1.25"
+                      strokeWidth="1.25"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     ></path>
@@ -144,7 +144,7 @@ const Article = () => {
                     <path
                       d="M4.1665 10H15.8332"
                       stroke="#121212"
-                      stroke-width="1.25"
+                      strokeWidth="1.25"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     ></path>

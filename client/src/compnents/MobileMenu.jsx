@@ -4,6 +4,8 @@ import logo from "../assets/images/logo-phone-menu.png";
 const MobileMenu = ({ isActive, isSetActive }) => {
   return (
     <div>
+      <div className="manuOverlay">
+        <div className={`overlay ${isActive ? "active" : ""}`}></div>
       <div className={`mobile_menu_area ${isActive ? "active" : ""}`}>
         <div className="top">
           <div className="log_top_area">
@@ -196,6 +198,7 @@ const MobileMenu = ({ isActive, isSetActive }) => {
             </a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
