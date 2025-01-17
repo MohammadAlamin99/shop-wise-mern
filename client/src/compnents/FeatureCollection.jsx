@@ -11,7 +11,6 @@ const FeatureCollection = () => {
   useEffect(() => {
     (async () => {
       let result = await allProductRequiest();
-      console.log(result);
       setData(result);
     })();
   }, []);
