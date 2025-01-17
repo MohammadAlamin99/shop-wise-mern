@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { allProductRequiest } from "../apiRequest/apiRequiest";
+import { useDispatch, useSelector } from "react-redux";
+import { setProduct } from "../redux/state-slice/product-slice";
 
 const FeatureCollection = () => {
-  const [data, setData] = useState([]);
+  const productData = useSelector((state) => state.getProduct.product);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       let result = await allProductRequiest();
-      setData(result);
+      dispatch(setProduct(result))
     })();
   }, []);
 
@@ -56,8 +59,8 @@ const FeatureCollection = () => {
                   },
                 }}
               >
-                {data.length > 0 ? (
-                  data.slice(0, 8).map((item, i) => {
+                {productData.length > 0 ? (
+                  productData.slice(0, 8).map((item, i) => {
                     return (
                       <SwiperSlide key={i}>
                         <div className="collection_card">
