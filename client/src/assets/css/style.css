@@ -361,7 +361,7 @@
 /* banner section end */
 
 /* mobile menu css start */
-.overlay{
+.overlay {
   background: rgba(0, 0, 0, 0.308);
   left: 0;
   top: 0;
@@ -370,8 +370,9 @@
   height: 100%;
   display: none;
 }
-.overlay.active{
- display: block;
+
+.overlay.active {
+  display: block;
 }
 
 .mobile_menu_area {
@@ -388,6 +389,7 @@
   justify-content: space-between;
   transition: all linear 0.4s;
 }
+
 .mobile_menu_area.active {
   left: 0;
   /* overflow: hidden; */
@@ -498,13 +500,14 @@
   font-weight: 400;
 }
 
-@media only screen and (max-width:991px){
-  .mobile_menu_area{
+@media only screen and (max-width:991px) {
+  .mobile_menu_area {
     width: 50%;
   }
 }
-@media only screen and (max-width:768px){
-  .mobile_menu_area{
+
+@media only screen and (max-width:768px) {
+  .mobile_menu_area {
     width: 80%;
   }
 }
@@ -1156,7 +1159,6 @@
 
 
 /* footer css start */
-
 .footer {
   padding-top: 80px;
   padding-bottom: 32px;
@@ -1291,3 +1293,36 @@
 }
 
 /* footer css end */
+
+
+
+
+/* ===================================
+              Login page
+===================================*/
+
+/* Login section css start */
+
+.login_section .right-side-img{
+  background: #F3F5F7;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login_section .right-side-img img{
+  width: 400px;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.login_section .signupWrapper .form{
+  display: flex;
+  flex-direction: column;
+}
+.login_section .signupWrapper .form .terms_condition_cheaker{
+  display: flex;
+  gap: 12px;
+}
+/* Login section css end */
