@@ -1350,7 +1350,6 @@
   text-align: start;
   margin-bottom: 32px;
 }
-
 .login_section .signupWrapper .common-shop-now-btn a {
   color: #38CB89;
 }
@@ -1360,7 +1359,6 @@
   gap: 12px;
   align-items: center;
 }
-
 .login_section .signupWrapper .form .terms_condition_cheaker .common-shop-now-btn {
   padding: 0;
   text-align: start;
@@ -1368,20 +1366,17 @@
   color: #6C7275;
   margin: 0;
 }
-
 .login_section .signupWrapper .form .terms_condition_cheaker .common-shop-now-btn a {
   color: #141718;
 }
 .login_section .signupWrapper .form .terms_condition_cheaker input{
   cursor: pointer;
 }
-
 .login_section .signupWrapper .form input {
   border: none;
   border-bottom: 1px solid #E8ECEF;
   padding-bottom: 14px;
 }
-
 .login_section .signupWrapper .form input:valid {
   color: #6C7275;
   font-family: "Inter", serif;
@@ -1389,7 +1384,6 @@
   font-weight: 400;
   line-height: 26px;
 }
-
 .login_section .signupWrapper .form input::placeholder {
   color: #6C7275;
   font-family: "Inter", serif;
