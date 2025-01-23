@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const router = require("./src/routes/api");
 const bodyParser = require("body-parser");
+const dotenv = require('dotenv')
 
 // security middleware import
 const rateLimit = require("express-rate-limit");
@@ -32,7 +33,7 @@ app.use(xss())
 app.use(hpp())
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
-
+require('dotenv').config()
 // Body Parser Implement
 app.use(bodyParser.json())
 

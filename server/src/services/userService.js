@@ -12,7 +12,6 @@ exports.registration = async (req) => {
 };
 
 // user log_in
-
 exports.login = async (req) => {
   try {
     let reqBody = req.body;
@@ -28,7 +27,8 @@ exports.login = async (req) => {
           user_fullName: data[0].fullName,
           email: data[0].email,
         },
-        "hamim123ishu"
+        (process.env.SECRET_KEY),
+        { expiresIn: "1h" }
       );
       return { status: "success", token: token, message: "Login Success" };
     } else {
