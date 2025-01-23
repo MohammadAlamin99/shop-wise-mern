@@ -7,7 +7,7 @@ const authentication = require("../middlewares/authentication");
 
 
 router.get("/allProduct", ProdcutController.productList);
-router.get("/category", CategoryController.CategoryList);
+router.get("/category",authentication, CategoryController.CategoryList);
 
 // user registration
 router.post("/registration", userController.userRegistraion);

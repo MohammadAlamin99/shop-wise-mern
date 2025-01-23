@@ -19,7 +19,6 @@ exports.login = async (req) => {
       { $match: reqBody },
       { $project: { password: 0 } },
     ]);
-
     if (data.length > 0) {
       let token = jwt.sign(
         {
@@ -27,9 +26,11 @@ exports.login = async (req) => {
           user_fullName: data[0].fullName,
           email: data[0].email,
         },
-        (process.env.SECRET_KEY),
+        process.env.SECRET_KEY,
         { expiresIn: "1h" }
       );
+
+
       return { status: "success", token: token, message: "Login Success" };
     } else {
       return { status: "fail", message: "User Not found" };
