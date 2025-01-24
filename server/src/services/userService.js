@@ -15,7 +15,7 @@ exports.registration = async (req) => {
 exports.login = async (req) => {
   try {
     let reqBody = req.body;
-   
+
     let data = await userModel.aggregate([
       { $match: reqBody },
       { $project: { password: 0 } },
@@ -27,11 +27,9 @@ exports.login = async (req) => {
           user_fullName: data[0].fullName,
           email: data[0].email,
         },
-        process.env.SECRET_KEY,
+        process.env.AUTH_KEY || "hello1234",
         { expiresIn: "1h" }
       );
-
-
       return { status: "success", token: token, message: "Login Success" };
     } else {
       return { status: "fail", message: "User Not found" };

@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 module.exports = (req, res, next) => {
   try {
     let token = req.headers.token;
-    jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
+    jwt.verify(token, process.env.AUTH_KEY||"hello1234", function (err, decoded) {
       if (err) {
         return res.status(201).json({ status: "unathurized" });
       } else {
