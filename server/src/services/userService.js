@@ -15,6 +15,7 @@ exports.registration = async (req) => {
 exports.login = async (req) => {
   try {
     let reqBody = req.body;
+   
     let data = await userModel.aggregate([
       { $match: reqBody },
       { $project: { password: 0 } },
