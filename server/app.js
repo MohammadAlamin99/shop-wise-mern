@@ -1,11 +1,9 @@
 // basic import
-const dotenv = require("dotenv");
 const express = require("express");
 const app = express();
+require('dotenv').config()
 const router = require("./src/routes/api");
 const bodyParser = require("body-parser");
-dotenv.config();
-
 
 // security middleware import
 const rateLimit = require("express-rate-limit");

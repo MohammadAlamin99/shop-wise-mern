@@ -23,13 +23,11 @@ exports.login = async (req) => {
   try {
     let email = req.body.email;
     let data = await userModel.aggregate([{ $match: { email: email } }]);
-
     if (data.length > 0) {
       const isValidPass = await bcrypt.compare(
         req.body.password,
         data[0].password
       );
-
       if (isValidPass == true) {
         let token = jwt.sign(
           {
@@ -37,7 +35,7 @@ exports.login = async (req) => {
             user_fullName: data[0].fullName,
             email: data[0].email,
           },
-          process.env.AUTH_KEY || "hello1234",
+          process.env.AUTH_KEY,
           { expiresIn: "1h" }
         );
         return { status: "success", token: token, message: "Login Success" };

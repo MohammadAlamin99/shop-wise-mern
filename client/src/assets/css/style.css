@@ -1310,10 +1310,12 @@
   align-items: center;
   justify-content: center;
 }
-.login_section .custom-col-1{
+
+.login_section .custom-col-1 {
   position: relative;
 }
-.login_section .right-side-img .logo{
+
+.login_section .right-side-img .logo {
   position: absolute;
   left: 50%;
   top: 32px;
@@ -1350,6 +1352,7 @@
   text-align: start;
   margin-bottom: 32px;
 }
+
 .login_section .signupWrapper .common-shop-now-btn a {
   color: #38CB89;
 }
@@ -1359,6 +1362,7 @@
   gap: 12px;
   align-items: center;
 }
+
 .login_section .signupWrapper .form .terms_condition_cheaker .common-shop-now-btn {
   padding: 0;
   text-align: start;
@@ -1366,17 +1370,21 @@
   color: #6C7275;
   margin: 0;
 }
+
 .login_section .signupWrapper .form .terms_condition_cheaker .common-shop-now-btn a {
   color: #141718;
 }
-.login_section .signupWrapper .form .terms_condition_cheaker input{
+
+.login_section .signupWrapper .form .terms_condition_cheaker input {
   cursor: pointer;
 }
+
 .login_section .signupWrapper .form input {
   border: none;
   border-bottom: 1px solid #E8ECEF;
   padding-bottom: 14px;
 }
+
 .login_section .signupWrapper .form input:valid {
   color: #6C7275;
   font-family: "Inter", serif;
@@ -1384,6 +1392,7 @@
   font-weight: 400;
   line-height: 26px;
 }
+
 .login_section .signupWrapper .form input::placeholder {
   color: #6C7275;
   font-family: "Inter", serif;
@@ -1436,30 +1445,83 @@
   padding: 10px 0;
   transition: all linear 0.3s;
 }
-.login_section .signupWrapper .sign-up-button:hover{
+
+.login_section .signupWrapper .sign-up-button:hover {
   background: #212527;
 }
 
 @media only screen and (max-width:991px) {
-  .login_section .right-side-img{
+  .login_section .right-side-img {
     height: 80vh;
     overflow-x: hidden;
   }
-  .login_section .custom-row{
+
+  .login_section .custom-row {
     gap: 40px;
   }
-  .login_section .signupWrapper{
+
+  .login_section .signupWrapper {
     width: 100%;
     padding: 0 88px;
   }
-  .login_section .signupWrapper .form{
+
+  .login_section .signupWrapper .form {
     max-width: 100%;
   }
 }
 
 @media only screen and (max-width:575px) {
-  .login_section .signupWrapper{
+  .login_section .signupWrapper {
     padding: 0 30px;
   }
 }
+
 /* Login section css end */
+
+
+
+
+/* =====================Shop Page==================== */
+
+/* banner section start */
+
+.shop_banner .bg-banner {
+  background: url('../images/Shop-Page/shop_banner.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shop_banner .text_wrapper .shop-text {
+  color: #000;
+  font-size: 54px;
+  font-weight: 500;
+  line-height: 58px;
+  letter-spacing: -1px;
+  padding: 24px 0;
+  text-align: center;
+}
+
+.shop_banner .text_wrapper .btn {
+  display: flex;
+  justify-content: center;
+}
+
+.shop_banner .text_wrapper .btn .btn-home,
+.shop_banner .text_wrapper .btn .shop-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--Black-600, #605F5F);
+  font-family: "Inter", serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.shop_banner .text_wrapper .btn .shop-btn {
+  color: #121212;
+  margin-left: 16px;
+}
