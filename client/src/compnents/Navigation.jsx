@@ -59,7 +59,7 @@ const Navigation = () => {
                         <a href="#">home</a>
                       </li>
                       <li>
-                        <a href="#">Shop</a>
+                        <a href="/shop">Shop</a>
                       </li>
                       <li>
                         <a href="#">Product</a>
