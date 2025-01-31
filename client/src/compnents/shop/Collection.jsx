@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allProductRequiest } from "../../apiRequest/apiRequiest";
 import { setProduct } from "../../redux/state-slice/product-slice";
@@ -6,14 +6,37 @@ import { setProduct } from "../../redux/state-slice/product-slice";
 const Collection = () => {
   const productData = useSelector((state) => state.getProduct.product);
   const dispatch = useDispatch();
-  // console.log(productData);
+  const [priceRange, setPriceRange] = useState([]);
 
   useEffect(() => {
     (async () => {
       let result = await allProductRequiest();
       dispatch(setProduct(result));
     })();
-  }, []);
+  }, [dispatch]);
+
+  const handlePriceRangeChange = (range) => {
+    setPriceRange((prev) => {
+      if (prev.includes(range)) {
+        return prev.filter((r) => r !== range);
+      } else {
+        return [...prev, range];
+      }
+    });
+  };
+
+  const filterProductsByPrice = (products) => {
+    if (priceRange.length === 0) return products;
+
+    return products.filter((product) => {
+      return priceRange.some((range) => {
+        const [min, max] = range.split("-").map(Number);
+        return product.price >= min && (max ? product.price <= max : true);
+      });
+    });
+  };
+
+  const filteredProducts = filterProductsByPrice(productData);
 
   return (
     <div>
@@ -55,28 +78,64 @@ const Collection = () => {
                 <h4 className="newsfeed">PRICE</h4>
                 <ul>
                   <li>
-                    All Price
-                    <input type="checkbox" />
+                    <label>
+                      All Price
+                      <input
+                        type="checkbox"
+                        checked={priceRange.length === 0}
+                        onChange={() => setPriceRange([])}
+                      />
+                    </label>
                   </li>
                   <li>
-                    $0.00 - 99.99
-                    <input type="checkbox" />
+                    <label>
+                      $0.00 - 99.99
+                      <input
+                        type="checkbox"
+                        checked={priceRange.includes("0-99.99")}
+                        onChange={() => handlePriceRangeChange("0-99.99")}
+                      />
+                    </label>
                   </li>
                   <li>
-                    $100.00 - 199.99
-                    <input type="checkbox" />
+                    <label>
+                      $100.00 - 199.99
+                      <input
+                        type="checkbox"
+                        checked={priceRange.includes("100-199.99")}
+                        onChange={() => handlePriceRangeChange("100-199.99")}
+                      />
+                    </label>
                   </li>
                   <li>
-                    $200.00 - 299.99
-                    <input type="checkbox" />
+                    <label>
+                      $200.00 - 299.99
+                      <input
+                        type="checkbox"
+                        checked={priceRange.includes("200-299.99")}
+                        onChange={() => handlePriceRangeChange("200-299.99")}
+                      />
+                    </label>
                   </li>
                   <li>
-                    $300.00 - 399.99
-                    <input type="checkbox" />
+                    <label>
+                      $300.00 - 399.99
+                      <input
+                        type="checkbox"
+                        checked={priceRange.includes("300-399.99")}
+                        onChange={() => handlePriceRangeChange("300-399.99")}
+                      />
+                    </label>
                   </li>
                   <li>
-                    $400.00+
-                    <input type="checkbox" />
+                    <label>
+                      $400.00+
+                      <input
+                        type="checkbox"
+                        checked={priceRange.includes("400-")}
+                        onChange={() => handlePriceRangeChange("400-")}
+                      />
+                    </label>
                   </li>
                 </ul>
               </div>
@@ -88,14 +147,14 @@ const Collection = () => {
                 </div>
               </div>
               <div className="card-row">
-                {productData.length > 0 ? (
-                  productData.map((item, i) => {
+                {filteredProducts.length > 0 ? (
+                  filteredProducts.map((item, i) => {
                     return (
-                      <div className="Custom-col">
-                        <div class="product-card">
+                      <div className="Custom-col" key={i}>
+                        <div className="product-card">
                           <div className="img_box_wrapper">
-                            <div class="badge common-shop-now-btn">NEW</div>
-                            <div class="common-shop-now-btn discount-badge">
+                            <div className="badge common-shop-now-btn">NEW</div>
+                            <div className="common-shop-now-btn discount-badge">
                               {item.discountPercentage
                                 ? item.discountPercentage
                                 : ""}
@@ -104,19 +163,25 @@ const Collection = () => {
                               <img src={item.image} alt="Collection Image" />
                             </a>
                           </div>
-                          <div class="rating">
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
+                          <div className="rating">
+                            <span className="star">★</span>
+                            <span className="star">★</span>
+                            <span className="star">★</span>
+                            <span className="star">★</span>
+                            <span className="star">★</span>
                           </div>
-                          <h2 class="product-title">{item["title"]}</h2>
-                          <div class="price">
-                            <span class="current-price">
+                          <h2 className="product-title">{item["title"]}</h2>
+                          <div className="price">
+                            <span className="current-price">
                               TK. {item["price"]}
                             </span>
-                            <span class="original-price" style={{display: item['discountPrice']==0? "none": "block"}}>
+                            <span
+                              className="original-price"
+                              style={{
+                                display:
+                                  item["discountPrice"] == 0 ? "none" : "block",
+                              }}
+                            >
                               TK. {item["discountPrice"]}
                             </span>
                           </div>

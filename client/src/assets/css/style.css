@@ -1597,6 +1597,14 @@
   width: 100%;
 }
 
+.shop-collection .left-filter .filter-wrapper2 ul li label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
 /* shop collection  css end */
 
 /* shop all products */
@@ -1687,15 +1695,13 @@
   width: calc((100% / 3) - 16px);
 }
 
-
-.shop-collection .right-product .right-top-heading .text-wrapper .categroy-text{
+.shop-collection .right-product .right-top-heading .text-wrapper .categroy-text {
   font-weight: 600;
   font-family: "Inter", serif;
   text-align: start;
   margin-bottom: 40px;
 }
 
-.shop-collection .product-card .img_box_wrapper .discount-badge:empty{
+.shop-collection .product-card .img_box_wrapper .discount-badge:empty {
   display: none;
 }
-

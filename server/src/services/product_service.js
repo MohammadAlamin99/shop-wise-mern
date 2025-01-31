@@ -10,6 +10,14 @@ exports.allProducts = async()=>{
     }
 }
 
-// all category get
+// Product filter by category
 
+exports.allProducts = async()=>{
+    try {
+        let data = await productModel.find();
+        return{status:"success", data:data}
+    } catch (err) {
+        return{status:"fail", err}        
+    }
+}
 
