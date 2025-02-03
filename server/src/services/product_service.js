@@ -12,12 +12,11 @@ exports.allProducts = async () => {
   }
 };
 
-// Product filter by category
+// // Product filter by category
 
 exports.getProductByCategory = async (req) => {
   try {
-    let categoryId = new ObjectId(req.params.categoryID);
-    // const categoryId = new ObjectId("650af352a41095554cc74162"); 
+    const categoryId = new ObjectId(req.params.id);
     let data = await productModel.aggregate([
       {
         $lookup: {
@@ -28,14 +27,12 @@ exports.getProductByCategory = async (req) => {
         },
       },
       { $match: { categoryID: categoryId } },
-      {$unwind: "$category"}
+      { $unwind: "$category" },
     ]);
-    console.log("hamim",categoryId)
+
     return { status: "success", data: data };
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return { status: "fail", err };
   }
 };
-
-
