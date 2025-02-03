@@ -92,7 +92,6 @@ const Collection = () => {
                       $0.00 - 99.99
                       <input
                         type="checkbox"
-                        checked={priceRange.includes("0-99.99")}
                         onChange={() => handlePriceRangeChange("0-99.99")}
                       />
                     </label>
@@ -102,7 +101,6 @@ const Collection = () => {
                       $100.00 - 199.99
                       <input
                         type="checkbox"
-                        checked={priceRange.includes("100-199.99")}
                         onChange={() => handlePriceRangeChange("100-199.99")}
                       />
                     </label>
@@ -112,7 +110,6 @@ const Collection = () => {
                       $200.00 - 299.99
                       <input
                         type="checkbox"
-                        checked={priceRange.includes("200-299.99")}
                         onChange={() => handlePriceRangeChange("200-299.99")}
                       />
                     </label>
@@ -122,7 +119,6 @@ const Collection = () => {
                       $300.00 - 399.99
                       <input
                         type="checkbox"
-                        checked={priceRange.includes("300-399.99")}
                         onChange={() => handlePriceRangeChange("300-399.99")}
                       />
                     </label>
@@ -132,7 +128,6 @@ const Collection = () => {
                       $400.00+
                       <input
                         type="checkbox"
-                        checked={priceRange.includes("400-")}
                         onChange={() => handlePriceRangeChange("400-")}
                       />
                     </label>

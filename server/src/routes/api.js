@@ -8,6 +8,7 @@ const authentication = require("../middlewares/authentication");
 
 router.get("/allProduct", ProdcutController.productList);
 router.get("/category", CategoryController.CategoryList);
+router.get("/productByCategory/:id", ProdcutController.productByCategory);
 
 // user registration
 router.post("/registration", userController.userRegistraion);
