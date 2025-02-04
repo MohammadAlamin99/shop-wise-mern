@@ -42,7 +42,7 @@ const Collection = () => {
     <div>
       <section className="shop-collection">
         <div className="container">
-          <div className="row">
+          <div className="row custom-row">
             <div className="col-lg-12"></div>
             <div className="left-filter">
               <div className="filter-wrapper">

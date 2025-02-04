@@ -1527,6 +1527,31 @@
   margin-left: 16px;
 }
 
+@media only screen and (max-width:768px) {
+  .shop_banner .text_wrapper .shop-text {
+    font-size: 44px;
+  }
+
+  .shop_banner .text_wrapper .categroy-text {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width:575px) {
+  .shop_banner .text_wrapper .shop-text {
+    font-size: 34px;
+  }
+
+  .shop_banner .text_wrapper .shop-text {
+    padding: 12px 0;
+    line-height: 120%;
+  }
+
+  .shop_banner .text_wrapper .categroy-text {
+    font-size: 16px;
+  }
+}
+
 /* shop collection  css start */
 .shop-collection {
   padding: 60px 0;
@@ -1704,4 +1729,31 @@
 
 .shop-collection .product-card .img_box_wrapper .discount-badge:empty {
   display: none;
+}
+
+
+@media only screen and (max-width:1020px) {
+  .shop-collection .right-product .card-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .shop-collection .right-product .Custom-col{
+    width: 100%;
+  }
+}
+@media only screen and (max-width:768px) {
+  .shop-collection .custom-row{
+    flex-direction: column;
+  }
+  .shop-collection .right-product{
+    width: 100%;
+  }
+  .shop-collection .left-filter{
+    width: 100%;
+  }
+  .shop-collection .left-filter ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }

@@ -12,8 +12,7 @@ exports.allProducts = async () => {
   }
 };
 
-// // Product filter by category
-
+// Product filter by category
 exports.getProductByCategory = async (req) => {
   try {
     const categoryId = new ObjectId(req.params.id);
