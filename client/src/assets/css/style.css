@@ -365,10 +365,11 @@
   background: rgba(0, 0, 0, 0.308);
   left: 0;
   top: 0;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   display: none;
+  z-index: 2;
 }
 
 .overlay.active {
@@ -392,7 +393,6 @@
 
 .mobile_menu_area.active {
   left: 0;
-  /* overflow: hidden; */
 }
 
 .mobile_menu_area .top .log_top_area {
@@ -469,7 +469,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: 32px;
-  /* 177.778% */
   letter-spacing: -0.4px;
 }
 
@@ -1770,7 +1769,7 @@
   border-right: 1px solid #E8ECEF;
 }
 
-.shop-collection .right-product .right-top-heading .text-wrapper .right-grid{
+.shop-collection .right-product .right-top-heading .text-wrapper .right-grid {
   display: flex;
   gap: 32px;
 }
