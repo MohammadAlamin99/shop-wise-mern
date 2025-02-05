@@ -1724,34 +1724,82 @@
   font-weight: 600;
   font-family: "Inter", serif;
   text-align: start;
-  margin-bottom: 40px;
 }
 
 .shop-collection .product-card .img_box_wrapper .discount-badge:empty {
   display: none;
 }
 
+.shop-collection .right-product .right-top-heading .text-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shop-collection .right-product .right-top-heading {
+  margin-bottom: 40px;
+}
+
+.shop-collection .right-product .right-top-heading .text-wrapper .selet-filter {
+  color: #121212;
+  font-family: "Inter", serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  border: none;
+  cursor: pointer;
+  text-align: end;
+}
+
+.shop-collection .right-product .right-top-heading .text-wrapper .selet-filter:focus {
+  border: none;
+}
+
+.shop-collection .right-product .right-top-heading .text-wrapper .icon-grid {
+  border: 1px solid var(--neutral-03100, #E8ECEF);
+  cursor: pointer;
+}
+
+.shop-collection .right-product .right-top-heading .text-wrapper .icon-grid {
+  display: flex;
+  align-items: center;
+}
+
+.shop-collection .right-product .right-top-heading .text-wrapper .icon-grid svg {
+  border-right: 1px solid #E8ECEF;
+}
+
+.shop-collection .right-product .right-top-heading .text-wrapper .right-grid{
+  display: flex;
+  gap: 32px;
+}
 
 @media only screen and (max-width:1020px) {
   .shop-collection .right-product .card-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-  .shop-collection .right-product .Custom-col{
+
+  .shop-collection .right-product .Custom-col {
     width: 100%;
   }
 }
+
 @media only screen and (max-width:768px) {
-  .shop-collection .custom-row{
+  .shop-collection .custom-row {
     flex-direction: column;
   }
-  .shop-collection .right-product{
+
+  .shop-collection .right-product {
     width: 100%;
   }
-  .shop-collection .left-filter{
+
+  .shop-collection .left-filter {
     width: 100%;
   }
-  .shop-collection .left-filter ul{
+
+  .shop-collection .left-filter ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
