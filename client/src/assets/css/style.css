@@ -1692,7 +1692,7 @@
 }
 
 .shop-collection .product-card .price .current-price {
-  color: var(--Black-900, #121212);
+  color: #121212;
   font-family: "Inter", serif;
   font-size: 14px;
   font-weight: 600;
@@ -1756,7 +1756,7 @@
 }
 
 .shop-collection .right-product .right-top-heading .text-wrapper .icon-grid {
-  border: 1px solid var(--neutral-03100, #E8ECEF);
+  border: 1px solid #E8ECEF;
   cursor: pointer;
 }
 
@@ -1774,6 +1774,8 @@
   gap: 32px;
 }
 
+
+
 @media only screen and (max-width:1020px) {
   .shop-collection .right-product .card-row {
     display: grid;
@@ -1783,13 +1785,41 @@
   .shop-collection .right-product .Custom-col {
     width: 100%;
   }
-}
 
-@media only screen and (max-width:768px) {
+  .shop-collection .left-filter .filter-wrapper .category_wrapper_box {
+    display: none;
+  }
+
+  .shop-collection .left-filter .filter-wrapper.filter-wrapper2 {
+    display: none;
+  }
+
+  .shop-collection .right-product .right-top-heading .text-wrapper .icon-grid {
+    display: none;
+  }
+  .category-active{
+    display: block !important;
+    border: 1px solid #6C7275;
+    padding: 10px;
+  }
+  .shop-collection .right-product .right-top-heading .text-wrapper{
+    margin-top: 20px;
+  }
+  .shop-collection .right-product{
+    padding: 0 20px;
+  }
+  .shop-collection .left-filter{
+    padding: 0 20px;
+  }
   .shop-collection .custom-row {
     flex-direction: column;
   }
+  .shop-collection .right-product{
+    width: 100%;
+  }
+}
 
+@media only screen and (max-width:768px) {
   .shop-collection .right-product {
     width: 100%;
   }
@@ -1797,10 +1827,15 @@
   .shop-collection .left-filter {
     width: 100%;
   }
-
-  .shop-collection .left-filter ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+}
+@media only screen and (max-width:430px) {
+  .shop-collection .right-product .card-row{
+    grid-template-columns: 1fr;
+  }
+  .shop-collection .right-product .right-top-heading .text-wrapper .categroy-text{
+    font-size: 16px;
+  }
+  .shop-collection .product-card .img_box_wrapper .badge{
+    font-size: 14px;
   }
 }

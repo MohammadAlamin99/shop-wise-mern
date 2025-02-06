@@ -7,6 +7,11 @@ const Collection = () => {
   const productData = useSelector((state) => state.getProduct.product);
   const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState([]);
+  const [filterAactive, setFilterActive] = useState(false);
+
+  const filterHandler = () => {
+    setFilterActive(!filterAactive);
+  };
 
   useEffect(() => {
     (async () => {
@@ -46,7 +51,7 @@ const Collection = () => {
             <div className="col-lg-12"></div>
             <div className="left-filter">
               <div className="filter-wrapper">
-                <div className="filter-head">
+                <div className="filter-head" onClick={filterHandler}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -63,17 +68,19 @@ const Collection = () => {
                   </svg>
                   <h4 className="categroy-text">Filter</h4>
                 </div>
-                <h4 className="newsfeed">CATEGORIES</h4>
-                <ul>
-                  <li>All Rooms</li>
-                  <li>Living Room</li>
-                  <li>Bedroom</li>
-                  <li>Kitchen</li>
-                  <li>Dinning</li>
-                  <li>Outdoor</li>
-                </ul>
+                <div className={`category_wrapper_box ${filterAactive?"category-active":""}`}>
+                  <h4 className="newsfeed">CATEGORIES</h4>
+                  <ul>
+                    <li>All Rooms</li>
+                    <li>Living Room</li>
+                    <li>Bedroom</li>
+                    <li>Kitchen</li>
+                    <li>Dinning</li>
+                    <li>Outdoor</li>
+                  </ul>
+                </div>
               </div>
-              <div className="filter-wrapper filter-wrapper2">
+              <div className={`filter-wrapper filter-wrapper2 ${filterAactive?"category-active":""}`}>
                 <h4 className="newsfeed">PRICE</h4>
                 <ul>
                   <li>
@@ -88,7 +95,7 @@ const Collection = () => {
                   </li>
                   <li>
                     <label>
-                      $0.00 - 99.99
+                      TK 0.00 - 99.99
                       <input
                         type="checkbox"
                         onChange={() => handlePriceRangeChange("0-99.99")}
@@ -97,7 +104,7 @@ const Collection = () => {
                   </li>
                   <li>
                     <label>
-                      $100.00 - 199.99
+                      TK 100.00 - 199.99
                       <input
                         type="checkbox"
                         onChange={() => handlePriceRangeChange("100-199.99")}
@@ -106,7 +113,7 @@ const Collection = () => {
                   </li>
                   <li>
                     <label>
-                      $200.00 - 299.99
+                      TK 200.00 - 299.99
                       <input
                         type="checkbox"
                         onChange={() => handlePriceRangeChange("200-299.99")}
@@ -115,7 +122,7 @@ const Collection = () => {
                   </li>
                   <li>
                     <label>
-                      $300.00 - 399.99
+                      TK 300.00 - 399.99
                       <input
                         type="checkbox"
                         onChange={() => handlePriceRangeChange("300-399.99")}
@@ -124,7 +131,7 @@ const Collection = () => {
                   </li>
                   <li>
                     <label>
-                      $400.00+
+                      TK 400.00+
                       <input
                         type="checkbox"
                         onChange={() => handlePriceRangeChange("400-")}
