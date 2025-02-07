@@ -74,7 +74,13 @@ const Collection = () => {
                   }`}
                 >
                   <h4 className="newsfeed">CATEGORIES</h4>
-                  <ul>
+                  <ul className="category-list">
+                    <li>All Rooms</li>
+                    <li>Living Room</li>
+                    <li>Bedroom</li>
+                    <li>Kitchen</li>
+                    <li>Dinning</li>
+                    <li>Outdoor</li>
                     <li>All Rooms</li>
                     <li>Living Room</li>
                     <li>Bedroom</li>
@@ -90,7 +96,7 @@ const Collection = () => {
                 }`}
               >
                 <h4 className="newsfeed">PRICE</h4>
-                <ul>
+                <ul className="price-list">
                   <li>
                     <label>
                       All Price
