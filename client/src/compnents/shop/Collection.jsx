@@ -68,7 +68,11 @@ const Collection = () => {
                   </svg>
                   <h4 className="categroy-text">Filter</h4>
                 </div>
-                <div className={`category_wrapper_box ${filterAactive?"category-active":""}`}>
+                <div
+                  className={`category_wrapper_box ${
+                    filterAactive ? "category-active" : ""
+                  }`}
+                >
                   <h4 className="newsfeed">CATEGORIES</h4>
                   <ul>
                     <li>All Rooms</li>
@@ -80,7 +84,11 @@ const Collection = () => {
                   </ul>
                 </div>
               </div>
-              <div className={`filter-wrapper filter-wrapper2 ${filterAactive?"category-active":""}`}>
+              <div
+                className={`filter-wrapper filter-wrapper2 ${
+                  filterAactive ? "category-active" : ""
+                }`}
+              >
                 <h4 className="newsfeed">PRICE</h4>
                 <ul>
                   <li>
@@ -261,6 +269,9 @@ const Collection = () => {
                   <span className="text-center">No Data Found</span>
                 )}
               </div>
+              <a href="#" className="load-More newsfeed">
+                Load More
+              </a>
             </div>
           </div>
         </div>

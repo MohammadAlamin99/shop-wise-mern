@@ -3,6 +3,8 @@ import Banner from '../compnents/shop/Banner';
 import Header from '../compnents/Header';
 import Navigation from '../compnents/Navigation';
 import Collection from '../compnents/shop/Collection';
+import Newslatter from './../compnents/Newslatter';
+import Footer from './../compnents/Footer';
 
 const ShopPage = () => {
     return (
@@ -11,6 +13,9 @@ const ShopPage = () => {
             <Navigation/>
             <Banner/>
             <Collection/>
+            <Newslatter/>
+            <Footer/>
+            
         </div>
     );
 };
