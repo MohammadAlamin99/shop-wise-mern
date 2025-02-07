@@ -8,6 +8,7 @@ const Collection = () => {
   const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState([]);
   const [filterAactive, setFilterActive] = useState(false);
+  const [load, setLoad] = useState(3);
 
   const filterHandler = () => {
     setFilterActive(!filterAactive);
@@ -42,6 +43,14 @@ const Collection = () => {
   };
 
   const filteredProducts = filterProductsByPrice(productData);
+
+  // loader more button functionality
+
+  const handleLoadMore = () => {
+    setLoad((count) => count + 3);
+  };
+
+  const productToDisplay = filteredProducts.slice(0, load);
 
   return (
     <div>
@@ -229,8 +238,8 @@ const Collection = () => {
                 </div>
               </div>
               <div className="card-row">
-                {filteredProducts.length > 0 ? (
-                  filteredProducts.map((item, i) => {
+                {productToDisplay.length > 0 ? (
+                  productToDisplay.map((item, i) => {
                     return (
                       <div className="Custom-col" key={i}>
                         <div className="product-card">
@@ -275,9 +284,11 @@ const Collection = () => {
                   <span className="text-center">No Data Found</span>
                 )}
               </div>
-              <a href="#" className="load-More newsfeed">
-                Load More
-              </a>
+              {load < filteredProducts.length && (
+                <button className="load-More newsfeed" onClick={handleLoadMore}>
+                  Load More
+                </button>
+              )}
             </div>
           </div>
         </div>
