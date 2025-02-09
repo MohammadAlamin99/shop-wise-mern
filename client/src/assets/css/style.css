@@ -1276,7 +1276,8 @@
     flex-wrap: nowrap;
     justify-content: center;
   }
-  .footer .footer-content .brand .categroy-text{
+
+  .footer .footer-content .brand .categroy-text {
     font-size: 16px;
     max-width: 100%;
   }
@@ -1594,10 +1595,11 @@
   width: 8px;
 }
 
+/* 
 .shop-collection .left-filter .category-list::-webkit-scrollbar-track {
   background: #EAEAEA;
   border-radius: 4px;
-}
+} */
 
 .shop-collection .left-filter .category-list::-webkit-scrollbar-thumb {
   background: #6C7275;
