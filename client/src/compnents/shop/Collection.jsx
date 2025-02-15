@@ -80,89 +80,6 @@ const Collection = () => {
     setActiveCategory(id);
   };
 
-  // import React, { useEffect, useState } from "react";
-  // import { useDispatch, useSelector } from "react-redux";
-  // import {
-  //   allCetegoryRequest,
-  //   allProductRequiest,
-  // } from "../../apiRequest/apiRequiest";
-  // import { setProduct } from "../../redux/state-slice/product-slice";
-
-  // const Collection = () => {
-  //   const productData = useSelector((state) => state.getProduct.product);
-  //   const dispatch = useDispatch();
-  //   const [priceRange, setPriceRange] = useState([]);
-  //   const [filterAactive, setFilterActive] = useState(false);
-  //   const [load, setLoad] = useState(3);
-  //   const [categoryId, setCategoryId] = useState(null);
-
-  //   const filterHandler = () => {
-  //     setFilterActive(!filterAactive);
-  //   };
-
-  //   useEffect(() => {
-  //     (async () => {
-  //       let result = await allProductRequiest();
-  //       dispatch(setProduct(result));
-  //     })();
-  //   }, [dispatch]);
-
-  //   const handlePriceRangeChange = (range) => {
-  //     setPriceRange((prev) => {
-  //       if (prev.includes(range)) {
-  //         return prev.filter((r) => r !== range);
-  //       } else {
-  //         return [...prev, range];
-  //       }
-  //     });
-  //   };
-
-  //   const filterProductsByPrice = (products) => {
-  //     if (priceRange.length === 0) return products;
-
-  //     return products.filter((product) => {
-  //       return priceRange.some((range) => {
-  //         const [min, max] = range.split("-").map(Number);
-  //         return product.price >= min && (max ? product.price <= max : true);
-  //       });
-  //     });
-  //   };
-
-  //   // Define filterProductByCategory BEFORE using it
-  //   const filterProductByCategory = (products) => {
-  //     if (!categoryId) {
-  //       return products;
-  //     } else {
-  //       return products.filter((product) => product.categoryID === categoryId);
-  //     }
-  //   };
-
-  //   // Use filterProductByCategory AFTER it is defined
-  //   const filteredProductsByPrice = filterProductsByPrice(productData);
-  //   const filteredProducts = filterProductByCategory(filteredProductsByPrice);
-
-  //   // load more button functionality
-  //   const handleLoadMore = () => {
-  //     setLoad((count) => count + 3);
-  //   };
-  //   const productToDisplay = filteredProducts.slice(0, load);
-
-  //   // category list get
-  //   const [cat, setCat] = useState([]);
-  //   useEffect(() => {
-  //     (async () => {
-  //       let categroy = await allCetegoryRequest();
-  //       setCat(categroy);
-  //     })();
-  //   }, []);
-
-  //   // filter product by category
-  //   const [categoryAactive, setCategoryActive] = useState(null);
-  //   const categoryHandler = (id) => {
-  //     setCategoryId(id);
-  //     setCategoryActive(id)
-  //   };
-  // console.log(categoryAactive);
   return (
     <div>
       <section className="shop-collection">
@@ -402,7 +319,7 @@ const Collection = () => {
                   <span className="text-center">No Data Found</span>
                 )}
               </div>
-              {load < filteredProducts.length && (
+              {load < data.length && (
                 <button className="load-More newsfeed" onClick={handleLoadMore}>
                   Load More
                 </button>
