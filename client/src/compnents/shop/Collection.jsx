@@ -69,15 +69,17 @@ const Collection = () => {
   useEffect(() => {
     (async () => {
       let categroy = await allCetegoryRequest();
-      setCat(categroy);
+      setCat([{ _id: null, brandName: "All Products" }, ...categroy]);
     })();
   }, []);
 
   // filter product by category
   const [activeCategory, setActiveCategory] = useState(null);
-  const categoryHandler = (id) => {
+  const [categoryName, setCategoryName] = useState(null);
+  const categoryHandler = (id, name) => {
     setCategoryId(id);
     setActiveCategory(id);
+    setCategoryName(name);
   };
 
   return (
@@ -117,7 +119,9 @@ const Collection = () => {
                         return (
                           <li
                             key={i}
-                            onClick={() => categoryHandler(item._id)}
+                            onClick={() =>
+                              categoryHandler(item._id, item.brandName)
+                            }
                             className={
                               activeCategory === item._id
                                 ? "category_active"
@@ -202,7 +206,7 @@ const Collection = () => {
             <div className="right-product">
               <div className="right-top-heading">
                 <div className="text-wrapper">
-                  <h4 className="categroy-text">Living Room</h4>
+                  <h4 className="categroy-text">{categoryName? categoryName : "All Products"}</h4>
                   <div className="right-grid">
                     <select className="selet-filter">
                       <option className="option" selected>
