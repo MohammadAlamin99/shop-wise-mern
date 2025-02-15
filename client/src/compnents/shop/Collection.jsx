@@ -1,85 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   allCetegoryRequest,
-//   allProductRequiest,
-// } from "../../apiRequest/apiRequiest";
-// import { setProduct } from "../../redux/state-slice/product-slice";
-
-// const Collection = () => {
-//   const productData = useSelector((state) => state.getProduct.product);
-//   const dispatch = useDispatch();
-//   const [priceRange, setPriceRange] = useState([]);
-//   const [filterAactive, setFilterActive] = useState(false);
-//   const [load, setLoad] = useState(3);
-//   const [categoryId, setCategoryId] = useState([]);
-
-//   const filterHandler = () => {
-//     setFilterActive(!filterAactive);
-//   };
-
-//   useEffect(() => {
-//     (async () => {
-//       let result = await allProductRequiest();
-//       dispatch(setProduct(result));
-//     })();
-//   }, [dispatch]);
-
-//   const handlePriceRangeChange = (range) => {
-//     setPriceRange((prev) => {
-//       if (prev.includes(range)) {
-//         return prev.filter((r) => r !== range);
-//       } else {
-//         return [...prev, range];
-//       }
-//     });
-//   };
-
-//   const filterProductsByPrice = (products) => {
-//     if (priceRange.length === 0) return products;
-
-//     return products.filter((product) => {
-//       return priceRange.some((range) => {
-//         const [min, max] = range.split("-").map(Number);
-//         return product.price >= min && (max ? product.price <= max : true);
-//       });
-//     });
-//   };
-
-//   const filterProductByCategory =(products)=>{
-//     if(!categoryId){
-//       return products
-//     }
-//     else{
-//       return products.filter((p)=>{p.categoryID === categoryId}); 
-//     }
-//   }
-
-//   const filteredProducts = filterProductsByPrice(productData);
-//   const data = filterProductByCategory(filteredProducts)
-
-//   // load more button functionality
-
-//   const handleLoadMore = () => {
-//     setLoad((count) => count + 3);
-//   };
-//   const productToDisplay = data.slice(0, load);
-
-//   // category list get
-//   const [cat, setCat] = useState([]);
-//   useEffect(() => {
-//     (async () => {
-//       let categroy = await allCetegoryRequest();
-//       setCat(categroy);
-//     })();
-//   }, []);
-
-
-// // filter product by category
-//   const categoryHandler = (id) => {
-//     setCategoryId(id);
-//   };
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -128,24 +46,23 @@ const Collection = () => {
     });
   };
 
-  // Define filterProductByCategory BEFORE using it
   const filterProductByCategory = (products) => {
     if (!categoryId) {
       return products;
     } else {
-      return products.filter((product) => product.categoryID === categoryId);
+      return products.filter((p) => p.categoryID === categoryId);
     }
   };
 
-  // Use filterProductByCategory AFTER it is defined
-  const filteredProductsByPrice = filterProductsByPrice(productData);
-  const filteredProducts = filterProductByCategory(filteredProductsByPrice);
+  const filteredProducts = filterProductsByPrice(productData);
+  const data = filterProductByCategory(filteredProducts);
 
   // load more button functionality
+
   const handleLoadMore = () => {
     setLoad((count) => count + 3);
   };
-  const productToDisplay = filteredProducts.slice(0, load);
+  const productToDisplay = data.slice(0, load);
 
   // category list get
   const [cat, setCat] = useState([]);
@@ -157,10 +74,95 @@ const Collection = () => {
   }, []);
 
   // filter product by category
+  const [activeCategory, setActiveCategory] = useState(null);
   const categoryHandler = (id) => {
     setCategoryId(id);
+    setActiveCategory(id);
   };
 
+  // import React, { useEffect, useState } from "react";
+  // import { useDispatch, useSelector } from "react-redux";
+  // import {
+  //   allCetegoryRequest,
+  //   allProductRequiest,
+  // } from "../../apiRequest/apiRequiest";
+  // import { setProduct } from "../../redux/state-slice/product-slice";
+
+  // const Collection = () => {
+  //   const productData = useSelector((state) => state.getProduct.product);
+  //   const dispatch = useDispatch();
+  //   const [priceRange, setPriceRange] = useState([]);
+  //   const [filterAactive, setFilterActive] = useState(false);
+  //   const [load, setLoad] = useState(3);
+  //   const [categoryId, setCategoryId] = useState(null);
+
+  //   const filterHandler = () => {
+  //     setFilterActive(!filterAactive);
+  //   };
+
+  //   useEffect(() => {
+  //     (async () => {
+  //       let result = await allProductRequiest();
+  //       dispatch(setProduct(result));
+  //     })();
+  //   }, [dispatch]);
+
+  //   const handlePriceRangeChange = (range) => {
+  //     setPriceRange((prev) => {
+  //       if (prev.includes(range)) {
+  //         return prev.filter((r) => r !== range);
+  //       } else {
+  //         return [...prev, range];
+  //       }
+  //     });
+  //   };
+
+  //   const filterProductsByPrice = (products) => {
+  //     if (priceRange.length === 0) return products;
+
+  //     return products.filter((product) => {
+  //       return priceRange.some((range) => {
+  //         const [min, max] = range.split("-").map(Number);
+  //         return product.price >= min && (max ? product.price <= max : true);
+  //       });
+  //     });
+  //   };
+
+  //   // Define filterProductByCategory BEFORE using it
+  //   const filterProductByCategory = (products) => {
+  //     if (!categoryId) {
+  //       return products;
+  //     } else {
+  //       return products.filter((product) => product.categoryID === categoryId);
+  //     }
+  //   };
+
+  //   // Use filterProductByCategory AFTER it is defined
+  //   const filteredProductsByPrice = filterProductsByPrice(productData);
+  //   const filteredProducts = filterProductByCategory(filteredProductsByPrice);
+
+  //   // load more button functionality
+  //   const handleLoadMore = () => {
+  //     setLoad((count) => count + 3);
+  //   };
+  //   const productToDisplay = filteredProducts.slice(0, load);
+
+  //   // category list get
+  //   const [cat, setCat] = useState([]);
+  //   useEffect(() => {
+  //     (async () => {
+  //       let categroy = await allCetegoryRequest();
+  //       setCat(categroy);
+  //     })();
+  //   }, []);
+
+  //   // filter product by category
+  //   const [categoryAactive, setCategoryActive] = useState(null);
+  //   const categoryHandler = (id) => {
+  //     setCategoryId(id);
+  //     setCategoryActive(id)
+  //   };
+  // console.log(categoryAactive);
   return (
     <div>
       <section className="shop-collection">
@@ -196,7 +198,15 @@ const Collection = () => {
                     {cat.length > 0 ? (
                       cat.map((item, i) => {
                         return (
-                          <li key={i} onClick={() => categoryHandler(item._id)}>
+                          <li
+                            key={i}
+                            onClick={() => categoryHandler(item._id)}
+                            className={
+                              activeCategory === item._id
+                                ? "category_active"
+                                : ""
+                            }
+                          >
                             {item.brandName}
                           </li>
                         );

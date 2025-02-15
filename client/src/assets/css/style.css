@@ -1591,6 +1591,11 @@
   overflow-y: scroll;
 }
 
+.shop-collection .left-filter .category-list .category_active {
+  border-bottom: 1px solid #121212;
+  color: #121212;
+}
+
 .shop-collection .left-filter .category-list::-webkit-scrollbar {
   width: 8px;
 }
