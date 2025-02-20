@@ -58,15 +58,35 @@ const Collection = () => {
   
   // sort by product 
 
-  const sortedProducts = (products)=> {
-    if (sort==="") return products;
-    return [...products].sort((a, b) => {
-      if (sort === "abc") return a.title?.localeCompare(b.title);
-      if (sort === "bcd") return b.title?.localeCompare(a.title);
-      if (sort === "lowTOHigh") return a.price - b.price;
-      if (sort === "HighToLow") return b.price - a.price;
-      return 0;
-    });
+  // const sortedProducts = (products)=> {
+  //   if (sort==="") return products;
+  //   return [...products].sort((a, b) => {
+  //     if (sort === "abc") return a.title?.localeCompare(b.title);
+  //     if (sort === "bcd") return b.title?.localeCompare(a.title);
+  //     if (sort === "lowTOHigh") return a.price - b.price;
+  //     if (sort === "HighToLow") return b.price - a.price;
+  //     return 0;
+  //   });
+  // }
+
+  const sortedProducts = (product)=>{
+    if(sort === "") return product;
+    else{
+      return[...product].sort((a, b)=>{
+        if(sort==="abc"){
+          return a.title.localeCompare(b.title);
+        }
+        if(sort==="bcd"){
+          return b.title.localeCompare(a.title);
+        }
+        if(sort==="lowTOHigh"){
+          return a.price - b.price;
+        }
+        if(sort==="HighToLow"){
+          return b.price - a.price;
+        }
+      })
+    }
   }
   
   const filteredProducts = filterProductsByPrice(productData);
