@@ -13,7 +13,7 @@ const Collection = () => {
   const [filterAactive, setFilterActive] = useState(false);
   const [load, setLoad] = useState(3);
   const [categoryId, setCategoryId] = useState(null);
-
+  const [sort, setSort] = useState("");
   const filterHandler = () => {
     setFilterActive(!filterAactive);
   };
@@ -54,15 +54,31 @@ const Collection = () => {
     }
   };
 
+
+  
+  // sort by product 
+
+  const sortedProducts = (products)=> {
+    if (sort==="") return products;
+    return [...products].sort((a, b) => {
+      if (sort === "abc") return a.title?.localeCompare(b.title);
+      if (sort === "bcd") return b.title?.localeCompare(a.title);
+      if (sort === "lowTOHigh") return a.price - b.price;
+      if (sort === "HighToLow") return b.price - a.price;
+      return 0;
+    });
+  }
+  
   const filteredProducts = filterProductsByPrice(productData);
   const data = filterProductByCategory(filteredProducts);
+  const sortedData = sortedProducts(data);
+  
 
   // load more button functionality
-
   const handleLoadMore = () => {
     setLoad((count) => count + 3);
   };
-  const productToDisplay = data.slice(0, load);
+  const productToDisplay = sortedData.slice(0, load);
 
   // category list get
   const [cat, setCat] = useState([]);
@@ -81,6 +97,17 @@ const Collection = () => {
     setActiveCategory(id);
     setCategoryName(name);
   };
+
+
+  const shortByHandler = (e)=>{
+    setSort(e.target.value);
+  }
+
+
+
+// sort by product
+
+
 
   return (
     <div>
@@ -208,20 +235,20 @@ const Collection = () => {
                 <div className="text-wrapper">
                   <h4 className="categroy-text">{categoryName? categoryName : "All Products"}</h4>
                   <div className="right-grid">
-                    <select className="selet-filter">
-                      <option className="option" selected>
+                    <select className="selet-filter" onChange={shortByHandler} value={sort}>
+                      <option value={""} className="option" selected>
                         Sort by
                       </option>
-                      <option className="option" value="1">
+                      <option className="option" value="abc">
                         Name (A - Z)
                       </option>
-                      <option className="option" value="2">
+                      <option className="option" value="bcd">
                         Name (Z - A)
                       </option>
-                      <option className="option" value="3">
+                      <option className="option" value="lowTOHigh">
                         Price (Low &gt; High)
                       </option>
-                      <option className="option" value="4">
+                      <option className="option" value="HighToLow">
                         Price (High &gt; Low)
                       </option>
                     </select>
