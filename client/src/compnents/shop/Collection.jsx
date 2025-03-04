@@ -110,6 +110,7 @@ const Collection = () => {
   }, []);
 
   // filter product by category
+  
   const [activeCategory, setActiveCategory] = useState(null);
   const [categoryName, setCategoryName] = useState(null);
   const categoryHandler = (id, name) => {
@@ -118,17 +119,11 @@ const Collection = () => {
     setCategoryName(name);
   };
 
-
   const shortByHandler = (e)=>{
     setSort(e.target.value);
   }
 
-
-
 // sort by product
-
-
-
   return (
     <div>
       <section className="shop-collection">
