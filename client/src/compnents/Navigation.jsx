@@ -1,11 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/images/navigation-img/log.png";
 import MobileMenu from "./MobileMenu";
+import CartDrawer from "./CartDrawer";
 const Navigation = () => {
   const svgRef = useRef("");
   const [active, setActive] = useState(false);
+  const [cartactive, setcartActive] = useState(false);
   const onClickHandler = () => {
     setActive(!active);
+  };
+  const CartonClickHandler = () => {
+    setcartActive(!cartactive);
   };
 
   const [fixed, setFixed] = useState(false);
@@ -19,11 +24,12 @@ const Navigation = () => {
       }
     };
     window.addEventListener("scroll", handleScroll);
-  },[0]);
+  }, [0]);
 
   return (
     <div>
       <MobileMenu isActive={active} isSetActive={setActive} />
+      <CartDrawer isActive={cartactive} isSetActive={setcartActive}/>
       <section className={`navigation-section ${fixed ? "fixed" : ""}`}>
         <div className="navigation-warapper">
           <div className="container">
@@ -73,6 +79,7 @@ const Navigation = () => {
                 <div className="right">
                   <div className="navigation-right-icon">
                     <svg
+                      onClick={onClickHandler}
                       className="search-svg"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -105,6 +112,7 @@ const Navigation = () => {
                     </svg>
 
                     <svg
+                    onClick={CartonClickHandler}
                       className="cart"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

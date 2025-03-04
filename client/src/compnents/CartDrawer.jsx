@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const CartDrawer = () => {
+const CartDrawer = ({ isActive, isSetActive }) => {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -54,10 +54,11 @@ const CartDrawer = () => {
   };
   return (
     <div>
-      <div className="cart-container">
+      <div className={`cart-container ${isActive? "activeCart":""} `}>
         <div className="cart-text-wrapper">
         <h3 className="cart-title">Cart</h3>
         <svg
+          onClick={()=> isSetActive(false)}
           className="cart-close"
           xmlns="http://www.w3.org/2000/svg"
           width="24"

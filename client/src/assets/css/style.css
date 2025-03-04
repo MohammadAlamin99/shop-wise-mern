@@ -1918,16 +1918,20 @@
                 cart drawer
 ==========================================*/
 /* Main container */
+.cart-container.activeCart{
+right: 0;
+} 
 .cart-container {
   position: absolute;
-  right: 0;
+  right: -100%;
   top: 0;
   z-index: 1;
+  transition: 0.3s;
 }
 .cart-container {
   width: 30%;
   height: auto;
-  padding: 20px;
+  padding: 24px;
   background: #fff;
 }
 
@@ -1938,7 +1942,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: 34px;
-  /* 121.429% */
   letter-spacing: -0.6px;
   margin-bottom: 16px;
 }

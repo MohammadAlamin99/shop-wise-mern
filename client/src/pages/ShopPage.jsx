@@ -11,7 +11,6 @@ const ShopPage = () => {
   return (
     <div>
       <Header />
-      <CartDrawer />
       <Navigation />
       <Banner />
       <Collection />
