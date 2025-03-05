@@ -88,7 +88,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
               <div className="item-details">
                 <div className="item-header">
                   <h2 className="item-name">{item.name}</h2>
-                  <span className="item-price">TK. {item.price.toFixed(2)}</span>
+                  <span className="item-price">TK. {(item.price * item.quantity).toFixed(2)}</span>
                 </div>
                 <p className="item-color">Color: {item.color}</p>
 
