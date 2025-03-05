@@ -79,7 +79,6 @@ const Navigation = () => {
                 <div className="right">
                   <div className="navigation-right-icon">
                     <svg
-                      onClick={onClickHandler}
                       className="search-svg"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
