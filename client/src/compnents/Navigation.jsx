@@ -29,7 +29,7 @@ const Navigation = () => {
   return (
     <div>
       <MobileMenu isActive={active} isSetActive={setActive} />
-      <CartDrawer isActive={cartactive} isSetActive={setcartActive}/>
+      <CartDrawer iscartActive={cartactive} isSetcartActive={setcartActive}/>
       <section className={`navigation-section ${fixed ? "fixed" : ""}`}>
         <div className="navigation-warapper">
           <div className="container">
