@@ -1,19 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   outline: 0;
   box-sizing: border-box;
 }
+
 ul li {
   list-style: none;
 }
+
 a {
   text-decoration: none;
   display: inline-block;
 }
+
 h1,
 h2,
 h3,
@@ -27,6 +31,7 @@ ol {
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: "Poppins", sans-serif;
   color: #687188;
@@ -45,6 +50,7 @@ button {
   src: url("../fonts/Inter18pt-Regular.woff2") format("woff2"),
     url("../fonts/Inter18pt-Regular.woff") format("woff");
 }
+
 @font-face {
   font-family: "Inter";
   font-weight: 600;
@@ -58,6 +64,7 @@ button {
   font-weight: 500;
   letter-spacing: -0.4px;
 }
+
 .common-shop-now-btn {
   color: #141718;
   text-align: center;
@@ -97,7 +104,7 @@ img {
   margin-top: 12px;
 }
 
-.categroy-text{
+.categroy-text {
   color: #23262f;
   text-align: center;
   font-size: 20px;
@@ -116,18 +123,27 @@ img {
 }
 
 @media only screen and (max-width: 575px) {
-  .btns .btn-text{
+  .btns .btn-text {
     font-size: 14px;
   }
 }
 
-.newsfeed{
-  color:#6C7275;
+.newsfeed {
+  color: #6C7275;
   font-family: "Inter", serif;
   text-align: center;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 16px; 
+  line-height: 16px;
   text-transform: uppercase;
+}
+
+.section-title {
+  color: var(--neutral-04100, #6C7275);
+  font-family: "Inter", serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
 }
