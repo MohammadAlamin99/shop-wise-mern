@@ -124,6 +124,7 @@ const ProductDetails = () => {
                       <div className="product-image-container">
                         <span className="badge-new">NEW</span>
                         <span className="badge-discount">-50%</span>
+
                         <div className="main-slider-container">
                           <Swiper
                             spaceBetween={10}
@@ -137,16 +138,22 @@ const ProductDetails = () => {
                             modules={[FreeMode, Navigation, Thumbs]}
                             className="main-swiper"
                           >
-                            {details.map((image, id) => (
-                              <SwiperSlide key={id}>
-                                <img
-                                  src={image[0].details.img1}
-                                  className="img-fluid main-product-image"
-                                />
-                              </SwiperSlide>
-                            ))}
+                            {details.map((item, id) =>
+                              Object.keys(item[0].details)
+                                .filter((key) => key.startsWith("img")) 
+                                .map((key, index) => (
+                                  <SwiperSlide key={`${id}-${index}`}>
+                                    <img
+                                      src={item[0].details[key]}
+                                      className="img-fluid main-product-image"
+                                      alt={`Product image ${index + 1}`}
+                                    />
+                                  </SwiperSlide>
+                                ))
+                            )}
                           </Swiper>
                         </div>
+
                         <div className="thumbnail-container">
                           <Swiper
                             onSwiper={setThumbsSwiper}
@@ -157,14 +164,19 @@ const ProductDetails = () => {
                             modules={[FreeMode, Navigation, Thumbs]}
                             className="thumbs-swiper"
                           >
-                            {details.map((image, id) => (
-                              <SwiperSlide key={id}>
-                                <img
-                                  src={image[0].details.img1}
-                                  className="img-fluid thumbnail-image"
-                                />
-                              </SwiperSlide>
-                            ))}
+                            {details.map((item, id) =>
+                              Object.keys(item[0].details)
+                                .filter((key) => key.startsWith("img")) // Filter image keys dynamically
+                                .map((key, index) => (
+                                  <SwiperSlide key={`${id}-thumb-${index}`}>
+                                    <img
+                                      src={item[0].details[key]}
+                                      className="img-fluid thumbnail-image"
+                                      alt={`Thumbnail ${index + 1}`}
+                                    />
+                                  </SwiperSlide>
+                                ))
+                            )}
                           </Swiper>
                         </div>
                       </div>
