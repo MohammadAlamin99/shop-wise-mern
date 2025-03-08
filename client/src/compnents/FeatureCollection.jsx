@@ -71,7 +71,7 @@ const FeatureCollection = () => {
                                 ? item["discountPercentage"]
                                 : ""}
                             </span>
-                            <a href="#">
+                            <a href={"/product-details/"+item._id}>
                               <img
                                 className="product-image "
                                 src={item.image}

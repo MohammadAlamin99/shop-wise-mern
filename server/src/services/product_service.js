@@ -35,3 +35,26 @@ exports.getProductByCategory = async (req) => {
     return { status: "fail", err };
   }
 };
+
+
+// Product Details 
+exports.ProductDetails =async (req)=>{
+  try {
+    let produtId = new ObjectId(req.params.id);
+    let JoinStage1={$lookup: {from: "categories", localField: "categoryID", foreignField: "_id", as: "category"}};
+    let JoinStage2={$lookup: {from: "productdetails", localField: "_id", foreignField: "productID", as: "details"}};
+    let unwindCategoryStage={$unwind: "$category"};
+    let unwindDetailsStage={$unwind: "$details"};
+    let matchStage = {$match :{_id:produtId}}
+    let data=await productModel.aggregate([
+      matchStage,
+      JoinStage1,
+      JoinStage2,
+      unwindCategoryStage,
+      unwindDetailsStage,
+  ])
+  return {status:"success", data:data}
+  } catch (e) {
+    return {status:"fail", data:e.toString()}
+  }
+}

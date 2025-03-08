@@ -29,7 +29,7 @@ const Navigation = () => {
   return (
     <div>
       <MobileMenu isActive={active} isSetActive={setActive} />
-      <CartDrawer iscartActive={cartactive} isSetcartActive={setcartActive}/>
+      <CartDrawer iscartActive={cartactive} isSetcartActive={setcartActive} />
       <section className={`navigation-section ${fixed ? "fixed" : ""}`}>
         <div className="navigation-warapper">
           <div className="container">
@@ -53,7 +53,7 @@ const Navigation = () => {
                         stroke-linecap="round"
                       />
                     </svg>
-                    <a href="#">
+                    <a href="/">
                       <img src={logo} alt="" />
                     </a>
                   </div>
@@ -62,7 +62,7 @@ const Navigation = () => {
                   <nav className="main-nav">
                     <ul>
                       <li>
-                        <a href="#">home</a>
+                        <a href="/">home</a>
                       </li>
                       <li>
                         <a href="/shop">Shop</a>
@@ -111,7 +111,7 @@ const Navigation = () => {
                     </svg>
 
                     <svg
-                    onClick={CartonClickHandler}
+                      onClick={CartonClickHandler}
                       className="cart"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

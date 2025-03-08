@@ -20,3 +20,13 @@ export async function allCetegoryRequest(){
        return[] 
     }
 }
+
+export async function productDetailsRequest(id) {
+    try {
+        let result = await axios.get('http://localhost:5000/api/v1/productDetails/'+id);
+        let data = result.data['data'];
+        return[data]
+    } catch (e) {
+        return[]
+    }
+}

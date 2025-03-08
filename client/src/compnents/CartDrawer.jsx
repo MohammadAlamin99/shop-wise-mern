@@ -54,26 +54,28 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
   };
   return (
     <div>
-        <div className={`cartOverlay ${iscartActive? "cartOverlayActive":""}`}></div>
-      <div className={`cart-container ${iscartActive? "activeCart":""} `}>
+      <div
+        className={`cartOverlay ${iscartActive ? "cartOverlayActive" : ""}`}
+      ></div>
+      <div className={`cart-container ${iscartActive ? "activeCart" : ""} `}>
         <div className="cart-text-wrapper">
-        <h3 className="cart-title">Cart</h3>
-        <svg
-          onClick={()=> isSetcartActive(false)}
-          className="cart-close"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
-            fill="#6C7275"
-          />
-        </svg>
+          <h3 className="cart-title">Cart</h3>
+          <svg
+            onClick={() => isSetcartActive(false)}
+            className="cart-close"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
+              fill="#6C7275"
+            />
+          </svg>
         </div>
 
         <div className="cart-items">
@@ -88,7 +90,9 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
               <div className="item-details">
                 <div className="item-header">
                   <h2 className="item-name">{item.name}</h2>
-                  <span className="item-price">TK. {(item.price * item.quantity).toFixed(2)}</span>
+                  <span className="item-price">
+                    TK. {(item.price * item.quantity).toFixed(2)}
+                  </span>
                 </div>
                 <p className="item-color">Color: {item.color}</p>
 
@@ -148,7 +152,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
 
         <div className="cart-actions">
           <button className="checkout-btn">Checkout</button>
-          <a href="#" className="view-cart-link">
+          <a href="/cart" className="view-cart-link">
             View Cart
           </a>
         </div>
