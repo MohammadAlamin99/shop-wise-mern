@@ -140,7 +140,7 @@ const ProductDetails = () => {
                           >
                             {details.map((item, id) =>
                               Object.keys(item[0].details)
-                                .filter((key) => key.startsWith("img")) 
+                                .filter((key) => key.startsWith("img"))
                                 .map((key, index) => (
                                   <SwiperSlide key={`${id}-${index}`}>
                                     <img
@@ -252,17 +252,34 @@ const ProductDetails = () => {
                           {item[0]["title"]}
                         </h1>
                         <p className="product-description">
-                          Buy one or buy a few and make every space where you
-                          sit more convenient. Light and easy to move around
-                          with removable tray top, handy for serving snacks.
+                          {item[0].details["des"]}
                         </p>
                         <div className="product-price">
-                          <span className="current-price">$199.00</span>
-                          <span className="original-price">$400.00</span>
+                          <span className="current-price">
+                            TK. {item[0]["price"]}
+                          </span>
+                          <span
+                            className="original-price"
+                            style={{
+                              display:
+                                item[0]["discountPrice"] == 0
+                                  ? "none"
+                                  : "block",
+                            }}
+                          >
+                            TK. {item[0]["discountPrice"]}
+                          </span>
                         </div>
                         <div className="measurements">
-                          <h3 className="section-title">Measurements</h3>
-                          <p className="measurement-value">17 1/2×20 5/8"</p>
+                          <h3 className="section-title">Size</h3>
+                          <select className="measurement-value">
+                            <option value="S">S</option>
+                            <option value="M" selected>
+                              M
+                            </option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                          </select>
                         </div>
 
                         <div className="color-selection">
