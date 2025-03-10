@@ -1,3 +1,4 @@
+const { TokenExpiredError } = require("jsonwebtoken");
 const cartModel = require("../models/CartModel");
 const productModel = require("../models/productModel");
 const mongoose = require("mongoose");
@@ -40,5 +41,31 @@ exports.removeCart = async (req)=>{
   } catch (e) {
     console.log(e)
     return{status:"fail", message:e}
+  }
+}
+
+
+exports.getAllCart = async (req)=>{
+  try {
+    let id = new ObjectId(req.user_id);
+    let matchStage ={$match:{userID:id}}
+
+    let JoinStageProduct = {$lookup:{from:"products", localField:"productID", foreignField:"_id", as:"product"}}
+    let unwindProductStage = {$unwind:"$product"}
+    
+    let JoinStageCategory = {$lookup:{from:"categories", localField:"product.categoryID", foreignField:"_id", as:"category"}}
+    let unwindCategory = {$unwind:"$category"}
+
+    let data = await cartModel.aggregate([
+      matchStage,
+      JoinStageProduct,
+      unwindProductStage, 
+      JoinStageCategory, 
+      unwindCategory
+    ])
+    return{status:"Success", data: data} 
+
+  } catch (e) {
+    return{status:"fail", data:e}
   }
 }

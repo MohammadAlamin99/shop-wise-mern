@@ -11,6 +11,8 @@ router.get("/productByCategory/:id", ProdcutController.productByCategory);
 router.get("/productDetails/:id", ProdcutController.productDetailsById);
 router.post("/CartCreate", authentication, ProdcutController.createCartList);
 router.delete("/removeCart", authentication, ProdcutController.deleteCartList);
+router.get("/getCart", authentication, ProdcutController.cartList);
+
 
 // user registration
 router.post("/registration", userController.userRegistraion);
