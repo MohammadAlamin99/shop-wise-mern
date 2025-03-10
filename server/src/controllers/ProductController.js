@@ -1,5 +1,5 @@
 const { allProducts, getProductByCategory, ProductDetails } = require("../services/product_service")
-const { createCartService } = require("../services/cartService")
+const { createCartService, removeCart } = require("../services/cartService")
 
 exports.productList = async(req, res)=>{
     let result = await allProducts(req);
@@ -20,5 +20,10 @@ exports.productDetailsById = async(req, res)=>{
 
 exports.createCartList = async(req, res)=>{
     let result = await createCartService(req);
+    return res.status(200).json(result);
+}
+
+exports.deleteCartList = async (req, res)=>{
+    let result = await removeCart(req);
     return res.status(200).json(result);
 }

@@ -10,6 +10,7 @@ router.get("/category", CategoryController.CategoryList);
 router.get("/productByCategory/:id", ProdcutController.productByCategory);
 router.get("/productDetails/:id", ProdcutController.productDetailsById);
 router.post("/CartCreate", authentication, ProdcutController.createCartList);
+router.delete("/removeCart", authentication, ProdcutController.deleteCartList);
 
 // user registration
 router.post("/registration", userController.userRegistraion);

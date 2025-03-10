@@ -26,3 +26,19 @@ exports.createCartService = async (req) => {
 };
 
 
+exports.removeCart = async (req)=>{
+  try {
+    let reqbody = req.body;
+    let id = req.user_id;
+    let productId = reqbody.productID;
+
+    await cartModel.deleteOne({
+      productID:productId, userID:id
+    });
+    return{status:"Success", message:"remove cart"}
+    
+  } catch (e) {
+    console.log(e)
+    return{status:"fail", message:e}
+  }
+}
