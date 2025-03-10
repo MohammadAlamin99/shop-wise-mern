@@ -4,18 +4,15 @@ const ProdcutController = require("../controllers/ProductController");
 const CategoryController = require("../controllers/categoryController");
 const userController = require("../controllers/userController");
 const authentication = require("../middlewares/authentication");
-const cartController  = require("../controllers/cartController");
-
 
 router.get("/allProduct", ProdcutController.productList);
 router.get("/category", CategoryController.CategoryList);
 router.get("/productByCategory/:id", ProdcutController.productByCategory);
 router.get("/productDetails/:id", ProdcutController.productDetailsById);
-router.get("/CartCreate", cartController.CartCreate);
+router.post("/CartCreate", authentication, ProdcutController.createCartList);
 
 // user registration
 router.post("/registration", userController.userRegistraion);
 router.post("/login", userController.userLogin);
-
 
 module.exports = router;

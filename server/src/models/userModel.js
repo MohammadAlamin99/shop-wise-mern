@@ -18,7 +18,7 @@ const dataSchema = mongoose.Schema({
         trim: true,
         validate: {
             validator: function (v) {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); // Simple email regex
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); 
             },
             message: (props) => `${props.value} is not a valid email address!`,
         },
