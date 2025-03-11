@@ -30,3 +30,17 @@ export async function productDetailsRequest(id) {
         return[]
     }
 }
+
+// User request
+
+export async function userSignUpRequest(fullName, userName, email, password){
+    try {
+        let reqBody = {fullName:fullName, userName:userName, email:email, password:password};
+        let result = await axios.post('http://localhost:5000/api/v1/registration', reqBody);
+        return[result];
+    } catch (e) {
+        console.log(e)   
+    return [];
+    }
+
+}

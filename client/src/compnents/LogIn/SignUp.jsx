@@ -1,10 +1,25 @@
-import React, { useState } from "react";
-const Login = () => {
+import React, { useRef, useState } from "react";
+import { userSignUpRequest } from "../../apiRequest/apiRequiest";
+const SignUp = () => {
   const [show, setShow] = useState(false);
-
   const toggleShowHandler = () => {
     setShow(!show);
   };
+
+  const nameRef = useRef();
+  const usernameRef = useRef();
+  const eamilRef = useRef();
+  const passRef = useRef();
+
+  const onSingnUp = async ()=>{
+    const name = nameRef.current.value;
+    const userName = usernameRef.current.value;
+    const email = eamilRef.current.value;
+    const pass = passRef.current.value;
+     
+    let result = await userSignUpRequest(name, userName, email, pass);
+    console.log(result)
+  }
   return (
     <div>
       <div className="login_section">
@@ -26,13 +41,14 @@ const Login = () => {
                   Already have an account? <a href="#">Sign in</a>
                 </p>
                 <div className="form">
-                  <input type="text" placeholder="Your Name" />
-                  <input type="text" placeholder="Username" />
-                  <input type="email" placeholder="Email address" />
+                  <input ref={nameRef} type="text" placeholder="Your Name" />
+                  <input ref={usernameRef} type="text" placeholder="Username" />
+                  <input ref={eamilRef} type="email" placeholder="Email address" />
                   <div className="form-group">
                     <input
                       type={show ? "text" : "password"}
                       placeholder="Password"
+                      ref={passRef}
                     />
                     {show ? (
                       <svg
@@ -97,9 +113,9 @@ const Login = () => {
                       <a href="#">Terms</a> of Use
                     </p>
                   </div>
-                  <a href="#" className="sign-up-button">
+                  <button href="#" onClick={onSingnUp} className="sign-up-button">
                     Sign Up
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -110,4 +126,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

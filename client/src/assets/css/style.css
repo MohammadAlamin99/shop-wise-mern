@@ -1381,6 +1381,11 @@
   color: #6C7275;
   margin: 0;
 }
+.login_section .signinWrapper .form .terms_condition_cheaker .common-shop-now-btn{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 
 .login_section .signupWrapper .form .terms_condition_cheaker .common-shop-now-btn a {
   color: #141718;
@@ -1430,7 +1435,10 @@
 
 .login_section .signupWrapper {
   padding-left: 88px;
+  width: 456px;
+  max-width: 100%;
 }
+
 
 .login_section .custom-col {
   display: flex;
