@@ -1615,12 +1615,6 @@
   width: 8px;
 }
 
-/* 
-.shop-collection .left-filter .category-list::-webkit-scrollbar-track {
-  background: #EAEAEA;
-  border-radius: 4px;
-} */
-
 .shop-collection .left-filter .category-list::-webkit-scrollbar-thumb {
   background: #6C7275;
   border-radius: 4px;

@@ -1,13 +1,47 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { SignInRequest } from "../../apiRequest/apiRequiest";
+
 const SignIn = () => {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
   const toggleShowHandler = () => {
     setShow(!show);
   };
- 
+
+  const emailRef = useRef();
+  const passRef = useRef();
+
+  const onSignIn = async () => {
+    const email = emailRef.current.value;
+    const pass = passRef.current.value;
+
+    if (!email || !pass) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      const result = await SignInRequest(email, pass);
+      if (result[0].data.status==="success") {
+        toast.success("Sign in successful!");
+        localStorage.setItem("userToken", result[0].data.token);
+        setTimeout(() => {
+            navigate("/"); 
+          }, 1000);
+      } else {
+        toast.error("Sign in failed. Please try again.");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="login_section">
         <div className="container-fluid">
           <div className="row custom-row">
@@ -24,14 +58,15 @@ const SignIn = () => {
               <div className="signupWrapper signinWrapper">
                 <h2 className="pf-sign-up-text">Sign In</h2>
                 <p className="common-shop-now-btn">
-                  Don’t have an accout yet? <a href="#">Sign Up</a>
+                  Don’t have an account yet? <a href="/signup">Sign Up</a>
                 </p>
                 <div className="form">
-                  <input type="email" placeholder="Email address" />
+                  <input ref={emailRef} type="email" placeholder="Email address" />
                   <div className="form-group">
                     <input
                       type={show ? "text" : "password"}
                       placeholder="Password"
+                      ref={passRef}
                     />
                     {show ? (
                       <svg
@@ -90,15 +125,17 @@ const SignIn = () => {
                     )}
                   </div>
                   <div className="terms_condition_cheaker">
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                    />
                     <p className="common-shop-now-btn">
-                        Remember me
-                      <a href="#">Forgot password</a> 
+                      Remember me
+                      <a href="#">Forgot password</a>
                     </p>
                   </div>
-                  <a href="#" className="sign-up-button">
+                  <button onClick={onSignIn} className="sign-up-button">
                     Sign In
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

@@ -1,27 +1,50 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import { userSignUpRequest } from "../../apiRequest/apiRequiest";
+
 const SignUp = () => {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
   const toggleShowHandler = () => {
     setShow(!show);
   };
 
   const nameRef = useRef();
   const usernameRef = useRef();
-  const eamilRef = useRef();
+  const emailRef = useRef();
   const passRef = useRef();
 
-  const onSingnUp = async ()=>{
+  const onSignUp = async () => {
     const name = nameRef.current.value;
     const userName = usernameRef.current.value;
-    const email = eamilRef.current.value;
+    const email = emailRef.current.value;
     const pass = passRef.current.value;
-     
-    let result = await userSignUpRequest(name, userName, email, pass);
-    console.log(result)
-  }
+
+    if (!name || !userName || !email || !pass) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      const result = await userSignUpRequest(name, userName, email, pass);
+      if (result[0].data.status === "success") {
+        toast.success("Sign up successful!");
+        setTimeout(() => {
+          navigate("/signin");
+        }, 1000);
+      } else {
+        toast.error("Sign up failed. Please try again.");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="login_section">
         <div className="container-fluid">
           <div className="row custom-row">
@@ -38,12 +61,16 @@ const SignUp = () => {
               <div className="signupWrapper">
                 <h2 className="pf-sign-up-text">Sign up</h2>
                 <p className="common-shop-now-btn">
-                  Already have an account? <a href="#">Sign in</a>
+                  Already have an account? <a href="/signin">Sign in</a>
                 </p>
                 <div className="form">
                   <input ref={nameRef} type="text" placeholder="Your Name" />
                   <input ref={usernameRef} type="text" placeholder="Username" />
-                  <input ref={eamilRef} type="email" placeholder="Email address" />
+                  <input
+                    ref={emailRef}
+                    type="email"
+                    placeholder="Email address"
+                  />
                   <div className="form-group">
                     <input
                       type={show ? "text" : "password"}
@@ -72,7 +99,7 @@ const SignUp = () => {
                       </svg>
                     ) : (
                       <svg
-                      onClick={toggleShowHandler}
+                        onClick={toggleShowHandler}
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
                         height="25"
@@ -113,7 +140,7 @@ const SignUp = () => {
                       <a href="#">Terms</a> of Use
                     </p>
                   </div>
-                  <button href="#" onClick={onSingnUp} className="sign-up-button">
+                  <button onClick={onSignUp} className="sign-up-button">
                     Sign Up
                   </button>
                 </div>

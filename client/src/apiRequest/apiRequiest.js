@@ -39,8 +39,17 @@ export async function userSignUpRequest(fullName, userName, email, password){
         let result = await axios.post('http://localhost:5000/api/v1/registration', reqBody);
         return[result];
     } catch (e) {
-        console.log(e)   
-    return [];
+        return [];
+    }
+
+}
+export async function SignInRequest(email, password){
+    try {
+        let reqBody = {email:email, password:password};
+        let result = await axios.post('http://localhost:5000/api/v1/login', reqBody);
+        return[result];
+    } catch (e) {
+        return [];
     }
 
 }
