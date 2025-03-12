@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { SignInRequest } from "../../apiRequest/apiRequiest";
+import {jwtDecode} from "jwt-decode"; 
+
 
 const SignIn = () => {
   const [show, setShow] = useState(false);
@@ -25,12 +27,23 @@ const SignIn = () => {
 
     try {
       const result = await SignInRequest(email, pass);
-      if (result[0].data.status==="success") {
+      if (result[0].data.status === "success") {
         toast.success("Sign in successful!");
         localStorage.setItem("userToken", result[0].data.token);
+        
+        // set userdetails
+        const decodedToken = jwtDecode(result[0].data.token);
+        const userDetails = {
+          id:decodedToken.user_id,
+          email: decodedToken.email, 
+          name: decodedToken.user_fullName,
+        };
+
+        localStorage.setItem("userDetails", JSON.stringify(userDetails));
+
         setTimeout(() => {
-            navigate("/"); 
-          }, 1000);
+          navigate("/");
+        }, 1000);
       } else {
         toast.error("Sign in failed. Please try again.");
       }
@@ -61,7 +74,11 @@ const SignIn = () => {
                   Don’t have an account yet? <a href="/signup">Sign Up</a>
                 </p>
                 <div className="form">
-                  <input ref={emailRef} type="email" placeholder="Email address" />
+                  <input
+                    ref={emailRef}
+                    type="email"
+                    placeholder="Email address"
+                  />
                   <div className="form-group">
                     <input
                       type={show ? "text" : "password"}
@@ -125,9 +142,7 @@ const SignIn = () => {
                     )}
                   </div>
                   <div className="terms_condition_cheaker">
-                    <input
-                      type="checkbox"
-                    />
+                    <input type="checkbox" />
                     <p className="common-shop-now-btn">
                       Remember me
                       <a href="#">Forgot password</a>

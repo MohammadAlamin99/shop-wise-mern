@@ -3,7 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { allProductRequiest } from "../apiRequest/apiRequiest";
+import {
+  allProductRequiest,
+  cartCreateRequest,
+} from "../apiRequest/apiRequiest";
 import { useDispatch, useSelector } from "react-redux";
 import { setProduct } from "../redux/state-slice/product-slice";
 
@@ -14,9 +17,20 @@ const FeatureCollection = () => {
   useEffect(() => {
     (async () => {
       let result = await allProductRequiest();
-      dispatch(setProduct(result))
+      dispatch(setProduct(result));
     })();
   }, []);
+
+  // const storedUserDetails = localStorage.getItem("userDetails");
+  // const parsedUserDetails = JSON.parse(storedUserDetails);
+
+
+  const createCartHandler = async (id) => {
+    let qty = 1;
+    let color = "";
+    let size = "";
+    let data = await cartCreateRequest(id, qty, color, size);
+  };
 
   return (
     <div>
@@ -71,14 +85,19 @@ const FeatureCollection = () => {
                                 ? item["discountPercentage"]
                                 : ""}
                             </span>
-                            <a href={"/product-details/"+item._id}>
+                            <a href={"/product-details/" + item._id}>
                               <img
                                 className="product-image "
                                 src={item.image}
                                 alt=""
                               />
                             </a>
-                            <button className="add-cart">Add to cart</button>
+                            <button
+                              onClick={()=>createCartHandler(item._id)}
+                              className="add-cart"
+                            >
+                              Add to cart
+                            </button>
                           </div>
                           <div className="rating">
                             <span className="star">
@@ -156,7 +175,13 @@ const FeatureCollection = () => {
 
                           <div className="price-box">
                             <p className="price">TK. {item["price"]}</p>
-                            <p className="dis-price" style={{display:item['discountPrice']==0?('none'):('block')}}>
+                            <p
+                              className="dis-price"
+                              style={{
+                                display:
+                                  item["discountPrice"] == 0 ? "none" : "block",
+                              }}
+                            >
                               TK. {item["discountPrice"]}
                             </p>
                           </div>
