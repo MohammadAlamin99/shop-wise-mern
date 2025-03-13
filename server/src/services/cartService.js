@@ -53,15 +53,15 @@ exports.getAllCart = async (req)=>{
     let JoinStageProduct = {$lookup:{from:"products", localField:"productID", foreignField:"_id", as:"product"}}
     let unwindProductStage = {$unwind:"$product"}
     
-    let JoinStageCategory = {$lookup:{from:"categories", localField:"product.categoryID", foreignField:"_id", as:"category"}}
-    let unwindCategory = {$unwind:"$category"}
+    // let JoinStageCategory = {$lookup:{from:"categories", localField:"product.categoryID", foreignField:"_id", as:"category"}}
+    // let unwindCategory = {$unwind:"$category"}
 
     let data = await cartModel.aggregate([
       matchStage,
       JoinStageProduct,
       unwindProductStage, 
-      JoinStageCategory, 
-      unwindCategory
+      // JoinStageCategory, 
+      // unwindCategory
     ])
     return{status:"Success", data: data} 
 

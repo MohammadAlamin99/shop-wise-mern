@@ -76,11 +76,24 @@ export async function cartCreateRequest(productID, qty, color, size) {
       reqbody,
       {
         headers: {
-          "token": verifyUser,
+          token: verifyUser,
         },
       }
     );
     return [result];
+  } catch (e) {
+    return [];
+  }
+}
+
+export async function getAllCartRequest() {
+  try {
+    let result = await axios.get("http://localhost:5000/api/v1/getCart", {
+      headers: {
+        token: verifyUser,
+      },
+    });
+    return result;
   } catch (e) {
     return [];
   }

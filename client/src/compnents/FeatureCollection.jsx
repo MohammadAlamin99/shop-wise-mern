@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -13,6 +13,8 @@ import { setProduct } from "../redux/state-slice/product-slice";
 const FeatureCollection = () => {
   const productData = useSelector((state) => state.getProduct.product);
   const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     (async () => {
@@ -31,6 +33,8 @@ const FeatureCollection = () => {
     let size = "";
     let data = await cartCreateRequest(id, qty, color, size);
   };
+
+
 
   return (
     <div>

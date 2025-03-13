@@ -2,18 +2,23 @@ import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/images/navigation-img/log.png";
 import MobileMenu from "./MobileMenu";
 import CartDrawer from "./CartDrawer";
+import { getAllCartRequest } from "../apiRequest/apiRequiest";
+import { useDispatch, useSelector } from "react-redux";
+import { setCartList } from "../redux/state-slice/cartList-slice";
 const Navigation = () => {
   const svgRef = useRef("");
   const [active, setActive] = useState(false);
   const [cartactive, setcartActive] = useState(false);
+  const [fixed, setFixed] = useState(false);
+  const cartListData = useSelector((state)=> state.getCartList.cartList);
+  const dispatch = useDispatch()
+
   const onClickHandler = () => {
     setActive(!active);
   };
   const CartonClickHandler = () => {
     setcartActive(!cartactive);
   };
-
-  const [fixed, setFixed] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +30,23 @@ const Navigation = () => {
     };
     window.addEventListener("scroll", handleScroll);
   }, [0]);
+
+  // carlist request
+
+  useEffect(() => {
+    (async () => {
+      let result = await getAllCartRequest();
+      dispatch(setCartList(result));
+    })();
+  }, []);
+
+  const cartItemCount =
+  cartListData &&
+  cartListData.data &&
+  cartListData.data.data &&
+  cartListData.data.data.length > 0
+      ? cartListData.data.data.length
+      : 0;
 
   return (
     <div>
@@ -133,7 +155,7 @@ const Navigation = () => {
                         stroke-linejoin="round"
                       />
                     </svg>
-                    <h5>2</h5>
+                    <h5>{cartItemCount}</h5>
                   </div>
                 </div>
               </div>
