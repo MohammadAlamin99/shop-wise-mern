@@ -98,3 +98,18 @@ export async function getAllCartRequest() {
     return [];
   }
 }
+
+export async function removeCartRequest(productID) {
+  try {
+    let reqbody = {productID:productID}
+    let result = await axios.delete("http://localhost:5000/api/v1/removeCart", {
+      data:reqbody,
+      headers: {
+        token: verifyUser,
+      },
+    });
+    return result;
+  } catch (e) {
+    return [];
+  }
+}

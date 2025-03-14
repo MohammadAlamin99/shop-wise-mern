@@ -11,7 +11,7 @@ const Navigation = () => {
   const [cartactive, setcartActive] = useState(false);
   const [fixed, setFixed] = useState(false);
   const cartListData = useSelector((state)=> state.getCartList.cartList);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onClickHandler = () => {
     setActive(!active);

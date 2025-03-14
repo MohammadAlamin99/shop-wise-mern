@@ -33,10 +33,10 @@ exports.removeCart = async (req)=>{
     let id = req.user_id;
     let productId = reqbody.productID;
 
-    await cartModel.deleteOne({
+    let result = await cartModel.deleteOne({
       productID:productId, userID:id
     });
-    return{status:"Success", message:"remove cart"}
+    return{status:"Success", message:result}
     
   } catch (e) {
     console.log(e)

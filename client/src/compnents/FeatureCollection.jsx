@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,8 +14,6 @@ const FeatureCollection = () => {
   const productData = useSelector((state) => state.getProduct.product);
   const dispatch = useDispatch();
 
-
-
   useEffect(() => {
     (async () => {
       let result = await allProductRequiest();
@@ -26,16 +24,13 @@ const FeatureCollection = () => {
   // const storedUserDetails = localStorage.getItem("userDetails");
   // const parsedUserDetails = JSON.parse(storedUserDetails);
 
-
   const createCartHandler = async (id) => {
+    window.location.reload();
     let qty = 1;
     let color = "";
     let size = "";
     let data = await cartCreateRequest(id, qty, color, size);
   };
-
-
-
   return (
     <div>
       <section className="feature-collection-section">
@@ -97,7 +92,7 @@ const FeatureCollection = () => {
                               />
                             </a>
                             <button
-                              onClick={()=>createCartHandler(item._id)}
+                              onClick={() => createCartHandler(item._id)}
                               className="add-cart"
                             >
                               Add to cart
