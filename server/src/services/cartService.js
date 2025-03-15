@@ -26,46 +26,50 @@ exports.createCartService = async (req) => {
   }
 };
 
-
-exports.removeCart = async (req)=>{
+exports.removeCart = async (req) => {
   try {
     let reqbody = req.body;
     let id = req.user_id;
     let productId = reqbody.productID;
 
     let result = await cartModel.deleteOne({
-      productID:productId, userID:id
+      productID: productId,
+      userID: id,
     });
-    return{status:"Success", message:result}
-    
+    return { status: "Success", message: result };
   } catch (e) {
-    console.log(e)
-    return{status:"fail", message:e}
+    console.log(e);
+    return { status: "fail", message: e };
   }
-}
+};
 
-
-exports.getAllCart = async (req)=>{
+exports.getAllCart = async (req) => {
   try {
     let id = new ObjectId(req.user_id);
-    let matchStage ={$match:{userID:id}}
+    let matchStage = { $match: { userID: id } };
 
-    let JoinStageProduct = {$lookup:{from:"products", localField:"productID", foreignField:"_id", as:"product"}}
-    let unwindProductStage = {$unwind:"$product"}
-    
+    let JoinStageProduct = {
+      $lookup: {
+        from: "products",
+        localField: "productID",
+        foreignField: "_id",
+        as: "product",
+      },
+    };
+    let unwindProductStage = { $unwind: "$product" };
+
     // let JoinStageCategory = {$lookup:{from:"categories", localField:"product.categoryID", foreignField:"_id", as:"category"}}
     // let unwindCategory = {$unwind:"$category"}
 
     let data = await cartModel.aggregate([
       matchStage,
       JoinStageProduct,
-      unwindProductStage, 
-      // JoinStageCategory, 
+      unwindProductStage,
+      // JoinStageCategory,
       // unwindCategory
-    ])
-    return{status:"Success", data: data} 
-
+    ]);
+    return { status: "Success", data: data };
   } catch (e) {
-    return{status:"fail", data:e}
+    return { status: "fail", data: e };
   }
-}
+};

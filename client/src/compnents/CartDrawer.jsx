@@ -1,11 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartList } from "../redux/state-slice/cartList-slice";
-import { removeCartRequest } from "../apiRequest/apiRequiest";
+import {
+  removeCartRequest,
+  cartCreateRequest,
+} from "../apiRequest/apiRequiest";
+
 const CartDrawer = ({ iscartActive, isSetcartActive }) => {
   const cartListData = useSelector((state) => state.getCartList.cartList);
   const cartList = cartListData?.data?.data || [];
   const dispatch = useDispatch();
+
   // Calculate subtotal
   const subtotal = cartList.reduce(
     (total, item) => total + item.price * item.qty,
@@ -13,23 +18,23 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
   );
   const total = subtotal;
 
-  // Function to update quantity
-  const updateQuantity = (id, newQuantity) => {
+  // update and create cart
+  const updateandCreateHandler = async (productid, newQuantity) => {
+    newQuantity = Number(newQuantity);
     if (newQuantity >= 1) {
-      setCartList(
-        cartList.map((item) =>
-          item.id === id ? { ...item, quantity: newQuantity } : item
-        )
+      await cartCreateRequest(productid, newQuantity);
+      const updateCart = cartList.map((item) =>
+        item.productID === productid ? { ...item, qty: newQuantity } : item
       );
+      dispatch(setCartList({ data: { data: updateCart } }));
     }
   };
 
   // Function to remove item
-
   const removeItem = async (id) => {
-     await removeCartRequest(id);
-     const updatedCart = cartList.filter((item) => item.productID !== id);
-     dispatch(setCartList({ data: { data: updatedCart } }));
+    await removeCartRequest(id);
+    const updatedCart = cartList.filter((item) => item.productID !== id);
+    dispatch(setCartList({ data: { data: updatedCart } }));
   };
 
   return (
@@ -62,20 +67,18 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
           {cartList?.length > 0 ? (
             cartList.map((item, id) => (
               <div key={id} className="cart-item">
-                <div className="item-image">
+                <a href={`/product-details/`+ item.productID} className="item-image">
                   {item.product.image ? (
                     <img src={item?.product?.image} />
                   ) : (
                     <p>No Image Available</p>
                   )}
-                </div>
+                </a>
 
                 <div className="item-details">
                   <div className="item-header">
                     <h2 className="item-name">{item.name}</h2>
-                    <span className="item-price">
-                      TK. {item.price}
-                    </span>
+                    <span className="item-price">TK. {item.price}</span>
                   </div>
 
                   <p className="item-color">Color: {item.color}</p>
@@ -85,17 +88,23 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
                       <button
                         className="quantity-btn"
                         onClick={() =>
-                          item.quantity > 1 &&
-                          updateQuantity(item.id, item.quantity - 1)
+                          item.qty > 1 &&
+                          updateandCreateHandler(
+                            item.productID,
+                            Number(item.qty) - 1
+                          )
                         }
                       >
                         −
                       </button>
-                      <span className="quantity-display">{item.quantity}</span>
+                      <span className="quantity-display">{item.qty}</span>
                       <button
                         className="quantity-btn"
                         onClick={() =>
-                          updateQuantity(item.id, item.quantity + 1)
+                          updateandCreateHandler(
+                            item.productID,
+                            Number(item.qty) + 1
+                          )
                         }
                       >
                         +
@@ -104,7 +113,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
 
                     <button
                       className="remove-btn"
-                      onClick={()=> removeItem(item.productID)}
+                      onClick={() => removeItem(item.productID)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -133,12 +142,12 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
         <div className="cart-summary">
           <div className="summary-row">
             <span className="summary-label">Subtotal</span>
-            <span className="summary-value">TK. {subtotal.toFixed(2)}</span>
+            <span className="summary-value">TK. {subtotal}</span>
           </div>
 
           <div className="summary-row total">
             <span className="summary-label">Total</span>
-            <span className="summary-value">TK. {total.toFixed(2)}</span>
+            <span className="summary-value">TK. {total}</span>
           </div>
         </div>
 

@@ -27,6 +27,7 @@ exports.deleteCartList = async (req, res)=>{
     let result = await removeCart(req);
     return res.status(200).json(result);
 }
+
 exports.cartList = async (req, res)=>{
     let result = await getAllCart(req);
     return res.status(200).json(result);
