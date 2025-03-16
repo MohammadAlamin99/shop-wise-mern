@@ -95,6 +95,7 @@ export async function getAllCartRequest() {
     });
     return result;
   } catch (e) {
+
     return [];
   }
 }

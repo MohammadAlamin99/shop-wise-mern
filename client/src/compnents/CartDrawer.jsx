@@ -67,7 +67,10 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
           {cartList?.length > 0 ? (
             cartList.map((item, id) => (
               <div key={id} className="cart-item">
-                <a href={`/product-details/`+ item.productID} className="item-image">
+                <a
+                  href={`/product-details/` + item.productID}
+                  className="item-image"
+                >
                   {item.product.image ? (
                     <img src={item?.product?.image} />
                   ) : (
@@ -77,7 +80,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
 
                 <div className="item-details">
                   <div className="item-header">
-                    <h2 className="item-name">{item.name}</h2>
+                    <h2 className="item-name">{item.product.title}</h2>
                     <span className="item-price">TK. {item.price}</span>
                   </div>
 
