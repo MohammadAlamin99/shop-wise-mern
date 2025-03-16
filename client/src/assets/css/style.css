@@ -2699,7 +2699,6 @@
 /* Cart Content */
 .cart_details_section .ah-cart-content {
   display: flex;
-  flex-wrap: wrap;
   gap: 64px;
   padding: 80px 0;
 }
@@ -2743,7 +2742,7 @@
 .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
 
 .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info .ah-product-image {
@@ -2937,7 +2936,147 @@
   margin-bottom: 0;
 }
 
-@media only screen and (max-width: 768px) {}
+.phone-svg-remove {
+  display: none;
+}
+
+.ah-cart-item .ah-product-info .ah-product-details .phone-price-ah {
+  display: none;
+}
+
+@media only screen and (max-width: 1020px) {
+  .cart_details_section .ah-cart-content {
+    gap: 30px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .cart_details_section .ah-cart-content {
+    flex-direction: column;
+  }
+
+  .cart_details_section .ah-cart-content .ah-cart-summary {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .cart_details_section .ah-progress-steps {
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    justify-content: space-between;
+  }
+
+  .cart_details_section {
+    padding: 40px 0;
+  }
+
+  .cart_details_section .ah-cart-title {
+    font-size: 44px;
+  }
+
+  .cart_details_section .ah-progress-steps .ah-step {
+    width: auto;
+  }
+
+  .cart_details_section .ah-progress-steps .ah-step-number {
+    aspect-ratio: 1/1;
+  }
+
+  .cart_details_section .container {
+    padding: 0 20px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+
+  .ah-progress-steps .ah-step:nth-child(3),
+  .ah-progress-steps .ah-step:nth-child(2) .ah-step-label {
+    display: none;
+  }
+
+  .ah-progress-steps .ah-step:nth-child(2) {
+    border: none;
+  }
+
+  .cart_details_section .ah-cart-content {
+    padding: 40px 0;
+  }
+
+  .cart_details_section .ah-cart-title {
+    font-size: 40px;
+  }
+
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-cart-header .section-title:nth-child(2),
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-cart-header .section-title:nth-child(3),
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-cart-header .section-title:nth-child(4) {
+    display: none;
+  }
+
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-price,
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-subtotal {
+    display: none;
+  }
+
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-cart-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-quantity-controls {
+    margin-left: -60px;
+    margin-top: 8px;
+  }
+
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info .ah-product-details .ah-remove-button {
+    display: none;
+  }
+
+  .phone-svg-remove {
+    display: block;
+  }
+
+  .ah-product-color {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ah-cart-item .ah-product-info .ah-product-details .phone-price-ah {
+    display: block;
+    width: 200px;
+    text-align: end;
+    max-width: 100%;
+  }
+
+  .ah-product-info .ah-product-details .ah-product-name {
+    display: flex;
+    width: fit-content;
+  }
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info .ah-product-image{
+    width: 100%;
+    aspect-ratio: 80 / 90;
+  }
+  .cart_details_section .ah-cart-content .ah-cart-summary .ah-summary-title{
+    font-size: 16px;
+  }
+  .cart_details_section .ah-cart-content .ah-cart-summary{
+    padding: 16px;
+  }
+  .cart_details_section .ah-cart-content .ah-cart-summary .shoppingArea .shipping_tab .shoppingName .shiping-text,
+  .section-title{
+    font-size: 14px;
+  }
+  .cart_details_section .ah-cart-content .ah-cart-summary .ah-summary-row.ah-total .section-title{
+    font-size: 16px;
+  }
+  .cart_details_section .ah-cart-content .ah-cart-summary .shoppingArea .shipping_tab .shiping_price .price{
+    font-size: 14px;
+  }
+  .footer .container{
+    padding: 0 20px;
+  }
+}
 
 
 /* cart details css end */
