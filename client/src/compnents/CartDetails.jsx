@@ -62,11 +62,14 @@ const CartDetails = () => {
           <div className="ah-cart-items">
             <div className="ah-cart-header">
               <div className="ah-product-header section-title">Product</div>
-              <div className="ah-product-header section-title end">Quantity</div>
+              <div className="ah-product-header section-title end">
+                Quantity
+              </div>
               <div className="ah-product-header section-title end">Price</div>
-              <div className="ah-product-header section-title end">Subtotal</div>
+              <div className="ah-product-header section-title end">
+                Subtotal
+              </div>
             </div>
-
             {cartList.length > 0 ? (
               cartList.map((product, id) => (
                 <div key={id} className="ah-cart-item">
@@ -75,7 +78,9 @@ const CartDetails = () => {
                       <img src={product?.product?.image} />
                     </div>
                     <div className="ah-product-details">
-                      <div className="ah-product-name">{product.product.title}</div>
+                      <div className="ah-product-name">
+                        {product.product.title}
+                      </div>
                       <div className="ah-product-color">
                         Color : {product.color}
                       </div>
