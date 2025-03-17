@@ -5,19 +5,26 @@ const Order = () => {
     <div>
       <div className="order-complete">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-12 text-center mb-4">
-              <h1 className="order-complete__title">Complete!</h1>
+          <div className="row">
+          <div className="phone-back-btn-home">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+  <path d="M7.41602 9L4.41602 6L7.41602 3" stroke="#605F5F" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+            <a href="/">back to home</a>
+          </div>
+            <div className="col-12">
+              <h1 className="common_main_head">Complete!</h1>
             </div>
           </div>
 
-          {/* Progress Steps */}
-          <div className="row justify-content-center mb-5">
+          <div className="row custom-row">
             <div className="col-md-8">
               <div className="order-complete__progress">
                 <div className="order-complete__progress-step completed">
                   <div className="order-complete__progress-icon">
-                    {/* <CheckCircle className="order-complete__check-icon" /> */}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10 16L18 8" stroke="#FCFCFD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
                   </div>
                   <span className="order-complete__progress-text">
                     Shopping cart
@@ -26,7 +33,9 @@ const Order = () => {
                 </div>
                 <div className="order-complete__progress-step completed">
                   <div className="order-complete__progress-icon">
-                    {/* <CheckCircle className="order-complete__check-icon" /> */}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 12L10 16L18 8" stroke="#FCFCFD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
                   </div>
                   <span className="order-complete__progress-text">
                     Checkout details
@@ -42,10 +51,8 @@ const Order = () => {
               </div>
             </div>
           </div>
-
-          {/* Order Confirmation Card */}
-          <div className="row justify-content-center">
-            <div className="col-md-8 col-lg-6">
+          <div className="row custom-content-row">
+            <div className="col-md-8 col-lg-7">
               <div className="order-complete__card">
                 <div className="order-complete__card-content">
                   <div className="text-center mb-4">
@@ -54,13 +61,11 @@ const Order = () => {
                       Your order has been received
                     </h2>
                   </div>
-
-                  {/* Product Images */}
                   <div className="order-complete__products">
                     <div className="order-complete__product">
                       <div className="order-complete__product-image">
                         <img
-                          src="/placeholder.svg?height=80&width=80"
+                          src="https://res.cloudinary.com/dankquy0f/image/upload/v1736501827/freepik_br_dbc9d355-00d6-4683-8e37-8f82ad953419_p6j7y8.png"
                           alt="Black Tray Table"
                         />
                         <span className="order-complete__product-quantity">
@@ -71,7 +76,7 @@ const Order = () => {
                     <div className="order-complete__product">
                       <div className="order-complete__product-image">
                         <img
-                          src="/placeholder.svg?height=80&width=80"
+                          src="https://res.cloudinary.com/dankquy0f/image/upload/v1736501827/freepik_br_dbc9d355-00d6-4683-8e37-8f82ad953419_p6j7y8.png"
                           alt="Red Tray Table"
                         />
                         <span className="order-complete__product-quantity">
@@ -82,7 +87,7 @@ const Order = () => {
                     <div className="order-complete__product">
                       <div className="order-complete__product-image">
                         <img
-                          src="/placeholder.svg?height=80&width=80"
+                          src="https://res.cloudinary.com/dankquy0f/image/upload/v1736501827/freepik_br_dbc9d355-00d6-4683-8e37-8f82ad953419_p6j7y8.png"
                           alt="Gold Table Lamp"
                         />
                         <span className="order-complete__product-quantity">
@@ -92,7 +97,6 @@ const Order = () => {
                     </div>
                   </div>
 
-                  {/* Order Details */}
                   <div className="order-complete__details">
                     <div className="order-complete__detail-row">
                       <div className="order-complete__detail-label">
@@ -124,8 +128,7 @@ const Order = () => {
                     </div>
                   </div>
 
-                  {/* Purchase History Button */}
-                  <div className="text-center mt-4">
+                  <div className="al-btn-wrapper">
                     <button className="order-complete__history-button">
                       Purchase history
                     </button>
