@@ -2943,7 +2943,9 @@
 .ah-cart-item .ah-product-info .ah-product-details .phone-price-ah {
   display: none;
 }
-
+.ah-product-info .ah-quantity-control-phone{
+  display: none !important;
+}
 @media only screen and (max-width: 1020px) {
   .cart_details_section .ah-cart-content {
     gap: 30px;
@@ -2986,6 +2988,9 @@
   .cart_details_section .container {
     padding: 0 20px;
   }
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info .ah-product-image{
+    width: 120px;
+  }
 }
 
 @media only screen and (max-width: 575px) {
@@ -3024,7 +3029,7 @@
   }
 
   .cart_details_section .ah-cart-content .ah-cart-items .ah-quantity-controls {
-    margin-left: -60px;
+    margin-left: 0;
     margin-top: 8px;
   }
 
@@ -3044,18 +3049,17 @@
 
   .ah-cart-item .ah-product-info .ah-product-details .phone-price-ah {
     display: block;
-    width: 200px;
+    width: 50%;
     text-align: end;
-    max-width: 100%;
   }
 
   .ah-product-info .ah-product-details .ah-product-name {
     display: flex;
-    width: fit-content;
+    width: 100%;
+    justify-content: space-between;
   }
   .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info .ah-product-image{
-    width: 100%;
-    aspect-ratio: 80 / 90;
+    width: fit-content;
   }
   .cart_details_section .ah-cart-content .ah-cart-summary .ah-summary-title{
     font-size: 16px;
@@ -3075,6 +3079,21 @@
   }
   .footer .container{
     padding: 0 20px;
+  }
+  .ah-product-info .ah-quantity-control-phone{
+    display: block;
+  }
+  .ah-cart-item .ah-quantity-conterol-desktop{
+    display: none !important;
+  }
+  .ah-product-info .ah-quantity-control-phone{
+    display: flex !important;
+  }
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info{
+    width: 100%;
+  }
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info .ah-product-details{
+    width: 100%;
   }
 }
 
