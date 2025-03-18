@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { CheckCircle } from "lucide-react"
+import OrderSummery from "./OrderSummery";
 const CheckOut = () => {
   const [paymentMethod, setPaymentMethod] = useState("credit");
   const [quantities, setQuantities] = useState({
@@ -18,33 +18,44 @@ const CheckOut = () => {
     <div>
       <div className="checkout-page">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-12 text-center mb-4">
-              <h1 className="checkout-page__title">Check Out</h1>
+          <div className="row">
+            <div className="col-12">
+              <h2 className="checkout-page__title">Check Out</h2>
             </div>
           </div>
-
-          {/* Progress Steps */}
-          <div className="row justify-content-center mb-5">
-            <div className="col-md-8">
+          <div className="row cheakoutrow">
+            <div className="col-md-9">
               <div className="checkout-page__progress">
                 <div className="checkout-page__progress-step completed">
                   <div className="checkout-page__progress-icon">
-                    {/* <CheckCircle className="checkout-page__check-icon" /> */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M6 12L10 16L18 8"
+                        stroke="#FCFCFD"
+                        stroke-width="2"
+                        stroke-miterlimit="10"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
                   </div>
                   <span className="checkout-page__progress-text">
                     Shopping cart
                   </span>
-                  <div className="checkout-page__progress-line"></div>
                 </div>
                 <div className="checkout-page__progress-step active">
                   <div className="checkout-page__progress-icon">2</div>
                   <span className="checkout-page__progress-text">
                     Checkout details
                   </span>
-                  <div className="checkout-page__progress-line"></div>
                 </div>
-                <div className="checkout-page__progress-step">
+                <div className="checkout-page__progress-step next">
                   <div className="checkout-page__progress-icon">3</div>
                   <span className="checkout-page__progress-text">
                     Order complete
@@ -63,20 +74,12 @@ const CheckOut = () => {
                   Contact Information
                 </h2>
                 <div className="row">
-                  <div className="col-md-6 mb-3">
+                  <div className="col-md-12">
                     <label className="checkout-page__label">FIRST NAME</label>
                     <input
                       type="text"
                       className="checkout-page__input"
                       placeholder="First name"
-                    />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <label className="checkout-page__label">LAST NAME</label>
-                    <input
-                      type="text"
-                      className="checkout-page__input"
-                      placeholder="Last name"
                     />
                   </div>
                 </div>
@@ -121,17 +124,7 @@ const CheckOut = () => {
                     />
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-12 mb-3">
-                    <label className="checkout-page__label">COUNTRY *</label>
-                    <select className="checkout-page__select">
-                      <option>Country</option>
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>United Kingdom</option>
-                    </select>
-                  </div>
-                </div>
+
                 <div className="row">
                   <div className="col-12 mb-3">
                     <label className="checkout-page__label">
@@ -258,7 +251,7 @@ const CheckOut = () => {
               </div>
 
               {/* Place Order Button */}
-              <div className="checkout-page__place-order">
+              <div className="checkout-page__place-order place-order-desktop">
                 <button className="checkout-page__order-button">
                   Place Order
                 </button>
@@ -267,161 +260,7 @@ const CheckOut = () => {
 
             {/* Right Column - Order Summary */}
             <div className="col-md-5">
-              <div className="checkout-page__order-summary">
-                <h2 className="checkout-page__summary-title">Order summary</h2>
-
-                {/* Product Items */}
-                <div className="checkout-page__product-item">
-                  <div className="checkout-page__product-image">
-                    <img
-                      src="/placeholder.svg?height=80&width=80"
-                      alt="Black Tray Table"
-                    />
-                  </div>
-                  <div className="checkout-page__product-details">
-                    <div className="checkout-page__product-info">
-                      <h3 className="checkout-page__product-name">
-                        Tray Table
-                      </h3>
-                      <p className="checkout-page__product-color">
-                        Color: Black
-                      </p>
-                    </div>
-                    <div className="checkout-page__product-price">$38.00</div>
-                  </div>
-                  <div className="checkout-page__quantity-control">
-                    <button
-                      className="checkout-page__quantity-btn"
-                      onClick={() => handleQuantityChange("blackTray", -1)}
-                    >
-                      -
-                    </button>
-                    <span className="checkout-page__quantity">
-                      {quantities.blackTray}
-                    </span>
-                    <button
-                      className="checkout-page__quantity-btn"
-                      onClick={() => handleQuantityChange("blackTray", 1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
-                <div className="checkout-page__product-item">
-                  <div className="checkout-page__product-image">
-                    <img
-                      src="/placeholder.svg?height=80&width=80"
-                      alt="Red Tray Table"
-                    />
-                  </div>
-                  <div className="checkout-page__product-details">
-                    <div className="checkout-page__product-info">
-                      <h3 className="checkout-page__product-name">
-                        Tray Table
-                      </h3>
-                      <p className="checkout-page__product-color">Color: Red</p>
-                    </div>
-                    <div className="checkout-page__product-price">$38.00</div>
-                  </div>
-                  <div className="checkout-page__quantity-control">
-                    <button
-                      className="checkout-page__quantity-btn"
-                      onClick={() => handleQuantityChange("redTray", -1)}
-                    >
-                      -
-                    </button>
-                    <span className="checkout-page__quantity">
-                      {quantities.redTray}
-                    </span>
-                    <button
-                      className="checkout-page__quantity-btn"
-                      onClick={() => handleQuantityChange("redTray", 1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
-                <div className="checkout-page__product-item">
-                  <div className="checkout-page__product-image">
-                    <img
-                      src="/placeholder.svg?height=80&width=80"
-                      alt="Gold Table Lamp"
-                    />
-                  </div>
-                  <div className="checkout-page__product-details">
-                    <div className="checkout-page__product-info">
-                      <h3 className="checkout-page__product-name">
-                        Table lamp
-                      </h3>
-                      <p className="checkout-page__product-color">
-                        Color: gold
-                      </p>
-                    </div>
-                    <div className="checkout-page__product-price">$39.00</div>
-                  </div>
-                  <div className="checkout-page__quantity-control">
-                    <button
-                      className="checkout-page__quantity-btn"
-                      onClick={() => handleQuantityChange("tableLamp", -1)}
-                    >
-                      -
-                    </button>
-                    <span className="checkout-page__quantity">
-                      {quantities.tableLamp}
-                    </span>
-                    <button
-                      className="checkout-page__quantity-btn"
-                      onClick={() => handleQuantityChange("tableLamp", 1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
-                {/* Coupon Code */}
-                <div className="checkout-page__coupon">
-                  <input
-                    type="text"
-                    className="checkout-page__coupon-input"
-                    placeholder="Input"
-                  />
-                  <button className="checkout-page__coupon-button">
-                    Apply
-                  </button>
-                </div>
-
-                {/* Discount */}
-                <div className="checkout-page__discount">
-                  <div className="checkout-page__discount-info">
-                    <span className="checkout-page__discount-icon">🎫</span>
-                    <span className="checkout-page__discount-code">
-                      JenkateMW
-                    </span>
-                  </div>
-                  <div className="checkout-page__discount-amount">
-                    -$25.00{" "}
-                    <span className="checkout-page__remove">[Remove]</span>
-                  </div>
-                </div>
-
-                {/* Order Totals */}
-                <div className="checkout-page__totals">
-                  <div className="checkout-page__total-row">
-                    <span className="checkout-page__total-label">Shipping</span>
-                    <span className="checkout-page__total-value">Free</span>
-                  </div>
-                  <div className="checkout-page__total-row">
-                    <span className="checkout-page__total-label">Subtotal</span>
-                    <span className="checkout-page__total-value">$99.00</span>
-                  </div>
-                  <div className="checkout-page__total-row checkout-page__grand-total">
-                    <span className="checkout-page__total-label">Total</span>
-                    <span className="checkout-page__total-value">$234.00</span>
-                  </div>
-                </div>
-              </div>
+              <OrderSummery/>
             </div>
           </div>
         </div>

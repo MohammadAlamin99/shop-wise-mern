@@ -349,7 +349,7 @@ const ProductDetails = () => {
                             </button>
                           </div>
                         </div>
-                        <div className="purchase-options mt-4">
+                        <div className="purchase-options">
                           <div className="quantity-selector">
                             <button
                               className="quantity-btn minus"

@@ -8,23 +8,22 @@ const Order = () => {
           <div className="row">
           <div className="phone-back-btn-home">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <path d="M7.41602 9L4.41602 6L7.41602 3" stroke="#605F5F" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+            <path d="M7.41602 9L4.41602 6L7.41602 3" stroke="#605F5F" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
             <a href="/">back to home</a>
           </div>
             <div className="col-12">
               <h1 className="common_main_head">Complete!</h1>
             </div>
           </div>
-
           <div className="row custom-row">
             <div className="col-md-8">
               <div className="order-complete__progress">
                 <div className="order-complete__progress-step completed">
                   <div className="order-complete__progress-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M6 12L10 16L18 8" stroke="#FCFCFD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+                    <path d="M6 12L10 16L18 8" stroke="#FCFCFD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                   </div>
                   <span className="order-complete__progress-text">
                     Shopping cart
@@ -34,8 +33,8 @@ const Order = () => {
                 <div className="order-complete__progress-step completed">
                   <div className="order-complete__progress-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M6 12L10 16L18 8" stroke="#FCFCFD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+                    <path d="M6 12L10 16L18 8" stroke="#FCFCFD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                   </div>
                   <span className="order-complete__progress-text">
                     Checkout details

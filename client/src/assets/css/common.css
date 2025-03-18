@@ -43,6 +43,9 @@ button {
   border: none;
   cursor: pointer;
 }
+:root {
+  --inter: "Inter", serif;
+}
 
 @font-face {
   font-family: "Inter";
