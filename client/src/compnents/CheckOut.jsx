@@ -66,9 +66,7 @@ const CheckOut = () => {
           </div>
 
           <div className="row">
-            {/* Left Column - Forms */}
             <div className="col-md-7">
-              {/* Contact Information */}
               <div className="checkout-page__section">
                 <h2 className="checkout-page__section-title">
                   Contact Information
@@ -106,8 +104,6 @@ const CheckOut = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Shipping Address */}
               <div className="checkout-page__section">
                 <h2 className="checkout-page__section-title">
                   Shipping Address
@@ -173,8 +169,6 @@ const CheckOut = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Payment Method */}
               <div className="checkout-page__section">
                 <h2 className="checkout-page__section-title">Payment method</h2>
                 <div className="checkout-page__payment-options">
@@ -249,8 +243,6 @@ const CheckOut = () => {
                   </div>
                 )}
               </div>
-
-              {/* Place Order Button */}
               <div className="checkout-page__place-order place-order-desktop">
                 <button className="checkout-page__order-button">
                   Place Order
@@ -258,9 +250,8 @@ const CheckOut = () => {
               </div>
             </div>
 
-            {/* Right Column - Order Summary */}
             <div className="col-md-5">
-              <OrderSummery/>
+              <OrderSummery />
             </div>
           </div>
         </div>

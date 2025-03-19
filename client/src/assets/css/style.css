@@ -2052,7 +2052,6 @@
   margin-top: auto;
 }
 
-/* Quantity controls */
 .cart-container .cart-items .cart-item .item-actions .quantity-control {
   display: flex;
   border-radius: 4px;
@@ -2061,6 +2060,7 @@
   width: 100px;
   justify-content: space-between;
   align-items: center;
+  padding: 8px;
 }
 
 .cart-container .cart-items .cart-item .item-actions .quantity-control .quantity-btn {
@@ -2091,7 +2091,6 @@
   background: none;
 }
 
-/* Cart summary */
 .cart-container .cart-summary {
   margin-top: 40px;
   padding-top: 20px;
@@ -2103,7 +2102,6 @@
   border-bottom: 1px solid var(--neutral-03100, #E8ECEF);
   padding: 13px 0;
 }
-
 .cart-container .cart-summary .summary-row:nth-last-child(1) {
   border: none;
 }
@@ -2116,7 +2114,6 @@
   font-weight: 400;
   line-height: 26px;
 }
-
 .cart-container .cart-summary .summary-row .summary-value {
   color: var(--neutral-07100, #141718);
   font-family: "Inter", serif;
@@ -2125,8 +2122,6 @@
   font-weight: 600;
   line-height: 26px;
 }
-
-
 .cart-container .cart-summary .total .summary-label,
 .cart-container .cart-summary .total .summary-value {
   color: var(--neutral-07100, #141718);
@@ -2136,7 +2131,6 @@
   line-height: 28px;
 }
 
-/* Cart actions */
 .cart-container .cart-actions {
   margin-top: 16px;
   display: flex;
@@ -2907,15 +2901,18 @@
 .cart_details_section .ah-cart-content .ah-cart-summary .shoppingArea .shipping_tab {
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .cart_details_section .ah-cart-content .ah-cart-summary .shoppingArea {
   border-radius: 4px;
-  border: 1px solid var(--neutral-07100, #141718);
-  background: var(--neutral-02100, #F3F5F7);
+  border: 1px solid var(--neutral-07100, #6C7275);
   padding: 13px 16px;
 }
-
+.cart_details_section .ah-cart-content .ah-cart-summary .shpping_area_wrapper .selected-shipping{
+  background: #F3F5F7;
+  border: 1px solid #141718;
+}
 .cart_details_section .ah-cart-content .ah-cart-summary .shoppingArea .shipping_tab .shoppingName .shiping-text {
   color: #141718;
   font-family: "Inter", serif;
