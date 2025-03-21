@@ -3,6 +3,7 @@ const router = express.Router();
 const ProdcutController = require("../controllers/ProductController");
 const CategoryController = require("../controllers/categoryController");
 const userController = require("../controllers/userController");
+const invoiceController = require("../controllers/invoiceController");
 const authentication = require("../middlewares/authentication");
 
 router.get("/allProduct", ProdcutController.productList);
@@ -12,6 +13,7 @@ router.get("/productDetails/:id", ProdcutController.productDetailsById);
 router.post("/CartCreate", authentication, ProdcutController.createCartList);
 router.delete("/removeCart", authentication, ProdcutController.deleteCartList);
 router.get("/getCart", authentication, ProdcutController.cartList);
+router.post("/createInvoice", authentication, invoiceController.createInvoice);
 
 
 // user registration

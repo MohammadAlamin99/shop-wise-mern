@@ -46,7 +46,6 @@ exports.login = async (req) => {
       return { status: "fail", message: "User Not found" };
     }
   } catch (e) {
-    console.log(e);
     return { status: "fail", message: "Login Faild" };
   }
 };

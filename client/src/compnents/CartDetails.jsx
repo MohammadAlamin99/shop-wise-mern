@@ -58,24 +58,20 @@ const CartDetails = () => {
     <div className="cart_details_section">
       <div className="container">
         <h1 className="ah-cart-title">Cart</h1>
-
         <div className="ah-progress-steps">
           <div className="ah-step ah-active">
             <div className="ah-step-number">1</div>
             <div className="ah-step-label">Shopping cart</div>
           </div>
-
           <div className="ah-step">
             <div className="ah-step-number">2</div>
             <div className="ah-step-label">Checkout details</div>
           </div>
-
           <div className="ah-step">
             <div className="ah-step-number">3</div>
             <div className="ah-step-label">Order complete</div>
           </div>
         </div>
-
         <div className="ah-cart-content">
           <div className="ah-cart-items">
             <div className="ah-cart-header">
