@@ -10,7 +10,7 @@ const CartDetails = () => {
   const cartListData = useSelector((state) => state.getCartList.cartList);
   const cartList = cartListData?.data?.data || [];
   const dispatch = useDispatch();
-  const [selectedShipping, setSelectedShipping] = useState("free");
+  const [selectedShipping, setSelectedShipping] = useState("outside");
 
   const subtotal = cartList.reduce(
     (total, item) => total + item.product.price * item.qty,
@@ -202,61 +202,8 @@ const CartDetails = () => {
 
           <div className="ah-cart-summary">
             <h2 className="ah-summary-title">Cart summary</h2>
-            <div className="shpping_area_wrapper">
-              <div
-                className={`shoppingArea ${
-                  selectedShipping === "free" ? "selected-shipping" : ""
-                }`}
-                onClick={() => setSelectedShipping("free")}
-              >
-                <div className="shipping_tab">
-                  <div className="shoppingName">
-                    {selectedShipping === "free" ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="19"
-                        viewBox="0 0 20 19"
-                        fill="none"
-                      >
-                        <rect
-                          x="1"
-                          y="0.5"
-                          width="18"
-                          height="18"
-                          rx="9"
-                          stroke="#121212"
-                          stroke-linejoin="bevel"
-                        />
-                        <circle cx="10" cy="9.5" r="5" fill="#121212" />
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="19"
-                        viewBox="0 0 20 19"
-                        fill="none"
-                      >
-                        <rect
-                          x="1"
-                          y="0.5"
-                          width="18"
-                          height="18"
-                          rx="9"
-                          stroke="#6C7275"
-                          strokeLinejoin="bevel"
-                        />
-                      </svg>
-                    )}
-                    <p className="shiping-text">Free Delivery</p>
-                  </div>
 
-                  <div className="shiping_price">
-                    <h4 className="price">$0.00</h4>
-                  </div>
-                </div>
-              </div>
+            <div className="shpping_area_wrapper">
 
               <div className={`shoppingArea ${selectedShipping==="inside"?("selected-shipping"):("")}`}>
                 <div className="shipping_tab"
@@ -360,6 +307,7 @@ const CartDetails = () => {
               </div>
             </div>
 
+
             <div className="ah-summary-row ah-subtotal">
               <span className="section-title">Subtotal</span>
               <span className="ah-summary-value section-title">
@@ -373,7 +321,7 @@ const CartDetails = () => {
                 TK. {total}
               </span>
             </div>
-            <button className="ah-checkout-button">Checkout</button>
+            <a href="/checkout" className="ah-checkout-button">Checkout</a>
           </div>
         </div>
       </div>

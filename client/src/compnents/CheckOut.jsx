@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import OrderSummery from "./OrderSummery";
-const CheckOut = () => {
-  const [paymentMethod, setPaymentMethod] = useState("credit");
-  const [quantities, setQuantities] = useState({
-    blackTray: 2,
-    redTray: 2,
-    tableLamp: 2,
-  });
 
-  const handleQuantityChange = (item, value) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [item]: Math.max(1, prev[item] + value),
-    }));
-  };
+const CheckOut = () => {
+  
+const fullNameRef = useRef();
+const phoneRef = useRef();
+const emailRef = useRef();
+const fullAddressRef = useRef();
+
+const onCheckoutHandler = async()=>{
+  const fullName = fullNameRef.current.value;
+  const phone = phoneRef.current.value;
+  const email = emailRef.current.value; 
+  const fullAddress = fullAddressRef.current.value; 
+}
+
   return (
     <div>
       <div className="checkout-page">
@@ -38,10 +39,10 @@ const CheckOut = () => {
                       <path
                         d="M6 12L10 16L18 8"
                         stroke="#FCFCFD"
-                        stroke-width="2"
-                        stroke-miterlimit="10"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeMiterlimit="10"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </div>
@@ -67,187 +68,76 @@ const CheckOut = () => {
 
           <div className="row">
             <div className="col-md-7">
-              <div className="checkout-page__section">
-                <h2 className="checkout-page__section-title">
-                  Contact Information
-                </h2>
-                <div className="row">
-                  <div className="col-md-12">
-                    <label className="checkout-page__label">FIRST NAME</label>
-                    <input
-                      type="text"
-                      className="checkout-page__input"
-                      placeholder="First name"
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-12 mb-3">
-                    <label className="checkout-page__label">PHONE NUMBER</label>
-                    <input
-                      type="tel"
-                      className="checkout-page__input"
-                      placeholder="Phone number"
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-12 mb-3">
-                    <label className="checkout-page__label">
-                      EMAIL ADDRESS
-                    </label>
-                    <input
-                      type="email"
-                      className="checkout-page__input"
-                      placeholder="Your Email"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="checkout-page__section">
-                <h2 className="checkout-page__section-title">
-                  Shipping Address
-                </h2>
-                <div className="row">
-                  <div className="col-12 mb-3">
-                    <label className="checkout-page__label">
-                      STREET ADDRESS *
-                    </label>
-                    <input
-                      type="text"
-                      className="checkout-page__input"
-                      placeholder="Street Address"
-                    />
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-12 mb-3">
-                    <label className="checkout-page__label">
-                      TOWN / CITY *
-                    </label>
-                    <input
-                      type="text"
-                      className="checkout-page__input"
-                      placeholder="Town / City"
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label className="checkout-page__label">STATE</label>
-                    <input
-                      type="text"
-                      className="checkout-page__input"
-                      placeholder="State"
-                    />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <label className="checkout-page__label">ZIP CODE</label>
-                    <input
-                      type="text"
-                      className="checkout-page__input"
-                      placeholder="Zip Code"
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-12">
-                    <div className="checkout-page__checkbox-container">
+              <form>
+                <div className="checkout-page__section">
+                  <h2 className="checkout-page__section-title">
+                    Contact Information
+                  </h2>
+                  <div className="row">
+                    <div className="col-md-12">
+                      <label className="checkout-page__label">Full NAME</label>
                       <input
-                        type="checkbox"
-                        id="different-billing"
-                        className="checkout-page__checkbox"
+                        type="text"
+                        className="checkout-page__input"
+                        placeholder="First name"
+                        name="firstName"
+                        ref={fullNameRef}
                       />
-                      <label
-                        htmlFor="different-billing"
-                        className="checkout-page__checkbox-label"
-                      >
-                        Use a different billing address (optional)
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 mb-3">
+                      <label className="checkout-page__label">
+                        PHONE NUMBER
                       </label>
+                      <input
+                        type="tel"
+                        className="checkout-page__input"
+                        placeholder="Phone number"
+                        name="phoneNumber"
+                        ref={phoneRef}
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 mb-3">
+                      <label className="checkout-page__label">
+                        EMAIL ADDRESS
+                      </label>
+                      <input
+                        type="email"
+                        className="checkout-page__input"
+                        placeholder="Your Email"
+                        name="email"
+                        ref={emailRef}
+                      />
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="checkout-page__section">
-                <h2 className="checkout-page__section-title">Payment method</h2>
-                <div className="checkout-page__payment-options">
-                  <div
-                    className={`checkout-page__payment-option ${
-                      paymentMethod === "credit" ? "active" : ""
-                    }`}
-                    onClick={() => setPaymentMethod("credit")}
-                  >
-                    <input
-                      type="radio"
-                      id="credit-card"
-                      name="payment"
-                      checked={paymentMethod === "credit"}
-                      onChange={() => setPaymentMethod("credit")}
-                    />
-                    <label htmlFor="credit-card">Pay by Card Credit</label>
-                    <span className="checkout-page__card-icon">💳</span>
-                  </div>
-
-                  <div
-                    className={`checkout-page__payment-option ${
-                      paymentMethod === "paypal" ? "active" : ""
-                    }`}
-                    onClick={() => setPaymentMethod("paypal")}
-                  >
-                    <input
-                      type="radio"
-                      id="paypal"
-                      name="payment"
-                      checked={paymentMethod === "paypal"}
-                      onChange={() => setPaymentMethod("paypal")}
-                    />
-                    <label htmlFor="paypal">Paypal</label>
+                <div className="checkout-page__section">
+                  <h2 className="checkout-page__section-title">
+                    Shipping Address
+                  </h2>
+                  <div className="row">
+                    <div className="col-12 mb-3">
+                      <label className="checkout-page__label">
+                        Full Address*
+                      </label>
+                      <input
+                        type="text"
+                        className="checkout-page__input"
+                        placeholder="Street Address"
+                        name="address"
+                      />
+                    </div>
                   </div>
                 </div>
-
-                {paymentMethod === "credit" && (
-                  <div className="checkout-page__card-details">
-                    <div className="row">
-                      <div className="col-12 mb-3">
-                        <label className="checkout-page__label">
-                          CARD NUMBER
-                        </label>
-                        <input
-                          type="text"
-                          className="checkout-page__input"
-                          placeholder="1234 1234 1234"
-                        />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6 mb-3">
-                        <label className="checkout-page__label">
-                          EXPIRATION DATE
-                        </label>
-                        <input
-                          type="text"
-                          className="checkout-page__input"
-                          placeholder="MM/YY"
-                        />
-                      </div>
-                      <div className="col-md-6 mb-3">
-                        <label className="checkout-page__label">CVC</label>
-                        <input
-                          type="text"
-                          className="checkout-page__input"
-                          placeholder="CVC code"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div className="checkout-page__place-order place-order-desktop">
-                <button className="checkout-page__order-button">
-                  Place Order
-                </button>
-              </div>
+                <div className="checkout-page__place-order place-order-desktop">
+                  <button type="button" onClick={onCheckoutHandler} className="checkout-page__order-button">
+                    Place Order
+                  </button>
+                </div>
+              </form>
             </div>
 
             <div className="col-md-5">

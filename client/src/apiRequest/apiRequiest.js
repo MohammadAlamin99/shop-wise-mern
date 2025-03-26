@@ -114,3 +114,20 @@ export async function removeCartRequest(productID) {
     return [];
   }
 }
+
+
+// invoice create
+
+export async function invoiceCreateRequest(reqbody) {
+  try {
+    let result = await axios.post("http://localhost:5000/api/v1/createInvoice", {
+      reqbody,
+      headers: {
+        token: verifyUser,
+      },
+    }); 
+    return result;
+  } catch (e) {
+    return [];
+  }
+}

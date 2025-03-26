@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const invoiceModel = new mongoose.Schema({
+  userID: { type: mongoose.Schema.Types.ObjectId, required: true },
   order_id: { type: String, required: true, unique: true },
   customer: {
     full_name: { type: String, required: true },
@@ -34,3 +35,4 @@ const invoiceModel = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("invoices", invoiceModel);
+

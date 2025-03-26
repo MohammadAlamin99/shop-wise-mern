@@ -13,7 +13,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
 
   // Calculate subtotal
   const subtotal = cartList.reduce(
-    (total, item) => total + item.product.price * item.qty,
+    (total, item) => total + item?.product?.price * item?.qty,
     0
   );
   const total = subtotal;
@@ -24,7 +24,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
     if (newQuantity >= 1) {
       await cartCreateRequest(productid, newQuantity);
       const updateCart = cartList.map((item) =>
-        item.productID === productid ? { ...item, qty: newQuantity } : item
+        item?.productID === productid ? { ...item, qty: newQuantity } : item
       );
       dispatch(setCartList({ data: { data: updateCart } }));
     }
@@ -33,7 +33,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
   // Function to remove item
   const removeItem = async (id) => {
     await removeCartRequest(id);
-    const updatedCart = cartList.filter((item) => item.productID !== id);
+    const updatedCart = cartList.filter((item) => item?.productID !== id);
     dispatch(setCartList({ data: { data: updatedCart } }));
   };
 
@@ -68,10 +68,10 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
             cartList.map((item, id) => (
               <div key={id} className="cart-item">
                 <a
-                  href={`/product-details/` + item.productID}
+                  href={`/product-details/` + item?.productID}
                   className="item-image"
                 >
-                  {item.product.image ? (
+                  {item?.product?.image ? (
                     <img src={item?.product?.image} />
                   ) : (
                     <p>No Image Available</p>
@@ -80,21 +80,21 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
 
                 <div className="item-details">
                   <div className="item-header">
-                    <h2 className="item-name">{item.product.title}</h2>
-                    <span className="item-price">TK. {item.product.price}</span>
+                    <h2 className="item-name">{item?.product?.title}</h2>
+                    <span className="item-price">TK. {item?.product?.price}</span>
                   </div>
 
-                  <p className="item-color">Color: {item.color}</p>
+                  <p className="item-color">Color: {item?.color}</p>
 
                   <div className="item-actions">
                     <div className="quantity-control">
                       <button
                         className="quantity-btn"
                         onClick={() =>
-                          item.qty > 1 &&
+                          item?.qty > 1 &&
                           updateandCreateHandler(
-                            item.productID,
-                            Number(item.qty) - 1
+                            item?.productID,
+                            Number(item?.qty) - 1
                           )
                         }
                       >
@@ -102,13 +102,13 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
                           <path d="M3.22925 8H12.5626" stroke="#121212" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                       </button>
-                      <span className="quantity-display">{item.qty}</span>
+                      <span className="quantity-display">{item?.qty}</span>
                       <button
                         className="quantity-btn"
                         onClick={() =>
                           updateandCreateHandler(
-                            item.productID,
-                            Number(item.qty) + 1
+                            item?.productID,
+                            Number(item?.qty) + 1
                           )
                         }
                       >
@@ -120,7 +120,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
 
                     <button
                       className="remove-btn"
-                      onClick={() => removeItem(item.productID)}
+                      onClick={() => removeItem(item?.productID)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

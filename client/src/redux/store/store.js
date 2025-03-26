@@ -5,8 +5,8 @@ import cartListSlice from "../state-slice/cartList-slice";
 
 const store = configureStore({
   reducer: {
-    getProduct:productSlice,
-    getCategory:categorySlice,
+    getProduct: productSlice,
+    getCategory: categorySlice,
     getCartList: cartListSlice,
   },
 });
