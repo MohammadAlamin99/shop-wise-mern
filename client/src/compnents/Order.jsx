@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { invoiceGetRequest } from "../apiRequest/apiRequiest";
+import { useDispatch, useSelector } from "react-redux";
+import { setInvoice } from "../redux/state-slice/invoice-slice";
 
 const Order = () => {
+  const invoiceData = useSelector((state) => state.getInvoiceList.invoice);
+  const invoiceList = invoiceData?.data?.data || [];
+  console.log(invoiceData)
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    (async()=>{
+      let result = await invoiceGetRequest()
+      dispatch(setInvoice(result));
+    })()
+  },[])
+
   return (
     <div>
       <div className="order-complete">

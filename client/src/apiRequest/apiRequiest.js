@@ -133,3 +133,19 @@ export async function invoiceCreateRequest(order_id, full_name, phone_number, em
     return [];
   }
 }
+
+export async function invoiceGetRequest() {
+  try {
+    let result = await axios.get(
+      "http://localhost:5000/api/v1/getInvoice",
+      {
+        headers: {
+          token: verifyUser,
+        },
+      }
+    );
+    return result;
+  } catch (e) {
+    return [];
+  }
+}

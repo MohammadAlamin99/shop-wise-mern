@@ -11,7 +11,7 @@ exports.registration = async (req) => {
       email: req.body.email,
       password: hashedPassword,
     };
-    let data = await userModel.create(reqBody);
+    await userModel.create(reqBody);
     return { status: "success", message: "User SignUp Successfull" };
   } catch (e) {
     return { status: "fail", message: e };

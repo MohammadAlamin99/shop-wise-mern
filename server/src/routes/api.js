@@ -14,6 +14,7 @@ router.post("/CartCreate", authentication, ProdcutController.createCartList);
 router.delete("/removeCart", authentication, ProdcutController.deleteCartList);
 router.get("/getCart", authentication, ProdcutController.cartList);
 router.post("/createInvoice", authentication, invoiceController.createInvoice);
+router.get("/getInvoice", authentication, invoiceController.getInvoice);
 
 
 // user registration
