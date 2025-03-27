@@ -95,16 +95,15 @@ export async function getAllCartRequest() {
     });
     return result;
   } catch (e) {
-
     return [];
   }
 }
 
 export async function removeCartRequest(productID) {
   try {
-    let reqbody = {productID:productID}
+    let reqbody = { productID: productID };
     let result = await axios.delete("http://localhost:5000/api/v1/removeCart", {
-      data:reqbody,
+      data: reqbody,
       headers: {
         token: verifyUser,
       },
@@ -115,17 +114,20 @@ export async function removeCartRequest(productID) {
   }
 }
 
-
 // invoice create
 
-export async function invoiceCreateRequest(reqbody) {
+export async function invoiceCreateRequest(order_id, full_name, phone_number, email, full_address, country, payment_method, order_summary, subtotal, shipping_cost, total, order_status) {
   try {
-    let result = await axios.post("http://localhost:5000/api/v1/createInvoice", {
+    let reqbody = { order_id: order_id, full_name: full_name, phone_number: phone_number, email: email, full_address: full_address, country: country, payment_method: payment_method, order_summary:order_summary, subtotal: subtotal, shipping_cost: shipping_cost, total: total, order_status: order_status };
+    let result = await axios.post(
+      "http://localhost:5000/api/v1/createInvoice",
       reqbody,
-      headers: {
-        token: verifyUser,
-      },
-    }); 
+      {
+        headers: {
+          token: verifyUser,
+        },
+      }
+    );
     return result;
   } catch (e) {
     return [];
