@@ -43,6 +43,7 @@ button {
   border: none;
   cursor: pointer;
 }
+
 :root {
   --inter: "Inter", serif;
 }
@@ -125,6 +126,16 @@ img {
   font-family: "Inter", serif;
 }
 
+.common-Listing-text {
+  color: var(--neutral-07100, #141718);
+  font-family: var(--inter);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  /* 162.5% */
+}
+
 @media only screen and (max-width: 575px) {
   .btns .btn-text {
     font-size: 14px;
@@ -160,11 +171,12 @@ img {
   line-height: 22px;
 }
 
-.ah-product-color{
+.ah-product-color {
   color: var(--neutral-04100, #6C7275);
   font-family: "Inter", serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 166.667% */
+  line-height: 20px;
+  /* 166.667% */
 }

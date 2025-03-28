@@ -8,6 +8,10 @@ import SignUpPage from './pages/SignUpPage'
 import SignInPage from './pages/SignInPage'
 import CheckOutPage from './pages/CheckOutPage'
 import OrderCompletePage from './pages/OrderCompletePage'
+import MyAccountPage from './pages/MyAccountPage'
+import Address from './compnents/profile/Address'
+import OrderPage from './pages/OrderPage'
+import WishlistPage from './pages/WishlistPage'
 
 function App() { 
   return (
@@ -22,6 +26,10 @@ function App() {
           <Route path='/cart' element={<CartPage/>}></Route>
           <Route path='/checkout' element={<CheckOutPage/>}></Route>
           <Route path='/ordercomplete' element={<OrderCompletePage/>}></Route>
+          <Route path='/account' element={<MyAccountPage/>}></Route>
+          <Route path='/address' element={<Address/>}></Route>
+          <Route path='/order' element={<OrderPage/>}></Route>
+          <Route path='/wishlist' element={<WishlistPage/>}></Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -2102,6 +2102,7 @@
   border-bottom: 1px solid var(--neutral-03100, #E8ECEF);
   padding: 13px 0;
 }
+
 .cart-container .cart-summary .summary-row:nth-last-child(1) {
   border: none;
 }
@@ -2114,6 +2115,7 @@
   font-weight: 400;
   line-height: 26px;
 }
+
 .cart-container .cart-summary .summary-row .summary-value {
   color: var(--neutral-07100, #141718);
   font-family: "Inter", serif;
@@ -2122,6 +2124,7 @@
   font-weight: 600;
   line-height: 26px;
 }
+
 .cart-container .cart-summary .total .summary-label,
 .cart-container .cart-summary .total .summary-value {
   color: var(--neutral-07100, #141718);
@@ -2905,10 +2908,12 @@
   border: 1px solid var(--neutral-07100, #6C7275);
   padding: 13px 16px;
 }
-.cart_details_section .ah-cart-content .ah-cart-summary .shpping_area_wrapper .selected-shipping{
+
+.cart_details_section .ah-cart-content .ah-cart-summary .shpping_area_wrapper .selected-shipping {
   background: #F3F5F7;
   border: 1px solid #141718;
 }
+
 .cart_details_section .ah-cart-content .ah-cart-summary .shoppingArea .shipping_tab .shoppingName .shiping-text {
   color: #141718;
   font-family: "Inter", serif;
@@ -2997,7 +3002,7 @@
 }
 
 @media only screen and (max-width: 575px) {
-  .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info .ah-product-details{
+  .cart_details_section .ah-cart-content .ah-cart-items .ah-product-info .ah-product-details {
     gap: 6px;
   }
 
@@ -3462,6 +3467,7 @@
 .order-summary .summary-details .summary-row .summary-price {
   font-weight: 600;
 }
+
 .order-summary .summary-details .summary-row.total-row {
   padding-top: 13px;
   padding-bottom: 13px;
@@ -3485,7 +3491,7 @@
   margin-right: 5px;
 }
 
-.order-summary .summary-details .summary-row .summary-price .shipping-box  .custom-radio:checked {
+.order-summary .summary-details .summary-row .summary-price .shipping-box .custom-radio:checked {
   background-color: #141718;
 }
 
@@ -3514,6 +3520,7 @@
   align-items: center;
   margin-bottom: 8px;
 }
+
 @media only screen and (max-width:768px) {
   .checkout-page .checkout-page__place-order.place-order-desktop {
     display: none;
@@ -3583,7 +3590,8 @@
   .order-summary .summary-title {
     font-size: 20px;
   }
-  .checkout-page .checkout-page__progress{
+
+  .checkout-page .checkout-page__progress {
     margin-bottom: 40px;
   }
 }
@@ -3916,3 +3924,323 @@
     line-height: 24px;
   }
 }
+
+
+/* ========================================================================================
+                          <<========Profile pages=====>>> 
+=========================================================================================*/
+.account-section .main-title {
+  text-align: center;
+  padding: 80px 0;
+}
+
+.account-section .account-content {
+  display: flex;
+  gap: 72px;
+  justify-content: center;
+}
+
+.account-section .account-content .sidebar {
+  width: 262px;
+  max-width: 100%;
+  border-radius: 8px;
+  background: #F3F5F7;
+  height: fit-content;
+  padding: 40px 0;
+}
+
+.account-section .account-content .sidebar .profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.account-section .account-content .sidebar .profile-section .profile-image-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 8px;
+}
+
+.account-section .account-content .sidebar .profile-section .profile-image-container .profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account-section .account-content .sidebar .profile-section .profile-image-container .camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  background-color: #121212;
+  border-radius: 50%;
+  border: 1.5px solid #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.account-section .account-content .sidebar .profile-section .profile-name.categroy-text {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.account-section .account-content .sidebar .profile-section .profile-image-container .file-input {
+  opacity: 0;
+}
+
+.account-section .account-content .sidebar .sidebar-nav ul {
+  padding-left: 16px;
+}
+
+.account-section .account-content .sidebar .sidebar-nav li {
+  cursor: pointer;
+  transition: 0.3s;
+  color: #6C7275;
+  font-weight: 600;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.account-section .account-content .sidebar .sidebar-nav li a {
+  display: block;
+  color: #6C7275;
+}
+
+.account-section .account-content .sidebar .sidebar-nav li:hover {
+  color: #141718;
+}
+
+.account-section .account-content .sidebar .sidebar-nav li.active {
+  font-weight: 600;
+  border-bottom: 1px solid #141718;
+  color: #141718;
+}
+
+.account-section .account-content .sidebar .sidebar-nav li.active a {
+  color: #141718;
+}
+
+/* Main content styles */
+.main-content-section {
+  padding-bottom: 80px;
+  width: 707px;
+  max-width: 100%;
+}
+
+.main-content-section .form-section {
+  margin-bottom: 40px;
+}
+
+.main-content-section .form-section .section-title {
+  text-align: start;
+  color: #000;
+  margin-bottom: 24px;
+}
+
+
+.main-content-section .form-section .form-group {
+  margin-bottom: 20px;
+}
+
+.main-content-section .form-section .form-group label {
+  display: block;
+  color: var(--neutral-04100, #6C7275);
+  font-family: var(--inter);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+
+.main-content-section .form-section .form-group input {
+  width: 100%;
+  padding: 7px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  border: 1px solid var(--Black-300, #CBCBCB);
+  background: var(--White, #FFF);
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--inter);
+  line-height: 26px;
+}
+
+.main-content-section .form-actions .save-button {
+  background-color: #141718;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 40px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .account-section .account-content {
+    flex-direction: column;
+  }
+
+  .account-section .account-content .sidebar {
+    width: 100%;
+  }
+
+  .account-section .account-content .sidebar .profile-section {
+    padding: 20px;
+  }
+}
+
+
+/* account section end */
+
+
+/* order css start */
+
+/* Orders table styles */
+.orders-section {
+  width: 100%;
+}
+
+.orders-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.orders-table td {
+  padding: 16px;
+  font-size: 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.orders-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* order css end */
+
+/* wishlist css start */
+
+/* Wishlist styles */
+.wishlist-container {
+  width: 100%;
+}
+
+.wishlist-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 12px 0;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.wishlist-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 20px 0;
+  border-bottom: 1px solid #eaeaea;
+  align-items: center;
+}
+
+.wishlist-product {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.remove-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-button:hover {
+  color: #333;
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f7;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.product-color {
+  font-size: 14px;
+  color: #666;
+}
+
+.wishlist-price {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.add-to-cart-button {
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: fit-content;
+}
+
+.add-to-cart-button:hover {
+  background-color: #333;
+}
+
+/* wishlist css end */
