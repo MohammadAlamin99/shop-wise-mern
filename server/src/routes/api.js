@@ -17,8 +17,10 @@ router.post("/createInvoice", authentication, invoiceController.createInvoice);
 router.get("/getInvoice", authentication, invoiceController.getInvoice);
 
 
-// user registration
+// user api
 router.post("/registration", userController.userRegistraion);
 router.post("/login", userController.userLogin);
+router.post("/updateProfile",authentication, userController.userUpdate);
+router.get("/userDetails",authentication, userController.userDetails);
 
 module.exports = router;

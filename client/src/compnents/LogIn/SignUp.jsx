@@ -17,6 +17,7 @@ const SignUp = () => {
   const passRef = useRef();
 
   const onSignUp = async () => {
+    const image = "https://static.vecteezy.com/system/resources/thumbnails/048/926/084/small/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-illustration-vector.jpg"
     const name = nameRef.current.value;
     const userName = usernameRef.current.value;
     const email = emailRef.current.value;
@@ -28,7 +29,7 @@ const SignUp = () => {
     }
 
     try {
-      const result = await userSignUpRequest(name, userName, email, pass);
+      const result = await userSignUpRequest(image, name, userName, email, pass);
       if (result[0].data.status === "success") {
         toast.success("Sign up successful!");
         setTimeout(() => {

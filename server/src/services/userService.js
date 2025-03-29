@@ -6,6 +6,7 @@ exports.registration = async (req) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     let reqBody = {
+      image:req.body.image,
       fullName: req.body.fullName,
       userName: req.body.fullName,
       email: req.body.email,
@@ -47,5 +48,66 @@ exports.login = async (req) => {
     }
   } catch (e) {
     return { status: "fail", message: "Login Faild" };
+  }
+};
+
+// user update
+exports.UpadateProfile = async (req) => {
+  try {
+    let email = req.email;
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    let reqBody = {
+      image: req.body.image,
+      fullName: req.body.fullName,
+      userName: req.body.userName,
+      email: req.body.email,
+      password: hashedPassword,
+    };
+    let data = await userModel.updateOne({ email: email }, reqBody);
+    return { status: "success", data: data };
+  } catch (e) {
+    console.log(e);
+    return { status: "fail", message: e };
+  }
+};
+
+// exports.UpadateProfile = async (req) => {
+//   try {
+//     const { image, fullName, userName, email, password } = req.body;
+//     const queryEmail = req.email; // Assuming this comes from auth middleware
+    
+//     const updateData = {
+//       image,
+//       fullName,
+//       userName: userName || fullName, // Use userName if provided, else fallback to fullName
+//       email
+//     };
+
+//     // Only update password if provided
+//     if (password) {
+//       updateData.password = await bcrypt.hash(password, 10);
+//     }
+
+//     const data = await userModel.updateOne({ email: queryEmail }, updateData);
+//     return { status: "success", data: data };
+//   } catch (e) {
+//     console.error(e);
+//     return { status: "fail", message: "Profile update failed" }; // Generic error message
+//   }
+// };
+
+// user get
+exports.UserProfileDetails = async (req) => {
+  try {
+    let email = req.email;
+    let data = await userModel.aggregate([
+      { $match: { email: email } },
+      {
+        $project: { email: 1, fullName: 1, userName: 1, image: 1, password: 1 },
+      },
+    ]);
+    return { status: "success", data: data };
+  } catch (e) {
+    return { status: "fail", message: e};
   }
 };

@@ -36,9 +36,10 @@ export async function productDetailsRequest(id) {
 
 // User request
 
-export async function userSignUpRequest(fullName, userName, email, password) {
+export async function userSignUpRequest(image,fullName, userName, email, password) {
   try {
     let reqBody = {
+      image:image,
       fullName: fullName,
       userName: userName,
       email: email,
@@ -65,6 +66,63 @@ export async function SignInRequest(email, password) {
     return [];
   }
 }
+
+export async function userGetRequest() {
+  try {
+    let result = await axios.get("http://localhost:5000/api/v1/userDetails", {
+      headers: {
+        token: verifyUser,
+      },
+    });
+    return result;
+  } catch (e) {
+    return [];
+  }
+}
+
+export async function updateUserProfileRequest(fullName, userName,email,password) {
+  try {
+    let reqbody = {fullName:fullName, userName:userName, email:email, password:password}
+    let result = await axios.post("http://localhost:5000/api/v1/updateProfile", reqbody,
+      {
+        headers: {
+          token: verifyUser,
+        },
+      }
+    );
+    return result;
+  } catch (e) {
+    return [];
+  }
+}
+
+// export async function updateUserProfileRequest(image, fullName, userName, email, password) {
+//   try {
+//     const reqBody = {
+//       image,
+//       fullName,
+//       userName,
+//       email
+//     };
+
+//     // Only include password if it's being updated
+//     if (password) {
+//       reqBody.password = password;
+//     }
+
+//     const result = await axios.post("http://localhost:5000/api/v1/updateProfile", reqBody, {
+      
+//         headers: {
+//           token: verifyUser,
+//         },
+      
+//     });
+//     return result.data;
+//   } catch (e) {
+//     console.error("Update failed:", e);
+//     return { status: "fail", message: "Update failed" };
+//   }
+// }
 
 // cart item
 
@@ -116,9 +174,35 @@ export async function removeCartRequest(productID) {
 
 // invoice create
 
-export async function invoiceCreateRequest(order_id, full_name, phone_number, email, full_address, country, payment_method, order_summary, subtotal, shipping_cost, total, order_status) {
+export async function invoiceCreateRequest(
+  order_id,
+  full_name,
+  phone_number,
+  email,
+  full_address,
+  country,
+  payment_method,
+  order_summary,
+  subtotal,
+  shipping_cost,
+  total,
+  order_status
+) {
   try {
-    let reqbody = { order_id: order_id, full_name: full_name, phone_number: phone_number, email: email, full_address: full_address, country: country, payment_method: payment_method, order_summary:order_summary, subtotal: subtotal, shipping_cost: shipping_cost, total: total, order_status: order_status };
+    let reqbody = {
+      order_id: order_id,
+      full_name: full_name,
+      phone_number: phone_number,
+      email: email,
+      full_address: full_address,
+      country: country,
+      payment_method: payment_method,
+      order_summary: order_summary,
+      subtotal: subtotal,
+      shipping_cost: shipping_cost,
+      total: total,
+      order_status: order_status,
+    };
     let result = await axios.post(
       "http://localhost:5000/api/v1/createInvoice",
       reqbody,
@@ -136,14 +220,11 @@ export async function invoiceCreateRequest(order_id, full_name, phone_number, em
 
 export async function invoiceGetRequest() {
   try {
-    let result = await axios.get(
-      "http://localhost:5000/api/v1/getInvoice",
-      {
-        headers: {
-          token: verifyUser,
-        },
-      }
-    );
+    let result = await axios.get("http://localhost:5000/api/v1/getInvoice", {
+      headers: {
+        token: verifyUser,
+      },
+    });
     return result;
   } catch (e) {
     return [];

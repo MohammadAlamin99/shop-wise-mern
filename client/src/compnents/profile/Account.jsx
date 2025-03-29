@@ -1,15 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import EditProfile from "./EditProfile";
-
+import { userGetRequest } from "../../apiRequest/apiRequiest";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../redux/state-slice/user-slice";
 const Account = () => {
+
+  const getUserDetails = useSelector((state) => state.getUserDetails.user);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    (async () => {
+      const userData = await userGetRequest();
+      dispatch(setUser(userData))
+    })();
+  }, []);
+
+
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    displayName: "",
-    email: "",
-    oldPassword: "",
-    newPassword: "",
-    repeatPassword: "",
+
   });
   const [profileImage, setProfileImage] = useState(
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Content-upTR1CUPYo2ueXUfuM3BpxjYEWnzaZ.png"
@@ -41,9 +48,9 @@ const Account = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your form submission logic here
   };
+
+
 
   return (
     <>
@@ -97,7 +104,7 @@ const Account = () => {
                 </ul>
               </nav>
             </div>
-            <EditProfile />
+            <EditProfile userDetails={getUserDetails}/>
           </div>
         </div>
       </div>

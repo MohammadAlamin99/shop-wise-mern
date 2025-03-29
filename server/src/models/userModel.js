@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const dataSchema = mongoose.Schema({
+    image:{type:String},
     fullName: {
         type: String,
         required: [true, "Full name is required"],
