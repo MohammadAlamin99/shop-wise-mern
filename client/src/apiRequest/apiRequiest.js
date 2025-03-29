@@ -80,9 +80,9 @@ export async function userGetRequest() {
   }
 }
 
-export async function updateUserProfileRequest(fullName, userName,email,password) {
+export async function updateUserProfileRequest(image,fullName, userName,email,password) {
   try {
-    let reqbody = {fullName:fullName, userName:userName, email:email, password:password}
+    let reqbody = {image:image, fullName:fullName, userName:userName, email:email, password:password}
     let result = await axios.post("http://localhost:5000/api/v1/updateProfile", reqbody,
       {
         headers: {

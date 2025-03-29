@@ -71,31 +71,6 @@ exports.UpadateProfile = async (req) => {
   }
 };
 
-// exports.UpadateProfile = async (req) => {
-//   try {
-//     const { image, fullName, userName, email, password } = req.body;
-//     const queryEmail = req.email; // Assuming this comes from auth middleware
-    
-//     const updateData = {
-//       image,
-//       fullName,
-//       userName: userName || fullName, // Use userName if provided, else fallback to fullName
-//       email
-//     };
-
-//     // Only update password if provided
-//     if (password) {
-//       updateData.password = await bcrypt.hash(password, 10);
-//     }
-
-//     const data = await userModel.updateOne({ email: queryEmail }, updateData);
-//     return { status: "success", data: data };
-//   } catch (e) {
-//     console.error(e);
-//     return { status: "fail", message: "Profile update failed" }; // Generic error message
-//   }
-// };
-
 // user get
 exports.UserProfileDetails = async (req) => {
   try {
@@ -103,7 +78,7 @@ exports.UserProfileDetails = async (req) => {
     let data = await userModel.aggregate([
       { $match: { email: email } },
       {
-        $project: { email: 1, fullName: 1, userName: 1, image: 1, password: 1 },
+        $project: { image:1, email: 1, fullName: 1, userName: 1, image: 1, password: 1 },
       },
     ]);
     return { status: "success", data: data };

@@ -17,7 +17,7 @@ const SignUp = () => {
   const passRef = useRef();
 
   const onSignUp = async () => {
-    const image = "https://static.vecteezy.com/system/resources/thumbnails/048/926/084/small/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-illustration-vector.jpg"
+    const image = "https://static.vecteezy.com/system/resources/previews/030/504/836/non_2x/avatar-account-flat-isolated-on-transparent-background-for-graphic-and-web-design-default-social-media-profile-photo-symbol-profile-and-people-silhouette-user-icon-vector.jpg"
     const name = nameRef.current.value;
     const userName = usernameRef.current.value;
     const email = emailRef.current.value;

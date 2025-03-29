@@ -50,7 +50,6 @@ const CheckOut = () => {
   const emailRef = useRef();
   const fullAddressRef = useRef();
 
-
   const onCheckoutHandler = async () => {
     const orderid = Math.floor(100000 + Math.random() * 900000);
     const fullname = fullNameRef.current.value;
@@ -78,7 +77,6 @@ const CheckOut = () => {
       shippingCost,
       total
     );
-    console.log(result)
     if (result.status===200) {
       toast.success("Order placed successfully!");
       navigate("/ordercomplete");

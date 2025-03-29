@@ -13,8 +13,6 @@ exports.invoiceCreate = async (req) => {
   }
 };
 
-
-
 exports.invoiceGet = async (req) => {
   try {
     const id = new ObjectId(req.user_id);

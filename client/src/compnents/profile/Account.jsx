@@ -3,57 +3,44 @@ import EditProfile from "./EditProfile";
 import { userGetRequest } from "../../apiRequest/apiRequiest";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/state-slice/user-slice";
+import toast, { Toaster } from "react-hot-toast";
 const Account = () => {
-
   const getUserDetails = useSelector((state) => state.getUserDetails.user);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
       const userData = await userGetRequest();
-      dispatch(setUser(userData))
+      dispatch(setUser(userData));
     })();
   }, []);
 
-
-  const [formData, setFormData] = useState({
-
-  });
   const [profileImage, setProfileImage] = useState(
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Content-upTR1CUPYo2ueXUfuM3BpxjYEWnzaZ.png"
+    getUserDetails?.data?.data[0]?.image
   );
-  const fileInputRef = useRef(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const fileInputRef = useRef(null);
 
   const handleProfileClick = () => {
     fileInputRef.current.click();
   };
-
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (file.size > 200 * 1024) {
+        toast.error("File size must be under 200KB");
+        return;
+      }
+  
       const reader = new FileReader();
-      reader.onload = (e) => {
-        setProfileImage(e.target.result);
+      reader.onloadend = () => {
+        setProfileImage(reader.result); // Base64 string
       };
       reader.readAsDataURL(file);
     }
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-
-
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="account-section">
         <div className="container">
           <h1 className="main-title common_main_head">My Account</h1>
@@ -66,7 +53,7 @@ const Account = () => {
                   onClick={handleProfileClick}
                 >
                   <img
-                    src={profileImage || "/placeholder.svg"}
+                    src={getUserDetails?.data?.data[0]?.image}
                     alt="Profile"
                     className="profile-image"
                   />
@@ -92,19 +79,33 @@ const Account = () => {
                     className="file-input"
                   />
                 </div>
-                <h2 className="profile-name categroy-text">Sofia Havertz</h2>
+                <h2 className="profile-name categroy-text">
+                  {getUserDetails?.data?.data[0]?.fullName}
+                </h2>
               </div>
               <nav className="sidebar-nav">
                 <ul>
-                  <li className="active common-Listing-text"><a href="/account">Account</a></li>
-                  <li className="common-Listing-text"><a href="/address">Address</a></li>
-                  <li className="common-Listing-text"> <a href="/order">Orders</a></li>
-                  <li className="common-Listing-text"><a href="/wishlist">Wishlist</a></li>
+                  <li className="active common-Listing-text">
+                    <a href="/account">Account</a>
+                  </li>
+                  <li className="common-Listing-text">
+                    <a href="/address">Address</a>
+                  </li>
+                  <li className="common-Listing-text">
+                    {" "}
+                    <a href="/order">Orders</a>
+                  </li>
+                  <li className="common-Listing-text">
+                    <a href="/wishlist">Wishlist</a>
+                  </li>
                   <li className="common-Listing-text">Log Out</li>
                 </ul>
               </nav>
             </div>
-            <EditProfile userDetails={getUserDetails}/>
+            <EditProfile
+              userDetails={getUserDetails}
+              profileImage={profileImage}
+            />
           </div>
         </div>
       </div>
