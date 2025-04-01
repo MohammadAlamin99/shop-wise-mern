@@ -47,7 +47,7 @@ const Account = () => {
                   onClick={handleProfileClick}
                 >
                   <img
-                    src={profileImage ||getUserDetails?.data?.data[0]?.image}
+                    src={profileImage || getUserDetails?.data?.data[0]?.image}
                     alt="Profile"
                     className="profile-image"
                   />
@@ -92,7 +92,15 @@ const Account = () => {
                   <li className="common-Listing-text">
                     <a href="/wishlist">Wishlist</a>
                   </li>
-                  <li className="common-Listing-text">Log Out</li>
+                  <li
+                    className="common-Listing-text"
+                    onClick={() => {
+                      localStorage.clear();
+                      window.location.href = "/signin";
+                    }}
+                  >
+                    Log Out
+                  </li>
                 </ul>
               </nav>
             </div>
