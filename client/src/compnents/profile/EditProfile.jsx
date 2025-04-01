@@ -2,30 +2,50 @@ import React, { useRef } from "react";
 import { updateUserProfileRequest } from "../../apiRequest/apiRequiest";
 import toast, { Toaster } from "react-hot-toast";
 const EditProfile = ({ userDetails, profileImage }) => {
-
+  
   // user update request
   const fullnameRef = useRef();
   const userNameRef = useRef();
   const emailRef = useRef();
-  const passwordRef = useRef();
+  const oldPasswordRef = useRef(); 
+  const NewPasswordRef = useRef(); 
+
+  const convertBlobToFile = async (blobUrl) => {
+    const response = await fetch(blobUrl);
+    const blob = await response.blob();
+    return new File([blob], "profile-image.jpg", { type: blob.type });
+  };
+
   const userProfileUpdate = async (e) => {
     e.preventDefault(); 
     const fullname = fullnameRef.current.value;
     const username = userNameRef.current.value;
     const email = emailRef.current.value;
-    const password = passwordRef.current.value;
+    const oldPassword = oldPasswordRef.current.value;
+    const newPassword = NewPasswordRef.current.value;
+    let imageToUpload = profileImage;
+    if (profileImage?.startsWith("blob:")) {
+      imageToUpload = await convertBlobToFile(profileImage);
+    }
     let data = await updateUserProfileRequest(
-      profileImage, 
+      imageToUpload, 
       fullname,
       username,
       email,
-      password
+      oldPassword,
+      newPassword
     );
+    console.log(data)
     if(data.data.status==="success"){
       toast.success("Profile Updated!");
+      window.location.reload("/account")
     }
-    window.location.reload("/account")
+    else if (data?.data?.status === "fail") {
+      toast.error("Old password is incorrect. Please try again.");
+    }
   };
+
+  
   return (
     <div>
        <Toaster position="top-center" reverseOrder={false} />
@@ -75,13 +95,23 @@ const EditProfile = ({ userDetails, profileImage }) => {
             <h2 className="section-title">Password</h2>
 
             <div className="form-group">
-              <label htmlFor="oldPassword">CHANGE PASSWORD</label>
+              <label htmlFor="oldPassword">OLD PASSWORD</label>
               <input
                 type="password"
                 id="oldPassword"
                 name="oldPassword"
-                defaultValue={userDetails?.data?.data[0]?.password}
-                ref={passwordRef}
+                placeholder="Old Password"
+                ref={oldPasswordRef}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="newPassword">NEW PASSWORD</label>
+              <input
+                type="password"
+                id="newPassword"
+                name="newPassword"
+                placeholder="New Password"
+                ref={NewPasswordRef}
               />
             </div>
           </section>
@@ -102,5 +132,6 @@ const EditProfile = ({ userDetails, profileImage }) => {
 };
 
 export default EditProfile;
+
 
 

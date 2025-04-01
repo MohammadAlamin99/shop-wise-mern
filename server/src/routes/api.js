@@ -5,6 +5,7 @@ const CategoryController = require("../controllers/categoryController");
 const userController = require("../controllers/userController");
 const invoiceController = require("../controllers/invoiceController");
 const authentication = require("../middlewares/authentication");
+const upload = require("../middlewares/upload");
 
 router.get("/allProduct", ProdcutController.productList);
 router.get("/category", CategoryController.CategoryList);
@@ -20,7 +21,7 @@ router.get("/getInvoice", authentication, invoiceController.getInvoice);
 // user api
 router.post("/registration", userController.userRegistraion);
 router.post("/login", userController.userLogin);
-router.post("/updateProfile",authentication, userController.userUpdate);
+router.post("/updateProfile",upload.single("image"), authentication, userController.userUpdate);
 router.get("/userDetails",authentication, userController.userDetails);
 
 module.exports = router;

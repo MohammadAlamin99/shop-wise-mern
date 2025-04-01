@@ -80,49 +80,37 @@ export async function userGetRequest() {
   }
 }
 
-export async function updateUserProfileRequest(image,fullName, userName,email,password) {
+
+
+export async function updateUserProfileRequest(image, fullName, userName, email, oldPassword, newPassword) {
   try {
-    let reqbody = {image:image, fullName:fullName, userName:userName, email:email, password:password}
-    let result = await axios.post("http://localhost:5000/api/v1/updateProfile", reqbody,
-      {
+    let formData = new FormData();
+    formData.append("fullName", fullName);
+    formData.append("userName", userName);
+    formData.append("email", email);
+
+    if (image) {
+      formData.append("image", image); 
+    }
+
+    if (newPassword) {
+      if (!oldPassword) {
+        return { status: "fail", message: "Old password is required" };
+      }
+      formData.append("oldPassword", oldPassword);
+      formData.append("password", newPassword);
+    }
+
+    let result = await axios.post("http://localhost:5000/api/v1/updateProfile", formData, {
         headers: {
           token: verifyUser,
         },
-      }
-    );
+    });
     return result;
   } catch (e) {
-    return [];
+    return { status: "fail", message: "Something went wrong" };
   }
 }
-
-// export async function updateUserProfileRequest(image, fullName, userName, email, password) {
-//   try {
-//     const reqBody = {
-//       image,
-//       fullName,
-//       userName,
-//       email
-//     };
-
-//     // Only include password if it's being updated
-//     if (password) {
-//       reqBody.password = password;
-//     }
-
-//     const result = await axios.post("http://localhost:5000/api/v1/updateProfile", reqBody, {
-      
-//         headers: {
-//           token: verifyUser,
-//         },
-      
-//     });
-//     return result.data;
-//   } catch (e) {
-//     console.error("Update failed:", e);
-//     return { status: "fail", message: "Update failed" };
-//   }
-// }
 
 // cart item
 

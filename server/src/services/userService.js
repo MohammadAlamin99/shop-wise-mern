@@ -1,14 +1,15 @@
 var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/userModel");
+const cloudinary = require("../middlewares/cloudinary");
 
 exports.registration = async (req) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     let reqBody = {
-      image:req.body.image,
+      image: req.body.image,
       fullName: req.body.fullName,
-      userName: req.body.fullName,
+      userName: req.body.userName,
       email: req.body.email,
       password: hashedPassword,
     };
@@ -51,38 +52,61 @@ exports.login = async (req) => {
   }
 };
 
+
 // user update
+
 exports.UpadateProfile = async (req) => {
   try {
     let email = req.email;
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    let user = await userModel.findOne({ email: email });
+    if (!user) {
+      return { status: "fail", message: "User not found" };
+    }
     let reqBody = {
       image: req.body.image,
       fullName: req.body.fullName,
       userName: req.body.userName,
       email: req.body.email,
-      password: hashedPassword,
     };
-    let data = await userModel.updateOne({ email: email }, reqBody);
+    if (req.file && req.file.path) {
+      let result = await cloudinary.uploader.upload(req.file.path);
+      reqBody.image = result.secure_url;
+    }
+    if (req.body.password) {
+      if (!req.body.oldPassword) {
+        return { status: "fail", message: "Old password is required" };
+      }
+      const isMatch = await bcrypt.compare(req.body.oldPassword, user.password);
+
+      if (!isMatch) {
+        return { status: "fail", message: "Old password is incorrect" };
+      }
+      reqBody.password = await bcrypt.hash(req.body.password, 10);
+    }
+
+    let data = await userModel.updateOne({ email: email }, reqBody, {
+      $set: reqBody,
+    });
     return { status: "success", data: data };
   } catch (e) {
-    console.log(e);
-    return { status: "fail", message: e };
+    console.log(e)
+    return { status: "fail", data: "something went wrong" };
   }
 };
 
 // user get
+
 exports.UserProfileDetails = async (req) => {
   try {
     let email = req.email;
     let data = await userModel.aggregate([
       { $match: { email: email } },
       {
-        $project: { image:1, email: 1, fullName: 1, userName: 1, image: 1, password: 1 },
+        $project: { image: 1, email: 1, fullName: 1, userName: 1, image: 1 },
       },
     ]);
     return { status: "success", data: data };
   } catch (e) {
-    return { status: "fail", message: e};
+    return { status: "fail", message: e };
   }
 };

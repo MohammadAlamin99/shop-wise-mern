@@ -6,6 +6,7 @@ import { setUser } from "../../redux/state-slice/user-slice";
 import toast, { Toaster } from "react-hot-toast";
 const Account = () => {
   const getUserDetails = useSelector((state) => state.getUserDetails.user);
+
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
@@ -23,19 +24,12 @@ const Account = () => {
   const handleProfileClick = () => {
     fileInputRef.current.click();
   };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (file.size > 200 * 1024) {
-        toast.error("File size must be under 200KB");
-        return;
-      }
-  
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result); // Base64 string
-      };
-      reader.readAsDataURL(file);
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
     }
   };
   return (
@@ -53,7 +47,7 @@ const Account = () => {
                   onClick={handleProfileClick}
                 >
                   <img
-                    src={getUserDetails?.data?.data[0]?.image}
+                    src={profileImage ||getUserDetails?.data?.data[0]?.image}
                     alt="Profile"
                     className="profile-image"
                   />
