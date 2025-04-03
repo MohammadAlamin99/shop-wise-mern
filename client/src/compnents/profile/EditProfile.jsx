@@ -16,8 +16,7 @@ const EditProfile = ({ userDetails, profileImage }) => {
     return new File([blob], "profile-image.jpg", { type: blob.type });
   };
 
-  const userProfileUpdate = async (e) => {
-    e.preventDefault(); 
+  const userProfileUpdate = async () => {
     const fullname = fullnameRef.current.value;
     const username = userNameRef.current.value;
     const email = emailRef.current.value;
@@ -119,7 +118,7 @@ const EditProfile = ({ userDetails, profileImage }) => {
           <div className="form-actions">
             <button
               onClick={userProfileUpdate}
-              type="button"
+              type="submit"
               className="save-button common-Listing-text"
             >
               Save changes

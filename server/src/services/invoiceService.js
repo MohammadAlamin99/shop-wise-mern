@@ -26,3 +26,16 @@ exports.invoiceGet = async (req) => {
     return error;
   }
 };
+
+
+exports.orderGet = async (req) => {
+  try {
+    const id = new ObjectId(req.user_id);
+    let data = await invoiceModel.aggregate([
+      { $match: { userID: id } },
+    ]);
+    return { status: "success", message: data };
+  } catch (error) {
+    return error;
+  }
+};

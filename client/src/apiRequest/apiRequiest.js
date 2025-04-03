@@ -218,3 +218,16 @@ export async function invoiceGetRequest() {
     return [];
   }
 }
+
+export async function getOrderListRequest() {
+  try {
+    let result = await axios.get("http://localhost:5000/api/v1/orderList", {
+      headers: {
+        token: verifyUser,
+      },
+    });
+    return result;
+  } catch (e) {
+    return [];
+  }
+}

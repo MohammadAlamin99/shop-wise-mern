@@ -16,6 +16,7 @@ router.delete("/removeCart", authentication, ProdcutController.deleteCartList);
 router.get("/getCart", authentication, ProdcutController.cartList);
 router.post("/createInvoice", authentication, invoiceController.createInvoice);
 router.get("/getInvoice", authentication, invoiceController.getInvoice);
+router.get("/orderList", authentication, invoiceController.getOrderList);
 
 
 // user api
