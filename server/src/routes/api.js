@@ -6,6 +6,7 @@ const userController = require("../controllers/userController");
 const invoiceController = require("../controllers/invoiceController");
 const authentication = require("../middlewares/authentication");
 const upload = require("../middlewares/upload");
+const wishController = require("../controllers/wishController");
 
 router.get("/allProduct", ProdcutController.productList);
 router.get("/category", CategoryController.CategoryList);
@@ -17,6 +18,11 @@ router.get("/getCart", authentication, ProdcutController.cartList);
 router.post("/createInvoice", authentication, invoiceController.createInvoice);
 router.get("/getInvoice", authentication, invoiceController.getInvoice);
 router.get("/orderList", authentication, invoiceController.getOrderList);
+
+// wishlist
+router.post("/createWishlist", authentication, wishController.wishlistCrate);
+router.delete("/deleteWish", authentication, wishController.deleteWish);
+router.get("/wishList", authentication, wishController.wishList);
 
 
 // user api

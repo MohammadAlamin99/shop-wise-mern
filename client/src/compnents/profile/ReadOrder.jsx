@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getOrderListRequest } from "../../apiRequest/apiRequiest";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrder } from "../../redux/state-slice/orderList-slice";
@@ -9,33 +9,6 @@ const ReadOrder = () => {
   console.log(orderList);
   const dispatch = useDispatch();
   // Sample orders data
-  const orders = [
-    {
-      id: "#3456_768",
-      date: "October 17, 2023",
-      status: "Delivered",
-      price: "$1234.00",
-    },
-    {
-      id: "#3456_980",
-      date: "October 11, 2023",
-      status: "Delivered",
-      price: "$345.00",
-    },
-    {
-      id: "#3456_120",
-      date: "August 24, 2023",
-      status: "Delivered",
-      price: "$2345.00",
-    },
-    {
-      id: "#3456_030",
-      date: "August 12, 2023",
-      status: "Delivered",
-      price: "$845.00",
-    },
-  ];
-
   useEffect(() => {
     (async () => {
       let result = await getOrderListRequest();
