@@ -36,10 +36,16 @@ export async function productDetailsRequest(id) {
 
 // User request
 
-export async function userSignUpRequest(image,fullName, userName, email, password) {
+export async function userSignUpRequest(
+  image,
+  fullName,
+  userName,
+  email,
+  password
+) {
   try {
     let reqBody = {
-      image:image,
+      image: image,
       fullName: fullName,
       userName: userName,
       email: email,
@@ -80,9 +86,14 @@ export async function userGetRequest() {
   }
 }
 
-
-
-export async function updateUserProfileRequest(image, fullName, userName, email, oldPassword, newPassword) {
+export async function updateUserProfileRequest(
+  image,
+  fullName,
+  userName,
+  email,
+  oldPassword,
+  newPassword
+) {
   try {
     let formData = new FormData();
     formData.append("fullName", fullName);
@@ -90,7 +101,7 @@ export async function updateUserProfileRequest(image, fullName, userName, email,
     formData.append("email", email);
 
     if (image) {
-      formData.append("image", image); 
+      formData.append("image", image);
     }
 
     if (newPassword) {
@@ -101,11 +112,15 @@ export async function updateUserProfileRequest(image, fullName, userName, email,
       formData.append("password", newPassword);
     }
 
-    let result = await axios.post("http://localhost:5000/api/v1/updateProfile", formData, {
+    let result = await axios.post(
+      "http://localhost:5000/api/v1/updateProfile",
+      formData,
+      {
         headers: {
           token: verifyUser,
         },
-    });
+      }
+    );
     return result;
   } catch (e) {
     return { status: "fail", message: "Something went wrong" };
@@ -226,6 +241,54 @@ export async function getOrderListRequest() {
         token: verifyUser,
       },
     });
+    return result;
+  } catch (e) {
+    return [];
+  }
+}
+
+// wishlist
+
+export async function getWishListRequest() {
+  try {
+    let result = await axios.get("http://localhost:5000/api/v1/wishList", {
+      headers: {
+        token: verifyUser,
+      },
+    });
+    return result;
+  } catch (e) {
+    return [];
+  }
+}
+
+export async function removeWishListRequest(productID) {
+  try {
+    let reqbody = { productID: productID };
+    let result = await axios.delete("http://localhost:5000/api/v1/deleteWish", {
+      data: reqbody,
+      headers: {
+        token: verifyUser,
+      },
+    });
+    return result;
+  } catch (e) {
+    return [];
+  }
+}
+
+export async function addwishListRequest(productID) {
+  try {
+    let reqbody = { productID: productID };
+    let result = await axios.post(
+      "http://localhost:5000/api/v1/createWishlist",
+      reqbody,
+      {
+        headers: {
+          token: verifyUser,
+        },
+      }
+    );
     return result;
   } catch (e) {
     return [];

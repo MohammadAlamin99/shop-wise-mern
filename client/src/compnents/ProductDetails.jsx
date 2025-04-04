@@ -1,35 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import { productDetailsRequest } from "../apiRequest/apiRequiest";
+import { addwishListRequest, productDetailsRequest} from "../apiRequest/apiRequiest";
 import { useParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 const ProductDetails = () => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState("black");
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [details, setDetails] = useState([]);
-  const productImages = [
-    {
-      id: 1,
-      src: "/placeholder.svg?height=600&width=600",
-      alt: "Black Tray Table Main View",
-    },
-    {
-      id: 2,
-      src: "/placeholder.svg?height=600&width=600",
-      alt: "Black Tray Table Top View",
-    },
-    {
-      id: 3,
-      src: "/placeholder.svg?height=600&width=600",
-      alt: "Black Tray Table in Living Room",
-    },
-  ];
 
   useEffect(() => {
     (async () => {
@@ -45,12 +29,14 @@ const ProductDetails = () => {
     }
   };
 
-  const formatNumber = (num) => {
-    return num < 10 ? `0${num}` : num;
+  const wishlistHandler = async () => {
+    await addwishListRequest(id);
+    toast.success("Wishlist added!");
   };
 
   return (
     <div>
+       <Toaster position="top-center" reverseOrder={false} />
       <div className="product-details-section">
         <div className="container mt-4 mb-3">
           <nav aria-label="breadcrumb">
@@ -166,7 +152,7 @@ const ProductDetails = () => {
                           >
                             {details.map((item, id) =>
                               Object.keys(item[0].details)
-                                .filter((key) => key.startsWith("img")) // Filter image keys dynamically
+                                .filter((key) => key.startsWith("img"))
                                 .map((key, index) => (
                                   <SwiperSlide key={`${id}-thumb-${index}`}>
                                     <img
@@ -371,7 +357,10 @@ const ProductDetails = () => {
                               +
                             </button>
                           </div>
-                          <button className="wish-btn">
+                          <button
+                            onClick={wishlistHandler}
+                            className="wish-btn"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="25"
