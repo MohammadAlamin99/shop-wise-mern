@@ -294,3 +294,14 @@ export async function addwishListRequest(productID) {
     return [];
   }
 }
+
+
+// search api fatch
+export async function searchRequest(keyword) {
+  try {
+    let result = await axios.get("http://localhost:5000/api/v1/search/"+keyword);
+    return result;
+  } catch (e) {
+    return [];
+  }
+}

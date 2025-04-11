@@ -12,6 +12,7 @@ import MyAccountPage from './pages/MyAccountPage'
 import OrderPage from './pages/OrderPage'
 import WishlistPage from './pages/WishlistPage'
 import AddressPage from './pages/AddressPage'
+import SearchPage from './pages/SearchPage'
 
 function App() { 
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/address' element={<AddressPage/>}></Route>
           <Route path='/order' element={<OrderPage/>}></Route>
           <Route path='/wishlist' element={<WishlistPage/>}></Route>
+          <Route path='/search' element={<SearchPage/>}></Route>
         </Routes>
       </BrowserRouter>
     </>

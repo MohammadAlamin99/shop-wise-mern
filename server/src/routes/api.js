@@ -23,6 +23,7 @@ router.get("/orderList", authentication, invoiceController.getOrderList);
 router.post("/createWishlist", authentication, wishController.wishlistCrate);
 router.delete("/deleteWish", authentication, wishController.deleteWish);
 router.get("/wishList", authentication, wishController.wishList);
+router.get("/search/:keyword", ProdcutController.searchKeyword);
 
 
 // user api

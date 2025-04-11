@@ -30,6 +30,7 @@ import storage from "redux-persist/lib/storage"; // Uses localStorage
 import { combineReducers } from "redux";
 import orderListSlice from "../state-slice/orderList-slice";
 import wishListSlice from "../state-slice/wishList-slice";
+import searchSlice from "../state-slice/search-slice";
 
 // Combine reducers
 const rootReducer = combineReducers({
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   getUserDetails: userSlice, // ✅ Persisting this slice
   getOrderList: orderListSlice,
   getWishList: wishListSlice,
+  getSearch: searchSlice,
 });
 
 // Persist config
