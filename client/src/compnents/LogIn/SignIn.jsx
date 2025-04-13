@@ -7,7 +7,7 @@ import {jwtDecode} from "jwt-decode";
 
 const SignIn = () => {
   const [show, setShow] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const toggleShowHandler = () => {
     setShow(!show);
@@ -42,7 +42,7 @@ const SignIn = () => {
         localStorage.setItem("userDetails", JSON.stringify(userDetails));
 
         setTimeout(() => {
-          navigate("/");
+          window.location.href=sessionStorage.getItem('lastLocation')
         }, 1000);
       } else {
         toast.error("Sign in failed. Please try again.");

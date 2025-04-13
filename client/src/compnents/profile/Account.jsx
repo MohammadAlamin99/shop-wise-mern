@@ -3,7 +3,6 @@ import EditProfile from "./EditProfile";
 import { userGetRequest } from "../../apiRequest/apiRequiest";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/state-slice/user-slice";
-import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 const Account = () => {
   const getUserDetails = useSelector((state) => state?.getUserDetails?.user);
@@ -47,10 +46,8 @@ const Account = () => {
     // Reset the dropdown to the default value after selection
     e.target.value = "/account";
   };
-
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
       <div className="account-section">
         <div className="container">
           <h1 className="main-title common_main_head">My Account</h1>

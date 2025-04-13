@@ -1,6 +1,7 @@
 import axios from "axios";
-
+import unauth from "../utility/unauthorized"
 const verifyUser = localStorage.getItem("userToken");
+
 
 export async function allProductRequiest() {
   try {
@@ -80,6 +81,7 @@ export async function userGetRequest() {
         token: verifyUser,
       },
     });
+    unauth(result.data.status);
     return result;
   } catch (e) {
     return [];
@@ -121,6 +123,7 @@ export async function updateUserProfileRequest(
         },
       }
     );
+    unauth(result.data.status);
     return result;
   } catch (e) {
     return { status: "fail", message: "Something went wrong" };
@@ -141,6 +144,7 @@ export async function cartCreateRequest(productID, qty, color, size) {
         },
       }
     );
+    unauth(result.data.status);
     return [result];
   } catch (e) {
     return [];
@@ -154,6 +158,7 @@ export async function getAllCartRequest() {
         token: verifyUser,
       },
     });
+    // unauth(result.data.status)
     return result;
   } catch (e) {
     return [];
@@ -169,6 +174,7 @@ export async function removeCartRequest(productID) {
         token: verifyUser,
       },
     });
+    unauth(result.data.status)
     return result;
   } catch (e) {
     return [];
@@ -215,6 +221,7 @@ export async function invoiceCreateRequest(
         },
       }
     );
+    unauth(result.data.status)
     return result;
   } catch (e) {
     return [];
@@ -228,6 +235,7 @@ export async function invoiceGetRequest() {
         token: verifyUser,
       },
     });
+    unauth(result.data.status)
     return result;
   } catch (e) {
     return [];
@@ -241,6 +249,7 @@ export async function getOrderListRequest() {
         token: verifyUser,
       },
     });
+    unauth(result.data.status)
     return result;
   } catch (e) {
     return [];

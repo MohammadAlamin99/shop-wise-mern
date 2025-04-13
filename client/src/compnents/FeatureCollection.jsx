@@ -29,7 +29,7 @@ const FeatureCollection = () => {
     let qty = 1;
     let color = "";
     let size = "";
-    await cartCreateRequest(id, qty, color, size);
+    let result = await cartCreateRequest(id, qty, color, size);
   };
   return (
     <div>
