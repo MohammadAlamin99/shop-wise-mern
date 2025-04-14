@@ -2,13 +2,12 @@ import React, { useRef } from "react";
 import { updateUserProfileRequest } from "../../apiRequest/apiRequiest";
 import toast, { Toaster } from "react-hot-toast";
 const EditProfile = ({ userDetails, profileImage }) => {
-  
   // user update request
   const fullnameRef = useRef();
   const userNameRef = useRef();
   const emailRef = useRef();
-  const oldPasswordRef = useRef(); 
-  const NewPasswordRef = useRef(); 
+  const oldPasswordRef = useRef();
+  const NewPasswordRef = useRef();
 
   const convertBlobToFile = async (blobUrl) => {
     const response = await fetch(blobUrl);
@@ -16,7 +15,8 @@ const EditProfile = ({ userDetails, profileImage }) => {
     return new File([blob], "profile-image.jpg", { type: blob.type });
   };
 
-  const userProfileUpdate = async () => {
+  const userProfileUpdate = async (e) => {
+    e.preventDefault();
     const fullname = fullnameRef.current.value;
     const username = userNameRef.current.value;
     const email = emailRef.current.value;
@@ -26,30 +26,23 @@ const EditProfile = ({ userDetails, profileImage }) => {
     if (profileImage?.startsWith("blob:")) {
       imageToUpload = await convertBlobToFile(profileImage);
     }
-    let data = await updateUserProfileRequest(
-      imageToUpload, 
-      fullname,
-      username,
-      email,
-      oldPassword,
-      newPassword
-    );
-    console.log(data)
-    if(data.data.status==="success"){
+    let data = await updateUserProfileRequest( imageToUpload, fullname, username, email, oldPassword, newPassword );
+    if (data.data.status === "success") {
       toast.success("Profile Updated!");
-      window.location.reload("/account")
-    }
-    else if (data?.data?.status === "fail") {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      
+    } else if (data?.data.status === "fail") {
       toast.error("Old password is incorrect. Please try again.");
     }
   };
 
-  
   return (
     <div>
-       <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="main-content-section">
-        <form> 
+        <form>
           <section className="form-section">
             <h2 className="section-title categroy-text">Account Details</h2>
             <div className="form-group">
@@ -117,7 +110,7 @@ const EditProfile = ({ userDetails, profileImage }) => {
 
           <div className="form-actions">
             <button
-              onClick={userProfileUpdate}
+              onClick={(e) => userProfileUpdate(e)}
               type="submit"
               className="save-button common-Listing-text"
             >
@@ -131,6 +124,3 @@ const EditProfile = ({ userDetails, profileImage }) => {
 };
 
 export default EditProfile;
-
-
-

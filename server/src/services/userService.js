@@ -87,9 +87,8 @@ exports.UpadateProfile = async (req) => {
     let data = await userModel.updateOne({ email: email }, reqBody, {
       $set: reqBody,
     });
-    return { status: "success", data: data };
+    return { status: "success", data: "Update Profile Successfully" };
   } catch (e) {
-    console.log(e)
     return { status: "fail", data: "something went wrong" };
   }
 };

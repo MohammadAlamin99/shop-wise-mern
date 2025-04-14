@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Account = () => {
   const getUserDetails = useSelector((state) => state?.getUserDetails?.user);
   const dispatch = useDispatch();
+
   useEffect(() => {
     (async () => {
       const userData = await userGetRequest();
@@ -46,6 +47,7 @@ const Account = () => {
     // Reset the dropdown to the default value after selection
     e.target.value = "/account";
   };
+  
   return (
     <>
       <div className="account-section">

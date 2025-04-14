@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { SignInRequest } from "../../apiRequest/apiRequiest";
 import {jwtDecode} from "jwt-decode"; 
@@ -7,7 +6,6 @@ import {jwtDecode} from "jwt-decode";
 
 const SignIn = () => {
   const [show, setShow] = useState(false);
-  // const navigate = useNavigate();
 
   const toggleShowHandler = () => {
     setShow(!show);
@@ -27,8 +25,9 @@ const SignIn = () => {
 
     try {
       const result = await SignInRequest(email, pass);
+      localStorage.clear();
       if (result[0].data.status === "success") {
-        toast.success("Sign in successful!");
+        toast.success("Sign in successfull!");
         localStorage.setItem("userToken", result[0].data.token);
         
         // set userdetails
