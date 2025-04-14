@@ -90,10 +90,10 @@ const Navigation = () => {
                         <a href="/shop">Shop</a>
                       </li>
                       <li>
-                        <a href="#">Product</a>
+                        <a href="/blog">Blogs</a>
                       </li>
                       <li>
-                        <a href="#">Contact Us</a>
+                        <a href="/contact">Contact Us</a>
                       </li>
                     </ul>
                   </nav>
