@@ -5,15 +5,26 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import { addwishListRequest, productDetailsRequest} from "../apiRequest/apiRequiest";
+import {
+  addwishListRequest,
+  cartCreateRequest,
+  productDetailsRequest,
+} from "../apiRequest/apiRequiest";
 import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { setCartList } from "../redux/state-slice/cartList-slice";
 const ProductDetails = () => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [selectedColor, setSelectedColor] = useState("black");
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [details, setDetails] = useState([]);
+
+  const cartListData = useSelector((state) => state.getCartList.cartList);
+  const cartList = cartListData?.data?.data || [];
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
@@ -22,10 +33,16 @@ const ProductDetails = () => {
     })();
   }, []);
 
-  const handleQuantityChange = (amount) => {
-    const newQuantity = quantity + amount;
-    if (newQuantity >= 1) {
-      setQuantity(newQuantity);
+  const handleQuantityChange = async (productId, newQty) => {
+    newQty = Number(newQty);
+    if (newQty >= 1) {
+      setQuantity(newQty);
+
+      await cartCreateRequest(productId, newQty);
+      const updatecart = cartList.map((item) => {
+        item?.productID === productId ? { ...item, qty: newQty } : item;
+      });
+      dispatch(setCartList({ data: { data: updatecart } }));
     }
   };
 
@@ -34,9 +51,20 @@ const ProductDetails = () => {
     toast.success("Wishlist added!");
   };
 
+  const createCartHandler = async (id) => {
+    let result = await cartCreateRequest(id, quantity, selectedColor, selectedSize);
+    console.log(result[0].data.status);
+    if (result[0]?.data?.status === "Success") {
+      toast.success("Cart Added!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 150);
+    }
+  };
+
   return (
     <div>
-       <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="product-details-section">
         <div className="container mt-4 mb-3">
           <nav aria-label="breadcrumb">
@@ -256,90 +284,57 @@ const ProductDetails = () => {
                             TK. {item[0]["discountPrice"]}
                           </span>
                         </div>
-                        <div className="measurements">
-                          <h3 className="section-title">Size</h3>
-                          <select className="measurement-value">
-                            <option value="S">S</option>
-                            <option value="M" selected>
-                              M
-                            </option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                          </select>
-                        </div>
+                        {item[0]?.details?.size &&
+                          item[0]?.details?.size?.length > 0 && (
+                            <div className="measurements">
+                              <h3 className="section-title">Size</h3>
+                              <select
+                                onChange={(e) =>
+                                  setSelectedSize(e.target.value)
+                                }
+                                value={selectedSize}
+                                className="measurement-value"
+                              >
+                                {item[0]?.details?.size
+                                  ?.split(",")
+                                  .map((size, id) => (
+                                    <option key={id} value={size.trim()}>
+                                      {size.trim()}
+                                    </option>
+                                  ))}
+                              </select>
+                            </div>
+                          )}
 
-                        <div className="color-selection">
-                          <div className="choose-color">
-                            <h3 className="section-title">Choose Color</h3>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <path
-                                d="M10 7L14 12L10 17"
-                                stroke="#6C7275"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-                            </svg>
-                          </div>
-                          <p className="selected-color">Black</p>
-                          <div className="color-options">
-                            <button
-                              className={`color-option ${
-                                selectedColor === "black" ? "selected" : ""
-                              }`}
-                              onClick={() => setSelectedColor("black")}
-                            >
-                              <img
-                                src="https://res.cloudinary.com/dankquy0f/image/upload/v1736501786/freepik_br_0ba5de46-84f0-4f3b-a2e3-10d09391761d_bi9bse.png"
-                                alt="Black Tray Table"
-                              />
-                            </button>
-                            <button
-                              className={`color-option ${
-                                selectedColor === "bronze" ? "selected" : ""
-                              }`}
-                              onClick={() => setSelectedColor("bronze")}
-                            >
-                              <img
-                                src="https://res.cloudinary.com/dankquy0f/image/upload/v1736501786/freepik_br_0ba5de46-84f0-4f3b-a2e3-10d09391761d_bi9bse.png"
-                                alt="Bronze Tray Table"
-                              />
-                            </button>
-                            <button
-                              className={`color-option ${
-                                selectedColor === "red" ? "selected" : ""
-                              }`}
-                              onClick={() => setSelectedColor("red")}
-                            >
-                              <img
-                                src="https://res.cloudinary.com/dankquy0f/image/upload/v1736501786/freepik_br_0ba5de46-84f0-4f3b-a2e3-10d09391761d_bi9bse.png"
-                                alt="Red Tray Table"
-                              />
-                            </button>
-                            <button
-                              className={`color-option ${
-                                selectedColor === "white" ? "selected" : ""
-                              }`}
-                              onClick={() => setSelectedColor("white")}
-                            >
-                              <img
-                                src="https://res.cloudinary.com/dankquy0f/image/upload/v1736501786/freepik_br_0ba5de46-84f0-4f3b-a2e3-10d09391761d_bi9bse.png"
-                                alt="White Tray Table"
-                              />
-                            </button>
-                          </div>
-                        </div>
+                        {item[0]?.details?.color &&
+                          item[0]?.details?.color?.length > 0 && (
+                            <div className="color-selection">
+                              <h3 className="choose-color">Choose Color</h3>
+                              <select
+                                onChange={(e) =>
+                                  setSelectedColor(e.target.value)
+                                }
+                                value={selectedColor}
+                                className="measurement-value"
+                              >
+                                {item[0]?.details?.color
+                                  ?.split(",")
+                                  .map((color, id) => (
+                                    <option key={id} value={color.trim()}>
+                                      {color.trim()}
+                                    </option>
+                                  ))}
+                              </select>
+                            </div>
+                          )}
+
                         <div className="purchase-options">
                           <div className="quantity-selector">
                             <button
                               className="quantity-btn minus"
-                              onClick={() => handleQuantityChange(-1)}
+                              onClick={() =>
+                                handleQuantityChange(item[0]._id, quantity - 1)
+                              }
                               disabled={quantity <= 1}
                             >
                               −
@@ -348,11 +343,18 @@ const ProductDetails = () => {
                               type="text"
                               className="quantity-input"
                               value={quantity}
-                              readOnly
+                              onChange={(e) =>
+                                handleQuantityChange(
+                                  item[0]._id,
+                                  e.target.value
+                                )
+                              }
                             />
                             <button
                               className="quantity-btn plus"
-                              onClick={() => handleQuantityChange(1)}
+                              onClick={() =>
+                                handleQuantityChange(item[0]?._id, quantity + 1)
+                              }
                             >
                               +
                             </button>
@@ -378,7 +380,10 @@ const ProductDetails = () => {
                             Wishlist
                           </button>
                         </div>
-                        <button className="addtocartBtn-main">
+                        <button
+                          onClick={() => createCartHandler(item[0]._id)}
+                          className="addtocartBtn-main"
+                        >
                           Add to Cart
                         </button>
                         <div className="product-details mt-4">
