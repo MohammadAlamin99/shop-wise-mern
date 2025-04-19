@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartList } from "../redux/state-slice/cartList-slice";
+import Review from "./Review";
 const ProductDetails = () => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
@@ -21,7 +22,6 @@ const ProductDetails = () => {
   const [selectedColor, setSelectedColor] = useState("");
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [details, setDetails] = useState([]);
-
   const cartListData = useSelector((state) => state.getCartList.cartList);
   const cartList = cartListData?.data?.data || [];
   const dispatch = useDispatch();
@@ -52,7 +52,12 @@ const ProductDetails = () => {
   };
 
   const createCartHandler = async (id) => {
-    let result = await cartCreateRequest(id, quantity, selectedColor, selectedSize);
+    let result = await cartCreateRequest(
+      id,
+      quantity,
+      selectedColor,
+      selectedSize
+    );
     console.log(result[0].data.status);
     if (result[0]?.data?.status === "Success") {
       toast.success("Cart Added!");
@@ -70,7 +75,7 @@ const ProductDetails = () => {
           <nav aria-label="breadcrumb">
             <ul className="breadcrumb">
               <li className="breadcrumb-item">
-                <a href="#">Home</a>
+                <a href="/">Home</a>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12"
@@ -88,7 +93,7 @@ const ProductDetails = () => {
                 </svg>
               </li>
               <li className="breadcrumb-item">
-                <a href="#">Shop</a>
+                <a href="/shop">Shop</a>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12"
@@ -106,7 +111,7 @@ const ProductDetails = () => {
                 </svg>
               </li>
               <li className="breadcrumb-item">
-                <a href="#">Living Room</a>
+                <a href="#">{details[0]?.[0]?.category?.brandName}</a>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12"
@@ -136,8 +141,12 @@ const ProductDetails = () => {
                   <div className="row">
                     <div className="col-md-6 position-relative">
                       <div className="product-image-container">
-                        <span className="badge-new">NEW</span>
-                        <span className="badge-discount">-50%</span>
+                        <span className="badge-new">
+                          {details[0]?.[0]?.remark}
+                        </span>
+                        <span className="badge-discount">
+                          {details[0]?.[0]?.discountPercentage}
+                        </span>
 
                         <div className="main-slider-container">
                           <Swiper
@@ -401,7 +410,7 @@ const ProductDetails = () => {
                             </div>
                             <div className="col-8">
                               <p className="detail-value">
-                                Living Room, Bedroom
+                                {details[0]?.[0]?.category?.brandName}
                               </p>
                             </div>
                           </div>
@@ -412,8 +421,9 @@ const ProductDetails = () => {
                 </div>
               );
             })
-          : "No Data Fund"}
+          : ""}
       </div>
+      <Review />
     </div>
   );
 };

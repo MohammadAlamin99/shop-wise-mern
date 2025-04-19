@@ -78,7 +78,7 @@ const FeatureCollection = () => {
                       <SwiperSlide key={i}>
                         <div className="collection_card">
                           <div className="card">
-                            <span className="hot-label">HOT</span>
+                            <span className="hot-label">{item?.remark}</span>
                             <span className="dis-label">
                               {item["discountPercentage"]
                                 ? item["discountPercentage"]
