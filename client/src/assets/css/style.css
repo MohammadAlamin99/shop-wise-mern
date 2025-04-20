@@ -2695,15 +2695,15 @@
   border: 1px solid #E8ECEF;
   background: #FEFEFE;
 }
-.review-section .review-actions  input{
-  width: 100%;
+.review-section .review-actions .review-input{
+  width: 80%;
   border: none;
 }
 
-.review-section .review-actions input::placeholder,
-.review-section .review-actions input[type="text"]{
+.review-section .review-actions .review-input::placeholder,
+.review-section .review-actions .review-input[type="text"]{
   color: #6C7275; 
-  font-size: 16px;
+  font-size: 14px;
   font-family: var(--inter);
   font-weight: 400;
 }
@@ -2766,6 +2766,55 @@
   margin-bottom: 40px;
 }
 
+.review-section .tabs-container {
+  display: flex;
+  border-bottom: 1px solid var(--neutral-03100, #E8ECEF);
+  margin-bottom: 48px;
+  gap: 80px;
+}
+
+.review-section .tabs-container .tab-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #807E7E;
+  position: relative;
+  font-family: var(--inter);
+  line-height: 32px;
+  font-weight: 500;
+}
+
+.review-section .tabs-container .tab-button.active {
+  color: #121212;
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #141718;
+}
+
+.review-section .yourRatting .rating-text{
+  font-family: var(--inter);
+  font-size: 16px;
+  font-weight: 400;
+  color: #23262F;
+}
+.review-section .yourRatting {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+.review-section .yourRatting .your_rating{
+  display: flex;
+  gap: 4px;
+}
 
 /* Responsive styles */
 @media (max-width: 768px) {
