@@ -2816,6 +2816,7 @@
   gap: 4px;
 }
 
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .review-section .review-actions {
