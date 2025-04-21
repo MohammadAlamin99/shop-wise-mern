@@ -2807,7 +2807,6 @@
 }
 .review-section .yourRatting {
   display: flex;
-  align-items: center;
   margin-bottom: 20px;
   gap: 10px;
 }
@@ -2816,6 +2815,10 @@
   gap: 4px;
 }
 
+/* .review-section .yourRatting .your_rating .rating-star svg{
+  width: 24px;
+  height: 24px;
+} */
 
 /* Responsive styles */
 @media (max-width: 768px) {
