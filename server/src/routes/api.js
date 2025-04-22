@@ -7,6 +7,7 @@ const invoiceController = require("../controllers/invoiceController");
 const authentication = require("../middlewares/authentication");
 const upload = require("../middlewares/upload");
 const wishController = require("../controllers/wishController");
+const reviewController = require("../controllers/reviewController");
 
 router.get("/allProduct", ProdcutController.productList);
 router.get("/category", CategoryController.CategoryList);
@@ -25,6 +26,9 @@ router.delete("/deleteWish", authentication, wishController.deleteWish);
 router.get("/wishList", authentication, wishController.wishList);
 router.get("/search/:keyword", ProdcutController.searchKeyword);
 
+// create review
+router.post("/createReview",authentication, reviewController.createReview);
+router.post("/getReview", reviewController.getReview);
 
 // user api
 router.post("/registration", userController.userRegistraion);

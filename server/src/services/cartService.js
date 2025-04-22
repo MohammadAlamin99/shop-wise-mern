@@ -21,7 +21,6 @@ exports.createCartService = async (req) => {
     );
     return { status: "Success", message: "Add to cart Successful" };
   } catch (e) {
-    console.log(e);
     return { status: "Fail", message: "something went wrong" };
   }
 };
