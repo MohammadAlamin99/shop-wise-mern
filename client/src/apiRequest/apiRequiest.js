@@ -1,7 +1,6 @@
 import axios from "axios";
-import unauth from "../utility/unauthorized"
+import unauth from "../utility/unauthorized";
 const verifyUser = localStorage.getItem("userToken");
-
 
 export async function allProductRequiest() {
   try {
@@ -174,7 +173,7 @@ export async function removeCartRequest(productID) {
         token: verifyUser,
       },
     });
-    unauth(result.data.status)
+    unauth(result.data.status);
     return result;
   } catch (e) {
     return [];
@@ -221,7 +220,7 @@ export async function invoiceCreateRequest(
         },
       }
     );
-    unauth(result.data.status)
+    unauth(result.data.status);
     return result;
   } catch (e) {
     return [];
@@ -235,7 +234,7 @@ export async function invoiceGetRequest() {
         token: verifyUser,
       },
     });
-    unauth(result.data.status)
+    unauth(result.data.status);
     return result;
   } catch (e) {
     return [];
@@ -249,7 +248,7 @@ export async function getOrderListRequest() {
         token: verifyUser,
       },
     });
-    unauth(result.data.status)
+    unauth(result.data.status);
     return result;
   } catch (e) {
     return [];
@@ -304,11 +303,51 @@ export async function addwishListRequest(productID) {
   }
 }
 
+// review
+export async function createReveiwRequest(userID, productID, rating, comment) {
+  try {
+    const reqbody = {
+      userID: userID,
+      productID: productID,
+      rating: rating,
+      comment: comment,
+    };
+    let result = await axios.post(
+      "http://localhost:5000/api/v1/createReview",
+      reqbody,
+      {
+        headers: {
+          token: verifyUser,
+        },
+      }
+    );
+    unauth(result.data.status);
+    return result;
+  } catch (e) {
+    return [];
+  }
+}
+export async function getReviewRequest(userID) {
+  try {
+    const reqbody = {
+      userID: userID,
+    };
+    let result = await axios.post(
+      "http://localhost:5000/api/v1/getReview",
+      reqbody
+    );
+    return result;
+  } catch (e) {
+    return [];
+  }
+}
 
 // search api fatch
 export async function searchRequest(keyword) {
   try {
-    let result = await axios.get("http://localhost:5000/api/v1/search/"+keyword);
+    let result = await axios.get(
+      "http://localhost:5000/api/v1/search/" + keyword
+    );
     return result;
   } catch (e) {
     return [];

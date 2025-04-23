@@ -423,7 +423,7 @@ const ProductDetails = () => {
             })
           : ""}
       </div>
-      <Review />
+      <Review productId={id}/>
     </div>
   );
 };

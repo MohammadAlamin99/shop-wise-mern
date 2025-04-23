@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-
-const Review = () => {
+import React, { useEffect, useRef, useState } from "react";
+import { createReveiwRequest, getReviewRequest } from "../apiRequest/apiRequiest";
+import toast, { Toaster } from "react-hot-toast";
+const Review = ({productId}) => {
   const [activeTab, setActiveTab] = useState("Reviews");
   const [hoverRating, setHoverRating] = useState(0);
   const [selectedRating, setSelectedRating] = useState(0);
+  const [review, setReview] = useState([]);
+  const getdata = review?.data?.data?.reviews;
 
   const reviews = [
     {
@@ -38,6 +41,29 @@ const Review = () => {
     }
     return stars;
   };
+
+  const userDetailsString = localStorage.getItem('userDetails');
+  const userDetails = JSON.parse(userDetailsString);
+  const userID = userDetails?.id;
+  const reviewRef = useRef(); 
+  const reviewHandler = async ()=>{
+    const review = reviewRef.current.value;
+    const result = await createReveiwRequest(userID, productId,selectedRating,review);
+    if(result?.data?.status==="fail"){
+      toast.error(result?.data?.data);
+    }
+    else{
+      toast.error("Something Went Wrong");
+    }
+  }
+
+
+  useEffect(()=>{
+    (async()=>{
+        const getReview = await getReviewRequest(productId);
+        setReview(getReview);
+    })()
+  },[])
 
   const renderRatingStars = () => {
     return Array(5)
@@ -85,6 +111,7 @@ const Review = () => {
       case "Reviews":
         return (
           <>
+          <Toaster position="top-center" reverseOrder={false} />
             <section className="review-section">
               <h3 className="review-head categroy-text">Customer Reviews</h3>
 
@@ -105,10 +132,13 @@ const Review = () => {
               <div className="review-actions">
                 <textarea
                   className="review-input"
+                  ref={reviewRef}
                   type="text"
                   placeholder="Write Review"
                 />
-                <button className="newsfeed write-review-btn">
+                <button
+                  onClick={reviewHandler}
+                 className="newsfeed write-review-btn">
                   Write Review
                 </button>
               </div>
@@ -118,7 +148,7 @@ const Review = () => {
               </div>
 
               <div className="reviews-list">
-                {reviews.map((review) => (
+                {getdata?.map((review) => (
                   <div className="review-item" key={review.id}>
                     <div className="review-avatar">
                       <img
@@ -133,7 +163,7 @@ const Review = () => {
                       <div className="review-stars">
                         {renderStars(review.rating)}
                       </div>
-                      <p className="section-title review-text">{review.text}</p>
+                      <p className="section-title review-text">{review.comment}</p>
                     </div>
                   </div>
                 ))}
