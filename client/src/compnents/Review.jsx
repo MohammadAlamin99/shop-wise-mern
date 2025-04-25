@@ -4,11 +4,14 @@ import {
   getReviewRequest,
 } from "../apiRequest/apiRequiest";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { setReview } from "../redux/state-slice/review-slice";
 const Review = ({ productId }) => {
   const [activeTab, setActiveTab] = useState("Reviews");
   const [hoverRating, setHoverRating] = useState(0);
   const [selectedRating, setSelectedRating] = useState(0);
-  const [review, setReview] = useState([]);
+  const review = useSelector((state) => state.getReview.review);
+  const dispatch = useDispatch();
   const getdata = review?.data?.data?.reviews;
 
   const userDetailsString = localStorage.getItem("userDetails");
@@ -42,7 +45,7 @@ const Review = ({ productId }) => {
   useEffect(() => {
     (async () => {
       const getReview = await getReviewRequest(productId);
-      setReview(getReview);
+      dispatch(setReview(getReview))
     })();
   }, []);
 

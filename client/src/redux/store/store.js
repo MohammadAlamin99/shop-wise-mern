@@ -31,6 +31,7 @@ import { combineReducers } from "redux";
 import orderListSlice from "../state-slice/orderList-slice";
 import wishListSlice from "../state-slice/wishList-slice";
 import searchSlice from "../state-slice/search-slice";
+import reviewSlice from "../state-slice/review-slice";
 
 // Combine reducers
 const rootReducer = combineReducers({
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   getOrderList: orderListSlice,
   getWishList: wishListSlice,
   getSearch: searchSlice,
+  getReview: reviewSlice,
 });
 
 // Persist config
