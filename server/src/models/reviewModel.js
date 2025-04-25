@@ -9,7 +9,7 @@ const dataSchema = mongoose.Schema(
         min: 1,
         max: 5
       },
-    comment: {type: String},
+    comment: {type: String, required:true},
   },
   { timestamps: true, versionKey: false }
 );

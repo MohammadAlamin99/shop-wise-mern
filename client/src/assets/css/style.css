@@ -2725,10 +2725,15 @@
   display: flex;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  gap: 40px;
+  gap: 30px;
   border-bottom: 1px solid #E8ECEF;
 }
-
+.review-section .reviews-list .review-item .review-content .review-stars{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 6px;
+}
 .review-section .reviews-list .review-avatar img {
   width: 72px;
   height: 72px;

@@ -32,6 +32,26 @@ exports.getAllReviews = async (req) => {
       {
         $match: { productID: id },
       },
+
+      {
+        $lookup: {
+          from: "users",
+          localField: "userID",
+          foreignField: "_id",
+          as: "userInfo",
+        },
+      },
+      {
+        $unwind: "$userInfo",
+      },
+      {
+        $project: {
+          "userInfo.password": 0,
+          "userInfo.userName": 0,
+          "userInfo.createdAt": 0,
+          "userInfo.updatedAt": 0,
+        },
+      },
       {
         $group: {
           _id: "$productID",
