@@ -10,6 +10,7 @@ const Review = ({ productId }) => {
   const [activeTab, setActiveTab] = useState("Reviews");
   const [hoverRating, setHoverRating] = useState(0);
   const [selectedRating, setSelectedRating] = useState(0);
+  const [load, setLoad] = useState(5);
   const review = useSelector((state) => state.getReview.review);
   const dispatch = useDispatch();
   const getdata = review?.data?.data?.reviews;
@@ -21,7 +22,7 @@ const Review = ({ productId }) => {
 
   const reviewHandler = async () => {
     const review = reviewRef.current.value;
-    
+
     if (!review) {
       toast.error("Please Write Review.");
       return;
@@ -45,7 +46,7 @@ const Review = ({ productId }) => {
   useEffect(() => {
     (async () => {
       const getReview = await getReviewRequest(productId);
-      dispatch(setReview(getReview))
+      dispatch(setReview(getReview));
     })();
   }, []);
 
@@ -99,16 +100,23 @@ const Review = ({ productId }) => {
             width="14"
             height="14"
             viewBox="0 0 16 16"
-            fill={isFiled?"#141718":"none"}
-            stroke={isFiled?"#141718":"#6C7275"}
+            fill={isFiled ? "#141718" : "none"}
+            stroke={isFiled ? "#141718" : "#6C7275"}
           >
-            <path
-              d="M7.3879 2.08514C7.6195 1.54844 8.38051 1.54844 8.61211 2.08514L10.0655 5.45307C10.1635 5.68032 10.3794 5.83454 10.6262 5.85361L14.3533 6.14161C14.9513 6.18781 15.1889 6.93852 14.7264 7.32038L11.9235 9.63456C11.7258 9.79779 11.6392 10.0599 11.7008 10.3088L12.5634 13.7944C12.7053 14.3676 12.0869 14.8286 11.578 14.529L8.33822 12.6217C8.12949 12.4988 7.87053 12.4988 7.66179 12.6217L4.42197 14.529C3.9131 14.8286 3.29475 14.3676 3.43661 13.7944L4.29924 10.3088C4.36083 10.0599 4.27425 9.79779 4.07654 9.63456L1.27362 7.32038C0.811112 6.93852 1.04872 6.18781 1.64671 6.14161L5.37381 5.85361C5.62058 5.83454 5.83648 5.68032 5.93455 5.45307L7.3879 2.08514Z"
-            />
+            <path d="M7.3879 2.08514C7.6195 1.54844 8.38051 1.54844 8.61211 2.08514L10.0655 5.45307C10.1635 5.68032 10.3794 5.83454 10.6262 5.85361L14.3533 6.14161C14.9513 6.18781 15.1889 6.93852 14.7264 7.32038L11.9235 9.63456C11.7258 9.79779 11.6392 10.0599 11.7008 10.3088L12.5634 13.7944C12.7053 14.3676 12.0869 14.8286 11.578 14.529L8.33822 12.6217C8.12949 12.4988 7.87053 12.4988 7.66179 12.6217L4.42197 14.529C3.9131 14.8286 3.29475 14.3676 3.43661 13.7944L4.29924 10.3088C4.36083 10.0599 4.27425 9.79779 4.07654 9.63456L1.27362 7.32038C0.811112 6.93852 1.04872 6.18781 1.64671 6.14161L5.37381 5.85361C5.62058 5.83454 5.83648 5.68032 5.93455 5.45307L7.3879 2.08514Z" />
           </svg>
         );
       });
   };
+
+
+
+  // load more functionality
+  const handlerLoadeMore = () => {
+    setLoad((count) => count + 3);
+  };
+  const commentToDisplay = getdata?.slice(0, load);
+
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -161,7 +169,7 @@ const Review = ({ productId }) => {
               </div>
 
               <div className="reviews-list">
-                {getdata?.map((review) => (
+                {commentToDisplay?.map((review) => (
                   <div className="review-item" key={review.id}>
                     <div className="review-avatar">
                       <img src={review?.userInfo?.image} />
@@ -181,9 +189,13 @@ const Review = ({ productId }) => {
                 ))}
               </div>
 
-              <div className="load-more-container">
-                <button className="load-more-btn">Load more</button>
-              </div>
+              {load < getdata?.length && (
+                <div className="load-more-container">
+                  <button className="load-more-btn" onClick={handlerLoadeMore}>
+                    Load more
+                  </button>
+                </div>
+              )}
             </section>
           </>
         );
