@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  allCetegoryRequest,
-  allProductRequiest,
-} from "../../apiRequest/apiRequiest";
-import { setProduct } from "../../redux/state-slice/product-slice";
+import { productByCategoryRequest } from "../../apiRequest/apiRequiest";
+import { useParams } from "react-router-dom";
 
-const Collection = () => {
-  const productData = useSelector((state) => state.getProduct.product);
-  const dispatch = useDispatch();
+const CategoryCollection = () => {
+//   const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState([]);
   const [filterAactive, setFilterActive] = useState(false);
   const [load, setLoad] = useState(3);
-  const [categoryId, setCategoryId] = useState(null);
   const [sort, setSort] = useState("");
+  const [pdata, setpData] = useState([]);
+
+  const { id } = useParams();
+
   const filterHandler = () => {
     setFilterActive(!filterAactive);
   };
-
-  useEffect(() => {
-    (async () => {
-      let result = await allProductRequiest();
-      dispatch(setProduct(result));
-    })();
-  }, [dispatch]);
 
   const handlePriceRangeChange = (range) => {
     setPriceRange((prev) => {
@@ -46,38 +37,28 @@ const Collection = () => {
     });
   };
 
-  const filterProductByCategory = (products) => {
-    if (!categoryId) {
-      return products;
-    } else {
-      return products.filter((p) => p.categoryID === categoryId);
+  const sortedProducts = (product) => {
+    if (sort === "") return product;
+    else {
+      return [...product].sort((a, b) => {
+        if (sort === "abc") {
+          return a.title.localeCompare(b.title);
+        }
+        if (sort === "bcd") {
+          return b.title.localeCompare(a.title);
+        }
+        if (sort === "lowTOHigh") {
+          return a.price - b.price;
+        }
+        if (sort === "HighToLow") {
+          return b.price - a.price;
+        }
+      });
     }
   };
 
-  const sortedProducts = (product)=>{
-    if(sort === "") return product;
-    else{
-      return[...product].sort((a, b)=>{
-        if(sort==="abc"){
-          return a.title.localeCompare(b.title);
-        }
-        if(sort==="bcd"){
-          return b.title.localeCompare(a.title);
-        }
-        if(sort==="lowTOHigh"){
-          return a.price - b.price;
-        }
-        if(sort==="HighToLow"){
-          return b.price - a.price;
-        }
-      })
-    }
-  }
-  
-  const filteredProducts = filterProductsByPrice(productData);
-  const data = filterProductByCategory(filteredProducts);
-  const sortedData = sortedProducts(data);
-  
+  const filteredProducts = filterProductsByPrice(pdata);
+  const sortedData = sortedProducts(filteredProducts);
 
   // load more button functionality
   const handleLoadMore = () => {
@@ -85,30 +66,18 @@ const Collection = () => {
   };
   const productToDisplay = sortedData.slice(0, load);
 
-  // category list get
-  const [cat, setCat] = useState([]);
+  const shortByHandler = (e) => {
+    setSort(e.target.value);
+  };
+
+  // filter product by category
   useEffect(() => {
     (async () => {
-      let categroy = await allCetegoryRequest();
-      setCat([{ _id: null, brandName: "All Products" }, ...categroy]);
+      let result = await productByCategoryRequest(id);
+      setpData(result);
     })();
   }, []);
 
-  // filter product by category
-  
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [categoryName, setCategoryName] = useState(null);
-  const categoryHandler = (id, name) => {
-    setCategoryId(id);
-    setActiveCategory(id);
-    setCategoryName(name);
-  };
-
-  const shortByHandler = (e)=>{
-    setSort(e.target.value);
-  }
-
-// sort by product
   return (
     <div>
       <section className="shop-collection">
@@ -133,36 +102,6 @@ const Collection = () => {
                     />
                   </svg>
                   <h4 className="categroy-text">Filter</h4>
-                </div>
-                <div
-                  className={`category_wrapper_box ${
-                    filterAactive ? "category-active" : ""
-                  }`}
-                >
-                  <h4 className="newsfeed">CATEGORIES</h4>
-                  <ul className="category-list">
-                    {cat.length > 0 ? (
-                      cat.map((item, i) => {
-                        return (
-                          <li
-                            key={i}
-                            onClick={() =>
-                              categoryHandler(item._id, item.brandName)
-                            }
-                            className={
-                              activeCategory === item._id
-                                ? "category_active"
-                                : ""
-                            }
-                          >
-                            {item.brandName}
-                          </li>
-                        );
-                      })
-                    ) : (
-                      <span className="text-center">No Data Found</span>
-                    )}
-                  </ul>
                 </div>
               </div>
               <div
@@ -233,9 +172,13 @@ const Collection = () => {
             <div className="right-product">
               <div className="right-top-heading">
                 <div className="text-wrapper">
-                  <h4 className="categroy-text">{categoryName? categoryName : "All Products"}</h4>
+                  <h4 className="categroy-text">demo</h4>
                   <div className="right-grid">
-                    <select className="selet-filter" onChange={shortByHandler} value={sort}>
+                    <select
+                      className="selet-filter"
+                      onChange={shortByHandler}
+                      value={sort}
+                    >
                       <option value={""} className="option" selected>
                         Sort by
                       </option>
@@ -350,7 +293,7 @@ const Collection = () => {
                   <span className="text-center">No Data Found</span>
                 )}
               </div>
-              {load < data.length && (
+              {load < filteredProducts.length && (
                 <button className="load-More newsfeed" onClick={handleLoadMore}>
                   Load More
                 </button>
@@ -363,4 +306,4 @@ const Collection = () => {
   );
 };
 
-export default Collection;
+export default CategoryCollection;

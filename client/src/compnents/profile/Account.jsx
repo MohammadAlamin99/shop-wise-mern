@@ -8,19 +8,24 @@ const Account = () => {
   const getUserDetails = useSelector((state) => state?.getUserDetails?.user);
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     (async () => {
       const userData = await userGetRequest();
       dispatch(setUser(userData));
     })();
-  }, []);
+  }, [0]);
+
+  if(getUserDetails?.data?.status==="unathurized"){
+    localStorage.clear();
+    window.location.href="/signin";
+  }
 
   const [profileImage, setProfileImage] = useState(
     getUserDetails?.data?.data[0]?.image
   );
 
   const fileInputRef = useRef(null);
-
   const handleProfileClick = () => {
     fileInputRef.current.click();
   };
@@ -37,17 +42,15 @@ const Account = () => {
   const navigate = useNavigate();
   const onMobileLocationHandler = (e) => {
     const selectedValue = e.target.value;
-
     if (selectedValue === "/logout") {
       localStorage.clear();
       navigate("/signin");
     } else {
       navigate(selectedValue);
     }
-    // Reset the dropdown to the default value after selection
     e.target.value = "/account";
   };
-  
+
   return (
     <>
       <div className="account-section">

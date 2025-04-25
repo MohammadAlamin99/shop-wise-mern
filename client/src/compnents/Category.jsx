@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../redux/state-slice/category-slice";
 
 const Category = () => {
-
   const categoryData = useSelector((state) => state.getCategory.category);
   const dispatch = useDispatch();
 
@@ -13,7 +12,7 @@ const Category = () => {
       let result = await allCetegoryRequest();
       dispatch(setCategory(result))
     })();
-  }, []);
+  },[]);
 
   return (
     <div>
@@ -27,7 +26,7 @@ const Category = () => {
               return (
                 <div key={i} className="col-lg-4">
                   <div className="category-card">
-                    <a href="#">
+                    <a href={"/category/"+item?._id}>
                       <img src={item.brandImg} alt="" />
                     </a>
                     <h4 className="categroy-text">{item.brandName}</h4>

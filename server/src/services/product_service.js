@@ -31,7 +31,6 @@ exports.getProductByCategory = async (req) => {
 
     return { status: "success", data: data };
   } catch (err) {
-    console.log(err);
     return { status: "fail", err };
   }
 };
