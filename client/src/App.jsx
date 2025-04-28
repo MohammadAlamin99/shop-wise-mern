@@ -16,6 +16,7 @@ import SearchPage from './pages/SearchPage'
 import BlogPage from './pages/BlogPage'
 import ContactPage from './pages/ContactPage'
 import CategoryProduct from './compnents/shop/CategoryProduct'
+import BlogDetailsPage from './pages/BlogDetailsPage'
 
 function App() { 
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path='/wishlist' element={<WishlistPage/>}></Route>
           <Route path='/search' element={<SearchPage/>}></Route>
           <Route path='/blog' element={<BlogPage/>}></Route>
+          <Route path='/blogDetails' element={<BlogDetailsPage/>}></Route>
           <Route path='/contact' element={<ContactPage/>}></Route>
           <Route path='/category/:id' element={<CategoryProduct/>}></Route>
         </Routes>

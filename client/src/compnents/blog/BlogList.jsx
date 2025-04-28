@@ -82,10 +82,12 @@ const BlogList = () => {
             {blogPosts.map((post) => (
               <div className="blog-card" key={post.id}>
                 <div className="blog-image">
-                  <img
-                    src={post.image || "/placeholder.svg"}
-                    alt={post.title}
-                  />
+                  <a href="/blogDetails">
+                    <img
+                      src={post.image || "/placeholder.svg"}
+                      alt={post.title}
+                    />
+                  </a>
                 </div>
                 <div className="blog-content">
                   <h3 className="blog-title">{post.title}</h3>

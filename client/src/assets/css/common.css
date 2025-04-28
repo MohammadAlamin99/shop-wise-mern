@@ -180,8 +180,17 @@ img {
   line-height: 20px;
 }
 
-.empty--message{
+.empty--message {
   font-size: 16px;
   margin-top: 20px;
   font-size: var(--inter);
+}
+
+.article-tag {
+  color: #000;
+  font-family: var(--inter);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 12px;
+  text-transform: uppercase;
 }
