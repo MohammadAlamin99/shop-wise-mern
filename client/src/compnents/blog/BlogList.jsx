@@ -1,5 +1,4 @@
 import React from "react";
-import image from "../../assets/images/Shop-Page/shop_banner.jpeg";
 
 const BlogList = () => {
   const blogPosts = [

@@ -290,7 +290,7 @@ const ProductDetails = () => {
                               />
                             </svg>
                           </span>
-                          <span className="reviews-count">11 Reviews</span>
+                          <span className="reviews-count">12 Reviews</span>
                         </div>
                         <h1 className="product-title common_main_head">
                           {item[0]["title"]}
