@@ -450,13 +450,11 @@
 .mobile_menu_area .bottom .mobile-cart-list {
   display: flex;
   justify-content: space-between;
-}
-
-.mobile_menu_area .bottom .mobile-cart-list .icon {
-  display: flex;
   margin-bottom: 16px;
 }
-
+.mobile_menu_area .bottom a{
+  display: block;
+}
 .mobile_menu_area .bottom .button {
   margin-top: 16px;
   margin-bottom: 19px;
@@ -471,6 +469,7 @@
   font-weight: 500;
   line-height: 32px;
   letter-spacing: -0.4px;
+  text-align: center;
 }
 
 .mobile_menu_area .bottom .mobile-social-media {
@@ -4764,6 +4763,23 @@
 
 .add-to-cart-button:hover {
   background-color: #333;
+}
+
+@media only screen and (max-width:575px)  {
+  .main-content-section .wishlist-section .wishlist-container .wishlist-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .wishlist-section .wishlist-container .wishlist-item .wishlist-action,
+  .main-content-section .wishlist-section .wishlist-container .wishlist-item .add-to-cart-button{
+    width: 100%;
+  }
+  .main-content-section .wishlist-section .wishlist-container .wishlist-item .wishlist-price {
+    margin: 0 auto; 
+  }
 }
 
 /* wishlist css end */
