@@ -14,7 +14,7 @@ const Banner = () => {
                 Whether you’re just starting out, have played your whole life or
                 you're a Tour pro, your swing is like a fingerprint.
               </p>
-              <a href="#" className="button">
+              <a href="/shop" className="button">
                 Shopping Now
               </a>
             </div>

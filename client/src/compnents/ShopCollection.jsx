@@ -37,7 +37,6 @@ const ShopCollection = () => {
                 </div>
               </div>
             ))}
-
             <div className="col-lg-6 down-col-shop">
               {data.slice(1).map((item) => (
                 <div className="img-card-area" key={item?.id}>

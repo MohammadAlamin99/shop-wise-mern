@@ -81,6 +81,10 @@ button {
   border-radius: 8px;
   background: #38cb89;
   padding: 6px 40px;
+  transition: all linear 0.3s;
+}
+.common-shop-now-btn:hover{
+  background: #20ef92;
 }
 
 @media only screen and (max-width: 768px) {
@@ -106,6 +110,14 @@ img {
   gap: 4px;
   border-bottom: 1px solid #121212;
   margin-top: 12px;
+  transition: all linear;
+}
+.btns svg {
+  transition: transform 0.3s ease;
+}
+
+.btns:hover svg {
+  transform: rotate(-45deg);
 }
 
 .categroy-text {

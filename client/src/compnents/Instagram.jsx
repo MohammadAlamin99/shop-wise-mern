@@ -1,10 +1,10 @@
 import React from "react";
-import img1 from "../assets/images/insta1.jpg"; 
-import img2 from "../assets/images/news-lateer-leftjpg.jpg";
-import img3 from "../assets/images/insta1.jpg";
-import img4 from "../assets/images/insta1.jpg";
-import img5 from "../assets/images/insta1.jpg";
-import img6 from "../assets/images/newslater-bg.png";
+import img1 from "../assets/images/Instagram/ins-01.jpg"; 
+import img2 from "../assets/images/Instagram/insta-02.jpg";
+import img3 from "../assets/images/Instagram/insta-03.jpg";
+import img4 from "../assets/images/Instagram/insta-04.jpg";
+import img5 from "../assets/images/Instagram/insta-05.jpg";
+import img6 from "../assets/images/Instagram/insta-06.jpg";
 const Instagram = () => {
   const images = [img1, img2, img3, img4, img5, img6];
 

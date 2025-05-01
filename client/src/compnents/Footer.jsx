@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../assets/images/fotter_logo.png";
-import payment from "../assets/images/payment_method.png"
 const Footer = () => {
   return (
     <footer className="footer">
@@ -143,12 +142,10 @@ const Footer = () => {
             <a href="#">Terms & Conditions</a>
           </div>
           <div className="payment-methods">
-              <img src={payment} alt="" />
-              <img src={payment} alt="" />
-              <img src={payment} alt="" />
-              <img src={payment} alt="" />
-              <img src={payment} alt="" />
-              <img src={payment} alt="" />
+              <img src="https://cdn.shopify.com/s/files/1/0639/7352/3521/files/payment-02.png?v=1746113973" alt="" />
+              <img src="https://cdn.shopify.com/s/files/1/0639/7352/3521/files/payment-03.png?v=1746113972" alt="" />
+              <img src="https://cdn.shopify.com/s/files/1/0639/7352/3521/files/payment-05.png?v=1746113973" alt="" />
+              <img src="https://cdn.shopify.com/s/files/1/0639/7352/3521/files/pyment-01.png?v=1746113973" alt="" />
           </div>
         </div>
       </div>

@@ -38,9 +38,7 @@ const Discount = () => {
         <div className="container-fluid px-0">
           <div className="discount-area-wrapper">
             <div className="left-area">
-              <a href="#">
                 <img src={img} alt="" className="dis-img-fluid" priority />
-              </a>
             </div>
 
             <div className="right-bg">
@@ -78,9 +76,9 @@ const Discount = () => {
                   </div>
                 </div>
 
-                <button className="common-shop-now-btn">
+                <a href="/shop" className="common-shop-now-btn">
                   Shop now
-                </button>
+                </a>
               </div>
             </div>
           </div>
