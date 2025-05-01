@@ -654,8 +654,12 @@
   z-index: 1;
   position: sticky;
 }
-
-.feature-collection-section .feature-header .collection_card .card:hover .add-cart {
+.feature-collection-section .feature-header .collection_card .card .add-cart.disabled{
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.feature-collection-section .feature-header .collection_card .card:hover .add-cart,
+.feature-collection-section .feature-header .collection_card .card:hover .add-cart.disabled {
   opacity: 1;
 }
 
