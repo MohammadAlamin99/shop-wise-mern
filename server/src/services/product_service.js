@@ -71,13 +71,11 @@ exports.ProductDetails = async (req) => {
   }
 };
 
-
-
 // search product
 
 exports.productSearchKeyword = async (req) => {
   try {
-    let searchRegex = { "$regex": req.params.keyword, "$options": "i" };
+    let searchRegex = { $regex: req.params.keyword, $options: "i" };
     let SearchParam = [{ title: searchRegex }, { shortDes: searchRegex }];
     let SearchQuery = { $or: SearchParam };
     let matchStage = { $match: SearchQuery };
@@ -99,5 +97,30 @@ exports.productSearchKeyword = async (req) => {
     return { status: "success", data: data };
   } catch (e) {
     return { status: "fail", data: e };
+  }
+};
+
+// product filter by collection
+
+// Product filter by category
+exports.getProductByCollection = async (req) => {
+  try {
+    const collectionId = new ObjectId(req.params.id);
+    let data = await productModel.aggregate([
+      {
+        $lookup: {
+          from: "collections",
+          localField: "collectionID",
+          foreignField: "_id",
+          as: "collections",
+        },
+      },
+      { $match: { collectionID: collectionId } },
+      { $unwind: "$collections" },
+    ]);
+
+    return { status: "success", data: data };
+  } catch (err) {
+    return { status: "fail", err };
   }
 };

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ProdcutController = require("../controllers/ProductController");
 const CategoryController = require("../controllers/categoryController");
+const collectionController = require("../controllers/collectionController");
 const userController = require("../controllers/userController");
 const invoiceController = require("../controllers/invoiceController");
 const authentication = require("../middlewares/authentication");
@@ -11,8 +12,10 @@ const reviewController = require("../controllers/reviewController");
 
 router.get("/allProduct", ProdcutController.productList);
 router.get("/category", CategoryController.CategoryList);
+router.get("/collectionList", collectionController.collectionList);
 router.get("/productByCategory/:id", ProdcutController.productByCategory);
 router.get("/productDetails/:id", ProdcutController.productDetailsById);
+router.get("/prodcutByCollection/:id", ProdcutController.prodcutByCollection);
 router.post("/CartCreate", authentication, ProdcutController.createCartList);
 router.delete("/removeCart", authentication, ProdcutController.deleteCartList);
 router.get("/getCart", authentication, ProdcutController.cartList);

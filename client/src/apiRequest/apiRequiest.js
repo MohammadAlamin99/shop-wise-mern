@@ -22,6 +22,29 @@ export async function allCetegoryRequest() {
   }
 }
 
+// all collection list
+export async function allCollectionListRequest() {
+  try {
+    let result = await axios.get("http://localhost:5000/api/v1/collectionList");
+    let data = result.data["data"];
+    return data;
+  } catch (e) {
+    return [];
+  }
+}
+
+export async function productByCollectionRequest(id) {
+  try {
+    let result = await axios.get(
+      "http://localhost:5000/api/v1/prodcutByCollection/" + id
+    );
+    let data = result?.data["data"];
+    return data;
+  } catch (e) {
+    return [];
+  }
+}
+
 export async function productByCategoryRequest(id) {
   try {
     let result = await axios.get(

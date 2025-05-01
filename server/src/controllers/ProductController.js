@@ -1,15 +1,15 @@
-const { allProducts, getProductByCategory, ProductDetails, productSearchKeyword } = require("../services/product_service")
+const { allProducts, getProductByCategory, ProductDetails, productSearchKeyword, getProductByCollection } = require("../services/product_service")
 const { createCartService, removeCart, getAllCart } = require("../services/cartService")
 
 exports.productList = async(req, res)=>{
     let result = await allProducts(req);
     return res.status(200).json(result);
 }
+
 exports.productByCategory = async(req, res)=>{
     let result = await getProductByCategory(req);
     return res.status(200).json(result);
 }
-
 
 exports.productDetailsById = async(req, res)=>{
     let result = await ProductDetails(req);
@@ -38,3 +38,10 @@ exports.searchKeyword = async (req, res)=>{
     let result = await productSearchKeyword(req);
     return res.status(200).json(result);
 }
+
+// filter by collection
+exports.prodcutByCollection = async (req, res)=>{
+    let result = await getProductByCollection(req);
+    return res.status(200).json(result);
+}
+

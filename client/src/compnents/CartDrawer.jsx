@@ -10,6 +10,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive, isOpen, onClose }) => {
   const cartListData = useSelector((state) => state.getCartList.cartList);
   const cartList = cartListData?.data?.data || [];
   const dispatch = useDispatch();
+
   // Calculate subtotal
   const subtotal = cartList.reduce(
     (total, item) => total + item?.product?.price * item?.qty,

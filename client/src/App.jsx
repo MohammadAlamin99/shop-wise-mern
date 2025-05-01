@@ -17,6 +17,7 @@ import BlogPage from './pages/BlogPage'
 import ContactPage from './pages/ContactPage'
 import CategoryProduct from './compnents/shop/CategoryProduct'
 import BlogDetailsPage from './pages/BlogDetailsPage'
+import CollectionPage from './pages/CollectionPage'
 
 function App() { 
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path='/blogDetails' element={<BlogDetailsPage/>}></Route>
           <Route path='/contact' element={<ContactPage/>}></Route>
           <Route path='/category/:id' element={<CategoryProduct/>}></Route>
+          <Route path='/collection/:id' element={<CollectionPage/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
