@@ -6,11 +6,10 @@ import {
   cartCreateRequest,
 } from "../apiRequest/apiRequiest";
 
-const CartDrawer = ({ iscartActive, isSetcartActive }) => {
+const CartDrawer = ({ iscartActive, isSetcartActive, isOpen, onClose }) => {
   const cartListData = useSelector((state) => state.getCartList.cartList);
   const cartList = cartListData?.data?.data || [];
   const dispatch = useDispatch();
-
   // Calculate subtotal
   const subtotal = cartList.reduce(
     (total, item) => total + item?.product?.price * item?.qty,
@@ -40,13 +39,22 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
   return (
     <div>
       <div
-        className={`cartOverlay ${iscartActive ? "cartOverlayActive" : ""}`}
+        className={`cartOverlay ${
+          iscartActive || isOpen ? "cartOverlayActive" : ""
+        }`}
       ></div>
-      <div className={`cart-container ${iscartActive ? "activeCart" : ""}`}>
+      <div
+        className={`cart-container ${
+          iscartActive || isOpen ? "activeCart" : ""
+        }`}
+      >
         <div className="cart-text-wrapper">
           <h3 className="cart-title">Cart</h3>
           <svg
-            onClick={() => isSetcartActive(false)}
+            onClick={() => {
+              if (typeof onClose === "function") onClose();
+              if (typeof isSetcartActive === "function") isSetcartActive(false);
+            }}
             className="cart-close"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -81,7 +89,9 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
                 <div className="item-details">
                   <div className="item-header">
                     <h2 className="item-name">{item?.product?.title}</h2>
-                    <span className="item-price">TK. {item?.product?.price}</span>
+                    <span className="item-price">
+                      TK. {item?.product?.price}
+                    </span>
                   </div>
 
                   <p className="item-color">Color: {item?.color}</p>
@@ -98,9 +108,21 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
                           )
                         }
                       >
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M3.22925 8H12.5626" stroke="#121212" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M3.22925 8H12.5626"
+                            stroke="#121212"
+                            stroke-width="0.75"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
                       </button>
                       <span className="quantity-display">{item?.qty}</span>
                       <button
@@ -112,9 +134,20 @@ const CartDrawer = ({ iscartActive, isSetcartActive }) => {
                           )
                         }
                       >
-                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path fill-rule="evenodd" clip-rule="evenodd" d="M8.375 3.33301C8.375 3.1259 8.20711 2.95801 8 2.95801C7.79289 2.95801 7.625 3.1259 7.625 3.33301V7.62469H3.33325C3.12615 7.62469 2.95825 7.79259 2.95825 7.99969C2.95825 8.2068 3.12615 8.37469 3.33325 8.37469H7.625V12.6663C7.625 12.8734 7.79289 13.0413 8 13.0413C8.20711 13.0413 8.375 12.8734 8.375 12.6663V8.37469H12.6666C12.8737 8.37469 13.0416 8.2068 13.0416 7.99969C13.0416 7.79259 12.8737 7.62469 12.6666 7.62469H8.375V3.33301Z" fill="#121212"/>
-                      </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M8.375 3.33301C8.375 3.1259 8.20711 2.95801 8 2.95801C7.79289 2.95801 7.625 3.1259 7.625 3.33301V7.62469H3.33325C3.12615 7.62469 2.95825 7.79259 2.95825 7.99969C2.95825 8.2068 3.12615 8.37469 3.33325 8.37469H7.625V12.6663C7.625 12.8734 7.79289 13.0413 8 13.0413C8.20711 13.0413 8.375 12.8734 8.375 12.6663V8.37469H12.6666C12.8737 8.37469 13.0416 8.2068 13.0416 7.99969C13.0416 7.79259 12.8737 7.62469 12.6666 7.62469H8.375V3.33301Z"
+                            fill="#121212"
+                          />
+                        </svg>
                       </button>
                     </div>
 

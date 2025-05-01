@@ -4769,12 +4769,12 @@
 }
 
 
-/* ===================== */
-.search-suggestions {
+
+.searchWrapper .search-suggestions {
   position: absolute;
   background: white;
   border: 1px solid #ccc;
-  width: 100%;
+  width: 70%;
   max-height: 250px;
   overflow-y: auto;
   z-index: 999;
@@ -4783,6 +4783,7 @@
   margin-top: 5px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  top: 50px;
 }
 
 .search-suggestions li {
@@ -4793,14 +4794,19 @@
   cursor: pointer;
   transition: background 0.2s ease;
 }
+.search-suggestions li span{
+  font-family: vaR(--inter);
+  font-size: 14px;
+}
 
 .search-suggestions li:hover {
   background-color: #f0f0f0;
 }
 
 .search-suggestions img {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 4px;
 }

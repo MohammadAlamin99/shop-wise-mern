@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,11 +9,17 @@ import {
 } from "../apiRequest/apiRequiest";
 import { useDispatch, useSelector } from "react-redux";
 import { setProduct } from "../redux/state-slice/product-slice";
+import CartDrawer from "./CartDrawer";
 
 const FeatureCollection = () => {
   const productData = useSelector((state) => state.getProduct.product);
   const dispatch = useDispatch();
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
 
+
+  const onCloseHandler = ()=>{
+    setIsCartDrawerOpen(false)
+  }
   useEffect(() => {
     (async () => {
       let result = await allProductRequiest();
@@ -21,15 +27,14 @@ const FeatureCollection = () => {
     })();
   }, []);
 
-  // const storedUserDetails = localStorage.getItem("userDetails");
-  // const parsedUserDetails = JSON.parse(storedUserDetails);
-
   const createCartHandler = async (id) => {
-    window.location.reload();
     let qty = 1;
     let color = "";
     let size = "";
     let result = await cartCreateRequest(id, qty, color, size);
+    if(result) {
+      setIsCartDrawerOpen(true);
+    }
   };
   return (
     <div>
@@ -196,6 +201,10 @@ const FeatureCollection = () => {
           </div>
         </div>
       </section>
+      <CartDrawer 
+      isOpen={isCartDrawerOpen} 
+      onClose={onCloseHandler}
+    />
     </div>
   );
 };
