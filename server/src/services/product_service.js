@@ -5,8 +5,45 @@ const ObjectId = mongoose.Types.ObjectId;
 // all product get
 exports.allProducts = async () => {
   try {
-    let data = await productModel.find();
-    return { status: "success", data: data };
+    const data = await productModel.aggregate([
+      {
+        $lookup: {
+          from: "reviews",
+          localField: "_id",
+          foreignField: "productID",
+          as: "reviews",
+        },
+      },
+      {
+        $addFields: {
+          averageRating: {
+            $cond: [
+              { $gt: [{ $size: "$reviews" }, 0] },
+              { $avg: "$reviews.rating" },
+              0,
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          title: 1,
+          shortDes: 1,
+          price: 1,
+          discountPrice: 1,
+          image: 1,
+          star: 1,
+          stock: 1,
+          remark: 1,
+          categoryID: 1,
+          discountPercentage: 1,
+          collectionID: 1,
+          averageRating: 1,
+        },
+      },
+    ]);
+
+    return { status: "success", data };
   } catch (err) {
     return { status: "fail", err };
   }
