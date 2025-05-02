@@ -1587,7 +1587,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 70vh;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1770,7 +1770,12 @@
   align-items: center;
   position: relative;
 }
-
+.shop-collection .product-card .img_box_wrapper a img{
+  transition: all linear 0.3s;
+}
+.shop-collection .product-card .img_box_wrapper:hover a img{
+  transform: scale(1.1);
+}
 .shop-collection .product-card .img_box_wrapper .badge {
   position: absolute;
   top: 16px;
@@ -1780,6 +1785,7 @@
   padding: 4px 14px;
   border-radius: 4px;
   font-weight: 700;
+  z-index: 1;
 }
 
 .shop-collection .product-card .img_box_wrapper .discount-badge {
@@ -1791,6 +1797,7 @@
   padding: 4px 14px;
   border-radius: 4px;
   font-weight: 700;
+  z-index: 1;
 }
 
 .shop-collection .product-card .rating {
@@ -4892,7 +4899,9 @@
 /* =========================blog page start============================ */
 
 /* BlogGrid.css */
-
+.blog_section{
+  padding-bottom: 40px;
+}
 .blog_section .blog-header {
   display: flex;
   justify-content: space-between;
@@ -5024,11 +5033,13 @@
   }
 
   .blog_section .container {
-    padding: 0 32px;
+    padding: 0 20px;
   }
-
-  .blog_section .blog-grid .blog-card .blog-image img {
-    height: 283px;
+  .blog_section .blog-grid .blog-card .blog-image a{
+    display: block;
+  }
+  .blog_section .blog-grid .blog-card .blog-image a img {
+    width: 100%;
     aspect-ratio: 312/283;
   }
 

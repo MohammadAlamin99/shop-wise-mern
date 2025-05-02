@@ -58,7 +58,6 @@ const ProductDetails = () => {
       selectedColor,
       selectedSize
     );
-    console.log(result[0].data.status);
     if (result[0]?.data?.status === "Success") {
       toast.success("Cart Added!");
       setTimeout(() => {
@@ -290,7 +289,7 @@ const ProductDetails = () => {
                               />
                             </svg>
                           </span>
-                          <span className="reviews-count">12 Reviews</span>
+                          <span className="reviews-count">{item?.[0].reviewsCount || 0} Reviews</span>
                         </div>
                         <h1 className="product-title common_main_head">
                           {item[0]["title"]}
@@ -325,6 +324,9 @@ const ProductDetails = () => {
                                 value={selectedSize}
                                 className="measurement-value"
                               >
+                                <option value="" disabled>
+                                  Choose Size
+                                </option>
                                 {item[0]?.details?.size
                                   ?.split(",")
                                   .map((size, id) => (
@@ -347,6 +349,9 @@ const ProductDetails = () => {
                                 value={selectedColor}
                                 className="measurement-value"
                               >
+                                <option value="" disabled>
+                                  Choose Color
+                                </option>
                                 {item[0]?.details?.color
                                   ?.split(",")
                                   .map((color, id) => (
@@ -357,7 +362,6 @@ const ProductDetails = () => {
                               </select>
                             </div>
                           )}
-
                         <div className="purchase-options">
                           <div className="quantity-selector">
                             <button
@@ -444,7 +448,7 @@ const ProductDetails = () => {
             })
           : ""}
       </div>
-      <Review productId={id}/>
+      <Review productId={id} />
     </div>
   );
 };

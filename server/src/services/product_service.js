@@ -27,18 +27,9 @@ exports.allProducts = async () => {
       },
       {
         $project: {
-          title: 1,
-          shortDes: 1,
-          price: 1,
-          discountPrice: 1,
-          image: 1,
-          star: 1,
-          stock: 1,
-          remark: 1,
-          categoryID: 1,
-          discountPercentage: 1,
-          collectionID: 1,
-          averageRating: 1,
+          "reviews.comment": 0,
+          "reviews.createdAt": 0,
+          "reviews.updatedAt": 0,
         },
       },
     ]);
@@ -76,6 +67,9 @@ exports.getProductByCategory = async (req) => {
 exports.ProductDetails = async (req) => {
   try {
     let produtId = new ObjectId(req.params.id);
+
+    let matchStage = { $match: { _id: produtId } };
+
     let JoinStage1 = {
       $lookup: {
         from: "categories",
@@ -84,6 +78,7 @@ exports.ProductDetails = async (req) => {
         as: "category",
       },
     };
+
     let JoinStage2 = {
       $lookup: {
         from: "productdetails",
@@ -92,16 +87,49 @@ exports.ProductDetails = async (req) => {
         as: "details",
       },
     };
+
+    let JoinStage3 = {
+      $lookup: {
+        from: "reviews",
+        localField: "_id",
+        foreignField: "productID",
+        as: "reviews",
+      },
+    };
+
     let unwindCategoryStage = { $unwind: "$category" };
     let unwindDetailsStage = { $unwind: "$details" };
-    let matchStage = { $match: { _id: produtId } };
+
+    let addFieldsStage = {
+      $addFields: {
+        reviewsCount: { $size: "$reviews" },
+        averageRating: {
+          $cond: [
+            { $gt: [{ $size: "$reviews" }, 0] },
+            { $avg: "$reviews.rating" },
+            0,
+          ],
+        },
+      },
+    };
+
+    let project = {
+      $project: {
+        reviews:0
+      },
+    };
+
     let data = await productModel.aggregate([
       matchStage,
       JoinStage1,
       JoinStage2,
+      JoinStage3,
       unwindCategoryStage,
       unwindDetailsStage,
+      addFieldsStage,
+      project
     ]);
+
     return { status: "success", data: data };
   } catch (e) {
     return { status: "fail", data: e.toString() };

@@ -22,7 +22,6 @@ const FeatureCollection = () => {
   // Get cart list data
   const cartListData = useSelector((state) => state.getCartList.cartList);
   const cartList = cartListData?.data?.data || [];
-
   // Check if product is in cart
   const isProductInCart = (productId) => {
     return cartList.some((item) => item?.product?._id === productId);
@@ -105,9 +104,18 @@ const FeatureCollection = () => {
                         <div className="collection_card">
                           <div className="card">
                             <span className="hot-label">{item?.remark}</span>
-                            <span className="dis-label">
-                              {item["discountPercentage"] || ""}
-                            </span>
+                            {item.discountPrice &&
+                              item.discountPrice > item.price && (
+                                <span className="dis-label">
+                                  {Math.round(
+                                    ((item.discountPrice - item.price) /
+                                      item.discountPrice) *
+                                      100
+                                  )}
+                                  % OFF
+                                </span>
+                              )}
+
                             <a href={"/product-details/" + item._id}>
                               <img
                                 className="product-image"

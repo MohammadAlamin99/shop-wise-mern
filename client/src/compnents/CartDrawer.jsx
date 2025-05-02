@@ -193,7 +193,7 @@ const CartDrawer = ({ iscartActive, isSetcartActive, isOpen, onClose }) => {
         </div>
 
         <div className="cart-actions">
-          <button className="checkout-btn">Checkout</button>
+          <a href="/checkout" className="checkout-btn">Checkout</a>
           <a href="/cart" className="view-cart-link">
             View Cart
           </a>

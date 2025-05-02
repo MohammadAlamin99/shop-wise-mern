@@ -19,7 +19,6 @@ const Review = ({ productId }) => {
   const userDetails = JSON.parse(userDetailsString);
   const userID = userDetails?.id;
   const reviewRef = useRef();
-
   const reviewHandler = async () => {
     const review = reviewRef.current.value;
 
@@ -139,7 +138,7 @@ const Review = ({ productId }) => {
                 <div className="stars-container">
                   {/* {renderStars(4)} */}
                   <span className="section-title reviews-count">
-                    11 Reviews
+                    {review?.data?.data.totalReviews || 0} Reviews
                   </span>
                 </div>
                 <div className="section-title product-name">Tray Table</div>
