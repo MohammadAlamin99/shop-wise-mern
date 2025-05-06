@@ -1769,6 +1769,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 .shop-collection .product-card .img_box_wrapper a img{
   transition: all linear 0.3s;
@@ -1786,6 +1787,10 @@
   border-radius: 4px;
   font-weight: 700;
   z-index: 1;
+}
+
+.shop-collection .product-card .img_box_wrapper .badge:empty{
+  display: none;
 }
 
 .shop-collection .product-card .img_box_wrapper .discount-badge {

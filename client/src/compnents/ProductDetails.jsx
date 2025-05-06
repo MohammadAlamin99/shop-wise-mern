@@ -22,7 +22,7 @@ const ProductDetails = () => {
   const [selectedColor, setSelectedColor] = useState("");
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [details, setDetails] = useState([]);
-  console.log(details)
+  // console.log(details[0]?.[0]?.discountPrice);
   const cartListData = useSelector((state) => state.getCartList.cartList);
   const cartList = cartListData?.data?.data || [];
   const dispatch = useDispatch();
@@ -165,10 +165,17 @@ const ProductDetails = () => {
                         <span className="badge-new">
                           {details[0]?.[0]?.remark}
                         </span>
-                        <span className="badge-discount">
-                          {details[0]?.[0]?.discountPercentage}
-                        </span>
-
+                        {details[0]?.[0]?.discountPrice &&
+                          details[0]?.[0]?.discountPrice > details[0]?.[0]?.price && (
+                            <div className="badge-discount">
+                              {Math.round(
+                                ((details[0]?.[0]?.discountPrice - details[0]?.[0]?.price) /
+                                details[0]?.[0]?.discountPrice) *
+                                  100
+                              )}
+                              % OFF
+                            </div>
+                          )}
                         <div className="main-slider-container">
                           <Swiper
                             spaceBetween={10}

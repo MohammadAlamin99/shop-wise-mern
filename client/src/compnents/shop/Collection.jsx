@@ -318,7 +318,6 @@ const Collection = () => {
                             <div className="badge common-shop-now-btn">
                               {item?.remark}
                             </div>
-
                             {item.discountPrice &&
                               item.discountPrice > item.price && (
                                 <div className="common-shop-now-btn discount-badge">
@@ -330,7 +329,6 @@ const Collection = () => {
                                   % OFF
                                 </div>
                               )}
-
                             <a href={"/product-details/" + item._id}>
                               <img src={item.image} alt="Collection Image" />
                             </a>

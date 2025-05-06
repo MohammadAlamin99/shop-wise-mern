@@ -94,9 +94,9 @@ const CartDrawer = ({ iscartActive, isSetcartActive, isOpen, onClose }) => {
                       TK. {item?.product?.price}
                     </span>
                   </div>
-
-                  <p className="item-color">Color: {item?.color}</p>
-
+                  {item?.color && (
+                    <p className="item-color">Color: {item?.color}</p>
+                  )}
                   <div className="item-actions">
                     <div className="quantity-control">
                       <button
@@ -193,7 +193,9 @@ const CartDrawer = ({ iscartActive, isSetcartActive, isOpen, onClose }) => {
         </div>
 
         <div className="cart-actions">
-          <a href="/checkout" className="checkout-btn">Checkout</a>
+          <a href="/checkout" className="checkout-btn">
+            Checkout
+          </a>
           <a href="/cart" className="view-cart-link">
             View Cart
           </a>

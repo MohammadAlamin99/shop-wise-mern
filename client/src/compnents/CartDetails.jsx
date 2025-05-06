@@ -17,8 +17,6 @@ const CartDetails = () => {
     0
   );
 
-  
-
   // Function to remove item
   const removeItem = async (id) => {
     await removeCartRequest(id);
@@ -38,7 +36,7 @@ const CartDetails = () => {
     }
   };
 
-  // update shiping cost 
+  // update shiping cost
   const getShippingCost = () => {
     if (selectedShipping === "inside") {
       return 70;
@@ -49,10 +47,9 @@ const CartDetails = () => {
     } else {
       return 0; // Default case
     }
-  };  
+  };
   const shippingCost = getShippingCost();
   const total = shippingCost + subtotal;
-
 
   return (
     <div className="cart_details_section">
@@ -99,7 +96,14 @@ const CartDetails = () => {
                         </div>
                       </div>
                       <div className="ah-product-color">
-                        Color : {product.color}
+                        {product?.color && (
+                          <p className="product-color">
+                            Color: {product?.color}
+                          </p>
+                        )}
+                        {product?.size && (
+                          <p className="product-color">Size: {product?.size}</p>
+                        )}
                         <svg
                           onClick={() => removeItem(product.productID)}
                           className="phone-svg-remove"
@@ -204,13 +208,17 @@ const CartDetails = () => {
             <h2 className="ah-summary-title">Cart summary</h2>
 
             <div className="shpping_area_wrapper">
-
-              <div className={`shoppingArea ${selectedShipping==="inside"?("selected-shipping"):("")}`}>
-                <div className="shipping_tab"
-                  onClick={()=>setSelectedShipping("inside")}
+              <div
+                className={`shoppingArea ${
+                  selectedShipping === "inside" ? "selected-shipping" : ""
+                }`}
+              >
+                <div
+                  className="shipping_tab"
+                  onClick={() => setSelectedShipping("inside")}
                 >
                   <div className="shoppingName">
-                  {selectedShipping === "inside" ? (
+                    {selectedShipping === "inside" ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -255,12 +263,17 @@ const CartDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className={`shoppingArea ${selectedShipping==="outside"?("selected-shipping"):("")}`}>
-                <div className="shipping_tab"
-                onClick={()=>setSelectedShipping("outside")}
+              <div
+                className={`shoppingArea ${
+                  selectedShipping === "outside" ? "selected-shipping" : ""
+                }`}
+              >
+                <div
+                  className="shipping_tab"
+                  onClick={() => setSelectedShipping("outside")}
                 >
                   <div className="shoppingName">
-                  {selectedShipping === "outside" ? (
+                    {selectedShipping === "outside" ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -307,7 +320,6 @@ const CartDetails = () => {
               </div>
             </div>
 
-
             <div className="ah-summary-row ah-subtotal">
               <span className="section-title">Subtotal</span>
               <span className="ah-summary-value section-title">
@@ -321,7 +333,9 @@ const CartDetails = () => {
                 TK. {total}
               </span>
             </div>
-            <a href="/checkout" className="ah-checkout-button">Checkout</a>
+            <a href="/checkout" className="ah-checkout-button">
+              Checkout
+            </a>
           </div>
         </div>
       </div>

@@ -13,6 +13,7 @@ const CheckOut = () => {
   const navigate = useNavigate()
   const cartListData = useSelector((state) => state.getCartList.cartList);
   const cartList = cartListData?.data?.data || [];
+  // console.log(cartList)
   const dispatch = useDispatch();
   const [shippingMethod, setShippingMethod] = useState("outsideDhaka");
   const subtotal = cartList.reduce(
@@ -233,7 +234,8 @@ const CheckOut = () => {
                             <h3 className="product-name">
                               {item?.product?.title}
                             </h3>
-                            <p className="product-color">Color: Black</p>
+                            {item?.color && <p className="product-color">Color: {item?.color}</p>}
+                            {item?.size && <p className="product-color">Size: {item?.size}</p>}
                             <div className="quantity-control">
                               <button
                                 onClick={() =>
