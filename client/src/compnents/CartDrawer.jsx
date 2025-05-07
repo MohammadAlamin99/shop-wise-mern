@@ -95,7 +95,10 @@ const CartDrawer = ({ iscartActive, isSetcartActive, isOpen, onClose }) => {
                     </span>
                   </div>
                   {item?.color && (
-                    <p className="item-color">Color: {item?.color}</p>
+                    <p className="item-color">
+                      Color: {item?.color}
+                      {item?.size && ` | Size: ${item?.size}`}
+                    </p>
                   )}
                   <div className="item-actions">
                     <div className="quantity-control">
