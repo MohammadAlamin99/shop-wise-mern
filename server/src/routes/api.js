@@ -9,7 +9,7 @@ const authentication = require("../middlewares/authentication");
 const upload = require("../middlewares/upload");
 const wishController = require("../controllers/wishController");
 const reviewController = require("../controllers/reviewController");
-const { getOrderList } = require("../services/orderService");
+const { getOrderList, updateOrder } = require("../services/orderService");
 
 router.get("/allProduct", ProdcutController.productList);
 router.get("/category", CategoryController.CategoryList);
@@ -36,6 +36,7 @@ router.post("/getReview", reviewController.getReview);
 
 // order list
 router.get("/orders", getOrderList);
+router.post("/updateOrder", updateOrder);
 
 // user api
 router.post("/registration", userController.userRegistraion);
